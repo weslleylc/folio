@@ -1,0 +1,22 @@
+{
+  "doc_id": "INV-2208",
+  "filename": "INV-2208_BrightPeak_on_time.pdf",
+  "relative_path": "bronze/documents/INV-2208_BrightPeak_on_time.pdf",
+  "doc_type": "invoice",
+  "account_id": "ACC-1102",
+  "account_name": "BrightPeak Foods",
+  "effective_date": "2025-09-01",
+  "source_system": "ap_portal",
+  "title": "Invoice INV-2208 - BrightPeak Foods (Paid)",
+  "content_sha256": "3a9e5535149695357b36682b08f58a9ee6bbf968a2c9d56b11fcd1fe8a84f4d1",
+  "mime_type": "application/pdf",
+  "byte_size": 1487,
+  "extracted_at": "2026-11-17T22:43:36Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.7,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/INV-2208.md",
+  "body_preview": "## Invoice INV-2208 - BrightPeak Foods (Paid)  Vendor: GreenField Packaging  Bill-to: BrightPeak Foods (ACC-1102)  Invoice date: 2025-08-01  Due date: 2025-08-31  Status: PAID IN FULL on 2025-08-28  Routine packaging supply. No collections issues. ACC-1102 remains current."
+}

@@ -1,0 +1,22 @@
+{
+  "doc_id": "INV-4401",
+  "filename": "INV-4401_AlloyForge_past_due.pdf",
+  "relative_path": "bronze/documents/INV-4401_AlloyForge_past_due.pdf",
+  "doc_type": "invoice",
+  "account_id": "ACC-8847",
+  "account_name": "Meridian Industrial Corp",
+  "effective_date": "2025-09-12",
+  "source_system": "ap_portal",
+  "title": "Invoice INV-4401 - AlloyForge Materials (PAST DUE)",
+  "content_sha256": "3bf8700bf5ad30989ac8b680991c49435d3b7b2cd36c4294edf5b772fa4e8625",
+  "mime_type": "application/pdf",
+  "byte_size": 1788,
+  "extracted_at": "2026-11-17T22:43:36Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.9,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/INV-4401.md",
+  "body_preview": "## Invoice INV-4401 - AlloyForge Materials (PAST DUE)  Vendor: AlloyForge Materials LLC  Bill-to: Meridian Industrial Corp (ACC-8847)  Invoice date: 2025-07-15  Due date: 2025-08-14  Status: PAST DUE - 29 days overdue as of 2025-09-12  ## Line items  Hot-rolled steel coil lot AF-"
+}

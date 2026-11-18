@@ -1,0 +1,38 @@
+version: 2
+
+models:
+  - name: gov_ai_spend
+    description: >
+      Per-run AI ledger from ai_run_log with estimated USD cost (package-logged
+      or priced via ref_ai_pricing). Foundation for token/cost governance.
+    columns:
+      - name: invocation_id
+        tests: [not_null]
+      - name: completed
+        tests: [not_null]
+  - name: gov_ai_spend_daily
+    description: Daily rollup of AI token and cost spend by function/model.
+  - name: gov_medallion_health
+    description: >
+      Single-row snapshot of Bronze/Silver/Gold health KPIs — coverage,
+      quarantine rate, sensitivity mix, AI spend totals.
+  - name: gov_document_lineage
+    description: >
+      Doc-level lineage from Bronze URI/hash through Silver, Gold facts, and chunks.
+    columns:
+      - name: doc_id
+        tests: [unique, not_null]
+      - name: lineage_status
+        tests:
+          - accepted_values:
+              arguments:
+                values:
+                  - fully_promoted
+                  - gold_no_chunks
+                  - silver_only
+                  - quarantined
+                  - bronze_only
+  - name: gov_sensitivity_breakdown
+    description: Sensitivity label × status × doc_type counts (privacy gate).
+  - name: gov_classification_breakdown
+    description: Content-type classification mix used to filter retrieval.

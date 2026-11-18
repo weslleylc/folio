@@ -1,0 +1,72 @@
+name: 'folio'
+version: '1.0.0'
+config-version: 2
+
+require-dbt-version: [">=1.12.0"]
+
+profile: 'folio'
+
+model-paths: ["models"]
+seed-paths: ["seeds"]
+analysis-paths: ["analyses"]
+test-paths: ["tests"]
+macro-paths: ["macros"]
+
+target-path: "target"
+clean-targets:
+  - "target"
+  - "dbt_packages"
+
+flags:
+  require_corrected_analysis_fqns: true
+
+# Prefer project macros (DuckDB stand-ins) before the package.
+dispatch:
+  - macro_namespace: dbt_context_engineering
+    search_order: ['folio', 'dbt_context_engineering']
+
+on-run-start:
+  - "-- depends_on: {{ ref('ai_run_log') }}\n{{ dbt_context_engineering.create_ai_run_log_table() }}"
+
+models:
+  folio:
+    bronze:
+      +materialized: view
+      +docs:
+        node_color: "#CD7F32"   # bronze
+    silver:
+      +materialized: view
+      +docs:
+        node_color: "#C0C0C0"   # silver
+    gold:
+      +materialized: table
+      +docs:
+        node_color: "#D4AF37"   # gold
+    context:
+      +docs:
+        node_color: "#7C93B0"
+      ai:
+        # Real embed()/classify() spend gated behind one flag (package ADR-0030).
+        +enabled: "{{ var('ai_functions_enabled', false) }}"
+        +docs:
+          node_color: "#7FAFAF"
+
+  dbt_context_engineering:
+    monitoring:
+      +enabled: "{{ var('ai_functions_enabled', false) }}"
+
+analyses:
+  folio:
+    the_pattern:
+      +enabled: "{{ var('ai_functions_enabled', false) }}"
+
+seeds:
+  folio:
+    +quote_columns: false
+    +docs:
+      node_color: "#7FA37F"
+    raw_document_bodies:
+      # Long markdown bodies need quoting.
+      +quote_columns: true
+  dbt_context_engineering:
+    +enabled: "{{ var('ai_functions_enabled', false) }}"

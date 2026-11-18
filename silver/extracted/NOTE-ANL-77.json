@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOTE-ANL-77",
+  "filename": "NOTE-ANL-77_sellside_Meridian_covenant.pdf",
+  "relative_path": "bronze/documents/NOTE-ANL-77_sellside_Meridian_covenant.pdf",
+  "doc_type": "analyst_note",
+  "account_id": "ACC-8847",
+  "account_name": "Meridian Industrial Corp",
+  "effective_date": "2025-11-08",
+  "source_system": "research_desk",
+  "title": "Sell-side note ANL-77 - Meridian covenant watch",
+  "content_sha256": "a7f16a89e1b1a6883a792cb7f24fb5c027e84a666435992fc1a561a8b6e98f64",
+  "mime_type": "application/pdf",
+  "byte_size": 1771,
+  "extracted_at": "2026-11-17T22:43:36Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.83,
+  "sensitivity_label": "confidential",
+  "markdown_path": "silver/extracted/NOTE-ANL-77.md",
+  "body_preview": "## Sell-side note ANL-77 - Meridian covenant watch  Desk: Harbor Securities Credit Research  Issuer: Meridian Industrial Corp (ACC-8847 / MRDI)  Date: 2025-11-08  ## Takeaway  We place Meridian Industrial on covenant watch after Q3. The Harbor Trust amendment buys time, but DSO e"
+}

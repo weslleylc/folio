@@ -1,0 +1,22 @@
+{
+  "doc_id": "INV-4412",
+  "filename": "INV-4412_NorthRiver_partial.pdf",
+  "relative_path": "bronze/documents/INV-4412_NorthRiver_partial.pdf",
+  "doc_type": "invoice",
+  "account_id": "ACC-8847",
+  "account_name": "Meridian Industrial Corp",
+  "effective_date": "2025-10-03",
+  "source_system": "ap_portal",
+  "title": "Invoice INV-4412 - NorthRiver Logistics (Partial payment)",
+  "content_sha256": "e6d2bf7d6f68d5f07512d17f1f143b8eea43eff3d8837522cb39e47b9c6e4d67",
+  "mime_type": "application/pdf",
+  "byte_size": 1687,
+  "extracted_at": "2026-11-17T22:43:36Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.86,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/INV-4412.md",
+  "body_preview": "## Invoice INV-4412 - NorthRiver Logistics (Partial payment)  Vendor: NorthRiver Logistics  Bill-to: Meridian Industrial Corp (ACC-8847)  Invoice date: 2025-08-20  Due date: 2025-09-19  Status: PARTIAL - USD 40,000 of USD 92,400 paid  ## Balance  Open balance ...................."
+}

@@ -1,0 +1,74 @@
+version: 2
+
+models:
+  - name: bronze_document_catalog
+    description: >
+      Bronze catalog of financial PDFs. One row per discovered file with
+      provenance, SHA-256, mime type, and source-system ACL-adjacent metadata.
+      Governance gate: nothing advances to Silver without a catalog row.
+    columns:
+      - name: doc_id
+        tests: [unique, not_null]
+      - name: content_sha256
+        tests: [not_null]
+      - name: uri
+        tests: [not_null]
+
+seeds:
+  - name: raw_document_catalog
+    description: Snapshot of the Bronze catalog written by scripts/extract_with_docling.py
+    config:
+      column_types:
+        doc_id: string
+        filename: string
+        relative_path: string
+        uri: string
+        doc_type: string
+        account_id: string
+        account_name: string
+        effective_date: string
+        source_system: string
+        title: string
+        mime_type: string
+        byte_size: int64
+        content_sha256: string
+        ingested_at: string
+        bronze_layer: string
+
+  - name: raw_document_bodies
+    description: Docling (or fallback) markdown bodies + Silver enrichment fields
+    config:
+      quote_columns: true
+      column_types:
+        doc_id: string
+        account_id: string
+        doc_type: string
+        title: string
+        effective_date: string
+        source_system: string
+        extractor: string
+        parse_status: string
+        quality_score: float64
+        sensitivity_label: string
+        page_count: int64
+        content_sha256: string
+        extracted_at: string
+        body_markdown: string
+        citation_url: string
+
+  - name: dim_accounts
+    description: Account dimension for narrative joins
+    config:
+      column_types:
+        account_id: string
+        account_name: string
+        sector: string
+
+  - name: ref_ai_pricing
+    description: Demo USD rates for governance spend when package est_cost is null
+    config:
+      column_types:
+        function_name: string
+        model_name_pattern: string
+        cost_per_1k_tokens_usd: float64
+        notes: string

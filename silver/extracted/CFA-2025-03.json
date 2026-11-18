@@ -1,0 +1,22 @@
+{
+  "doc_id": "CFA-2025-03",
+  "filename": "CFA-2025-03_Meridian_credit_facility_amendment.pdf",
+  "relative_path": "bronze/documents/CFA-2025-03_Meridian_credit_facility_amendment.pdf",
+  "doc_type": "credit_facility",
+  "account_id": "ACC-8847",
+  "account_name": "Meridian Industrial Corp",
+  "effective_date": "2025-10-21",
+  "source_system": "treasury_vault",
+  "title": "Third Amendment to Revolving Credit Agreement - Meridian Industrial",
+  "content_sha256": "6da208dcd40a24789af98213969bdf3b5e8feb279b2cb008d6f6c2a3e520b8c6",
+  "mime_type": "application/pdf",
+  "byte_size": 1906,
+  "extracted_at": "2026-11-17T22:43:36Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.99,
+  "sensitivity_label": "confidential",
+  "markdown_path": "silver/extracted/CFA-2025-03.md",
+  "body_preview": "## Third Amendment to Revolving Credit Agreement - Meridian Industrial  Facility: USD 250,000,000 revolving credit facility  Borrower: Meridian Industrial Corp (ACC-8847)  Agent bank: Harbor Trust Bank  Amendment effective date: 2025-10-21  ## Covenant revisions  Maximum Consolid"
+}

@@ -1,0 +1,33 @@
+vars:
+  # Master switch for billed AI functions (embed/classify). Default false so
+  # local `dbt build` never spends. Opt in on BigQuery / dbt Cloud:
+  #   dbt build --vars '{"ai_functions_enabled": true}'
+  ai_functions_enabled: false
+
+  # Full re-embed opt-in (ADR-0030).
+  allow_full_reembed: false
+
+  model_generate: "{{ 'mistral-large2' if target.type == 'snowflake' else 'databricks-claude-haiku-4-5' if target.type == 'databricks' else 'gemini-2.5-flash' }}"
+  model_classify: "gemini-2.5-flash"
+  embedding_model: "{{ 'snowflake-arctic-embed-m-v1.5' if target.type == 'snowflake' else 'databricks-gte-large-en' if target.type == 'databricks' else 'text-embedding-005' }}"
+
+  # Financial docs are denser than chatty tickets — slightly larger chunks.
+  chunk_target_tokens: 120
+  chunk_overlap_tokens: 0
+
+  # --- Cost gates (dbt_context_engineering guard_batch + output caps) ---
+  # Demo corpus is ~10 docs / a few hundred chunks. Ceilings trip early if
+  # someone points the project at a large table by mistake.
+  max_batch_rows: 500
+  max_est_tokens: 200000
+  max_output_tokens: 1024
+  bq_thinking_budget: 0          # disable Gemini thinking tokens on classify
+  cost_per_1k_tokens: 0.00015    # populate ai_run_log.est_cost (classify-ish blend)
+  # Optional Vertex Cloud Resource Connection for scheduled (non-interactive) jobs:
+  # bq_connection: "us.folio_vertex"
+
+  embedding_canary_vector_dimension: 768
+
+  # Demo search query (Meridian liquidity / covenant story).
+  search_query_meridian: "Meridian working capital stress and covenant headroom"
+  search_account_id: "ACC-8847"

@@ -1,0 +1,17 @@
+version: 2
+
+models:
+  - name: silver_document_bodies
+    description: >
+      Docling-parsed markdown with quality scores and sensitivity labels.
+      Joins back to Bronze for lineage (content_sha256 / uri).
+    columns:
+      - name: doc_id
+        tests: [unique, not_null]
+      - name: silver_status
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['silver_ready', 'quarantine_low_quality', 'quarantine_parse_failed']
+  - name: silver_ready_documents
+    description: Silver documents cleared for Gold promotion and chunking.

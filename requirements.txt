@@ -1,0 +1,19 @@
+# Docling extraction (Bronze → Silver)
+docling>=2.0.0
+
+# Fallback text extract if Docling is not installed yet
+pypdf>=4.0.0
+
+# Sample PDF generation
+fpdf2>=2.7.0
+
+# Demo query printer + governance dashboard
+duckdb>=1.1.0
+streamlit>=1.32.0
+pandas>=2.0.0
+
+# dbt local (DuckDB) + optional BigQuery adapter
+dbt-core>=1.12.0
+dbt-duckdb>=1.9.0
+dbt-bigquery>=1.9.0
+

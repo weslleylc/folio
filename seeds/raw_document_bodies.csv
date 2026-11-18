@@ -1,0 +1,165 @@
+"doc_id","account_id","doc_type","title","effective_date","source_system","extractor","parse_status","quality_score","sensitivity_label","page_count","content_sha256","extracted_at","body_markdown","citation_url"
+"INV-4401","ACC-8847","invoice","Invoice INV-4401 - AlloyForge Materials (PAST DUE)","2025-09-12","ap_portal","docling","ok","0.9","internal","1","3bf8700bf5ad30989ac8b680991c49435d3b7b2cd36c4294edf5b772fa4e8625","2026-11-17T22:43:36Z","## Invoice INV-4401 - AlloyForge Materials (PAST DUE)
+
+Vendor: AlloyForge Materials LLC
+
+Bill-to: Meridian Industrial Corp (ACC-8847)
+
+Invoice date: 2025-07-15
+
+Due date: 2025-08-14
+
+Status: PAST DUE - 29 days overdue as of 2025-09-12
+
+## Line items
+
+Hot-rolled steel coil lot AF-8821 .... USD 184,500.00
+
+Freight surcharge ........................ USD 6,200.00
+
+Total due ............................... USD 190,700.00
+
+## Collections notice
+
+Second notice. Accounts receivable for Meridian Industrial Corp has aged beyond net-30 terms. AlloyForge will place the account on credit hold if payment is not received by 2025-09-26. Reference PO MI-77821 and ACC-8847 on the remittance.
+
+Please contact collections@alloyforge.example regarding Meridian's payment plan.","folio://invoice/INV-4401"
+"INV-4412","ACC-8847","invoice","Invoice INV-4412 - NorthRiver Logistics (Partial payment)","2025-10-03","ap_portal","docling","ok","0.86","internal","1","e6d2bf7d6f68d5f07512d17f1f143b8eea43eff3d8837522cb39e47b9c6e4d67","2026-11-17T22:43:36Z","## Invoice INV-4412 - NorthRiver Logistics (Partial payment)
+
+Vendor: NorthRiver Logistics
+
+Bill-to: Meridian Industrial Corp (ACC-8847)
+
+Invoice date: 2025-08-20
+
+Due date: 2025-09-19
+
+Status: PARTIAL - USD 40,000 of USD 92,400 paid
+
+## Balance
+
+Open balance .............................. USD 52,400.00
+
+Promise-to-pay date from Meridian AP ...... 2025-10-18
+
+## Note
+
+Meridian Industrial AP indicated cash timing pressure tied to delayed customer receivables. NorthRiver accepted a short extension for ACC-8847 but will not extend again without a bank confirmation letter.","folio://invoice/INV-4412"
+"CFA-2025-03","ACC-8847","credit_facility","Third Amendment to Revolving Credit Agreement - Meridian Industrial","2025-10-21","treasury_vault","docling","ok","0.99","confidential","1","6da208dcd40a24789af98213969bdf3b5e8feb279b2cb008d6f6c2a3e520b8c6","2026-11-17T22:43:36Z","## Third Amendment to Revolving Credit Agreement - Meridian Industrial
+
+Facility: USD 250,000,000 revolving credit facility
+
+Borrower: Meridian Industrial Corp (ACC-8847)
+
+Agent bank: Harbor Trust Bank
+
+Amendment effective date: 2025-10-21
+
+## Covenant revisions
+
+Maximum Consolidated Net Leverage Ratio revised from 3.50x to 3.75x through 2026-03-31, stepping back to 3.50x thereafter. Minimum Interest Coverage Ratio remains 2.50x. Borrower represents that as of 2025-09-30 the leverage ratio was approximately 3.41x, leaving limited covenant headroom for Meridian Industrial.
+
+## Conditions precedent
+
+Delivery of a 13-week cash flow forecast satisfactory to the Agent, and evidence that Meridian has begun collections remediation on receivables aged over 60 days. Failure to maintain the amended leverage covenant constitutes an Event of Default.
+
+Contact: credit.docs@harbortrust.example referencing ACC-8847 / CFA-2025-03.","folio://credit_facility/CFA-2025-03"
+"MEMO-CC-991","ACC-8847","credit_memo","Credit Committee Memo CC-991 - Meridian Industrial risk review","2025-10-24","credit_risk","docling","ok","0.98","confidential","1","a78ab521dd14ba4a2710697d810e5600232c3d8a154edec8a23a3fcdc78cbc25","2026-11-17T22:43:36Z","## Credit Committee Memo CC-991 - Meridian Industrial risk review
+
+Prepared by: Harbor Trust Credit Risk
+
+Subject account: Meridian Industrial Corp (ACC-8847)
+
+Committee date: 2025-10-24
+
+## Recommendation
+
+Approve the third amendment (CFA-2025-03) with heightened monitoring. Meridian's working-capital cycle lengthened to 74 days from 58 days year-over-year. Supplier past-due notices (INV-4401, INV-4412) corroborate stretch in payables.
+
+## Key risks
+
+1. Covenant headroom under 0.35x after the temporary leverage relief.
+2. Concentration: top three customers represent 41% of Meridian receivables.
+3. Management guidance implies Q4 free cash flow near break-even if collections do not improve by mid-November 2025.
+
+## Monitoring plan
+
+Weekly cash report from Meridian treasury; monthly covenant certificate; escalate to special assets if leverage prints above 3.60x on any interim certificate.","folio://credit_memo/MEMO-CC-991"
+"EARN-Q3-2025","ACC-8847","earnings_call","Meridian Industrial Q3 2025 Earnings Call - Excerpt","2025-11-05","ir_transcripts","docling","ok","0.91","confidential","1","b575cbcfbdf7acbe528faad73359886b50a1f4a28f5642b77e25f5c5b63f9b00","2026-11-17T22:43:36Z","## Meridian Industrial Q3 2025 Earnings Call - Excerpt
+
+Company: Meridian Industrial Corp (ticker: MRDI) - ACC-8847
+
+Call date: 2025-11-05
+
+## CFO commentary
+
+CFO Dana Okonkwo: Working capital was a headwind this quarter. Days sales outstanding rose as two large OEM customers pushed payment timing. We are actively remediating collections and have amended our revolving credit facility with Harbor Trust to provide temporary leverage covenant headroom through March. We expect cash conversion to improve in Q4 if those receivables clear as planned.
+
+## Analyst Q&amp;A
+
+Analyst: How close are you to the leverage covenant after the amendment? CFO: We printed roughly 3.41x at quarter-end against the amended 3.75x cap. We have limited headroom and are managing spend carefully. Reference ACC-8847 in any follow-up with IR.","folio://earnings_call/EARN-Q3-2025"
+"10Q-Q3-MDA","ACC-8847","sec_filing","Form 10-Q - Management Discussion (Liquidity) - Meridian Industrial","2025-11-07","sec_edgar","docling","ok","0.99","confidential","1","a522ddca0b305dbb3c2683f9446b4da1ad83416dcbe955c9157da09907da1bf0","2026-11-17T22:43:36Z","## Form 10-Q - Management Discussion (Liquidity) - Meridian Industrial
+
+Registrant: Meridian Industrial Corp (ACC-8847)
+
+Period ended: 2025-09-30
+
+Filing date: 2025-11-07
+
+## Liquidity and Capital Resources
+
+As of September 30, 2025, cash and cash equivalents were USD 41.2 million, compared with USD 63.8 million at December 31, 2024. The decrease primarily reflects higher working capital investment and capital expenditures.
+
+On October 21, 2025, we entered into a third amendment to our revolving credit agreement increasing the maximum consolidated net leverage ratio to 3.75x through March 31, 2026. Management believes existing liquidity, together with the amended facility, is adequate for the next twelve months, though covenant headroom remains limited if receivables continue to age.
+
+Trade payables include amounts past contractual due dates with certain suppliers; see related party and supplier concentration disclosures. Account reference ACC-8847.","folio://sec_filing/10Q-Q3-MDA"
+"NOTE-ANL-77","ACC-8847","analyst_note","Sell-side note ANL-77 - Meridian covenant watch","2025-11-08","research_desk","docling","ok","0.83","confidential","1","a7f16a89e1b1a6883a792cb7f24fb5c027e84a666435992fc1a561a8b6e98f64","2026-11-17T22:43:36Z","## Sell-side note ANL-77 - Meridian covenant watch
+
+Desk: Harbor Securities Credit Research
+
+Issuer: Meridian Industrial Corp (ACC-8847 / MRDI)
+
+Date: 2025-11-08
+
+## Takeaway
+
+We place Meridian Industrial on covenant watch after Q3. The Harbor Trust amendment buys time, but DSO expansion and supplier stretch (AlloyForge past-due notice INV-4401) point to cash conversion risk into year-end.
+
+## What would change our view
+
+Positive: sequential DSO reduction of 8+ days and leverage below 3.20x.
+
+Negative: any interim certificate above 3.60x or a missed supplier commitment.
+
+Clients asking about ACC-8847 should also review CFA-2025-03 and MEMO-CC-991.","folio://analyst_note/NOTE-ANL-77"
+"INV-2208","ACC-1102","invoice","Invoice INV-2208 - BrightPeak Foods (Paid)","2025-09-01","ap_portal","docling","ok","0.7","internal","1","3a9e5535149695357b36682b08f58a9ee6bbf968a2c9d56b11fcd1fe8a84f4d1","2026-11-17T22:43:36Z","## Invoice INV-2208 - BrightPeak Foods (Paid)
+
+Vendor: GreenField Packaging
+
+Bill-to: BrightPeak Foods (ACC-1102)
+
+Invoice date: 2025-08-01
+
+Due date: 2025-08-31
+
+Status: PAID IN FULL on 2025-08-28
+
+Routine packaging supply. No collections issues. ACC-1102 remains current.","folio://invoice/INV-2208"
+"CFA-2024-11","ACC-3301","credit_facility","Revolving Credit Agreement - Summit Rail Partners","2024-11-15","treasury_vault","docling","ok","0.82","confidential","1","493682bb4b189e3251d9455792eca3abcebed58aa3bc8a6d0236214b89c4f563","2026-11-17T22:43:36Z","## Revolving Credit Agreement - Summit Rail Partners
+
+Borrower: Summit Rail Partners (ACC-3301)
+
+Facility size: USD 100,000,000
+
+Maximum leverage covenant: 4.00x
+
+Interest coverage: 2.00x
+
+Summit Rail remains comfortably inside covenants with leverage at 2.10x.
+
+No amendment activity in 2025. This document is unrelated to Meridian Industrial.","folio://credit_facility/CFA-2024-11"
+"EARN-Q2-BP","ACC-1102","earnings_call","BrightPeak Foods Q2 2025 Earnings Call - Excerpt","2025-08-12","ir_transcripts","docling","ok","0.65","public_market","1","71a12d7d5d5036964f080e4f002883657596fadaa0121befb063fcaf53522c76","2026-11-17T22:43:36Z","## BrightPeak Foods Q2 2025 Earnings Call - Excerpt
+
+Company: BrightPeak Foods (ACC-1102) CFO: Margin expansion continued. Working capital was a source of cash as inventory turns improved. No revolving facility draws this quarter.
+
+ACC-1102 guidance unchanged.","folio://earnings_call/EARN-Q2-BP"

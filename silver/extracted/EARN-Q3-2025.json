@@ -1,0 +1,22 @@
+{
+  "doc_id": "EARN-Q3-2025",
+  "filename": "EARN-Q3-2025_Meridian_earnings_call_excerpt.pdf",
+  "relative_path": "bronze/documents/EARN-Q3-2025_Meridian_earnings_call_excerpt.pdf",
+  "doc_type": "earnings_call",
+  "account_id": "ACC-8847",
+  "account_name": "Meridian Industrial Corp",
+  "effective_date": "2025-11-05",
+  "source_system": "ir_transcripts",
+  "title": "Meridian Industrial Q3 2025 Earnings Call - Excerpt",
+  "content_sha256": "b575cbcfbdf7acbe528faad73359886b50a1f4a28f5642b77e25f5c5b63f9b00",
+  "mime_type": "application/pdf",
+  "byte_size": 1860,
+  "extracted_at": "2026-11-17T22:43:36Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.91,
+  "sensitivity_label": "confidential",
+  "markdown_path": "silver/extracted/EARN-Q3-2025.md",
+  "body_preview": "## Meridian Industrial Q3 2025 Earnings Call - Excerpt  Company: Meridian Industrial Corp (ticker: MRDI) - ACC-8847  Call date: 2025-11-05  ## CFO commentary  CFO Dana Okonkwo: Working capital was a headwind this quarter. Days sales outstanding rose as two large OEM customers pus"
+}

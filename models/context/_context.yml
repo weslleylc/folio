@@ -1,0 +1,13 @@
+version: 2
+
+models:
+  - name: int_documents
+    description: Silver-ready financial docs reshaped for chunking.
+  - name: split_documents
+    description: One row per sentence (split_sentences).
+  - name: chunk_documents
+    description: Token-bounded chunks via dbt_context_engineering.chunk().
+  - name: documents_chunks_meta
+    description: Chunks with account, citation, sensitivity metadata attached.
+  - name: documents_hashed
+    description: Chunks with content_hash for governed incremental embedding.

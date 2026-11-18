@@ -1,0 +1,27 @@
+# Local copy → ~/.dbt/profiles.yml  (profile name must match dbt_project.yml: folio)
+#
+# DuckDB: zero-cost local builds (AI stand-ins, no Vertex billing).
+# BigQuery: real AI.EMBED / AI.GENERATE when ai_functions_enabled: true.
+#
+# dbt Cloud: configure the BigQuery connection in the UI instead of this file
+# (Account settings → Connections). See docs/dbt-cloud-bigquery.md.
+
+folio:
+  target: duckdb
+  outputs:
+    duckdb:
+      type: duckdb
+      path: folio.duckdb
+      threads: 4
+
+    bigquery:
+      type: bigquery
+      method: service-account   # or oauth for interactive local runs
+      project: YOUR_GCP_PROJECT
+      dataset: folio_dev        # dbt schema; Cloud often uses dbt_<user>
+      location: US              # must match Vertex / AI.* region
+      threads: 4
+      # method: service-account
+      keyfile: /path/to/dbt-bq-sa.json
+      # method: oauth
+      # (omit keyfile; run `gcloud auth application-default login`)

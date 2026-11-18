@@ -1,0 +1,20 @@
+version: 2
+
+models:
+  - name: gold_document_facts
+    description: >
+      Structured domain facts extracted from Silver markdown (past-due flags,
+      covenant language, leverage mentions) with lineage to Bronze via sha256.
+    columns:
+      - name: doc_id
+        tests: [unique, not_null]
+      - name: risk_signal_tier
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['high', 'medium', 'low']
+  - name: gold_account_risk_rollup
+    description: Account-level rollup of unstructured financial risk signals.
+    columns:
+      - name: account_id
+        tests: [unique, not_null]

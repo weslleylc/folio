@@ -1,0 +1,9 @@
+function_name,model_name_pattern,cost_per_1k_tokens_usd,notes
+embed,text-embedding-005,0.00002,Demo rate — BigQuery text-embedding-005 class
+embed,snowflake-arctic-embed,0.00003,Demo rate — Snowflake arctic embed class
+embed,databricks-gte,0.00003,Demo rate — Databricks GTE class
+embed,*,0.00002,Fallback embed rate for dashboard costing
+classify,*,0.00015,Demo rate — classify / generative label calls
+generate,*,0.00035,Demo rate — free-form generation
+extract,*,0.00025,Demo rate — typed extraction
+*,*,0.00010,Catch-all for unknown AI ops
