@@ -81,6 +81,7 @@ models/
 analyses/             # Meridian narrative (join/regex ceiling)
 docs/architecture.md  # medallion ↔ context-engineering map
 docs/dbt-cloud-bigquery.md  # dbt Cloud + BigQuery deploy
+docs/presentation.md  # speaker guide / demo beats
 ```
 
 ## Governance dashboard
