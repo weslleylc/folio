@@ -31,12 +31,12 @@ signals as (
                 then true else false
         end as flag_liquidity_language,
         case
-            when {{ folio_regexp_contains("body_markdown", "'3\\.[0-9]{2}x'") }}
-                then {{ folio_regexp_extract("body_markdown", "'(3\\.[0-9]{2})x'", 1) }}
+            when {{ folio_regexp_contains("body_markdown", "'3[.][0-9]{2}x'") }}
+                then {{ folio_regexp_extract("body_markdown", "'(3[.][0-9]{2})x'", 1) }}
         end as leverage_ratio_mention,
         case
             when {{ folio_regexp_contains("body_markdown", "'USD [0-9,]+'") }}
-                then {{ folio_regexp_extract("body_markdown", "'USD ([0-9,]+(?:\\.[0-9]+)?)'", 1) }}
+                then {{ folio_regexp_extract("body_markdown", "'USD ([0-9,]+(?:[.][0-9]+)?)'", 1) }}
         end as first_usd_amount_raw
     from docs
 )

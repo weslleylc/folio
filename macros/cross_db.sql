@@ -16,7 +16,8 @@
 {%- endmacro %}
 
 {% macro bigquery__folio_regexp_contains(expr, pattern) -%}
-  regexp_contains({{ expr }}, {{ pattern }})
+  {#- r'...' so \. etc. are regex metacharacters, not illegal BQ string escapes. -#}
+  regexp_contains({{ expr }}, r{{ pattern }})
 {%- endmacro %}
 
 
@@ -34,7 +35,7 @@
 
 {% macro bigquery__folio_regexp_extract(expr, pattern, group) -%}
   {#- BQ REGEXP_EXTRACT returns the first capturing group when the pattern has one. -#}
-  regexp_extract({{ expr }}, {{ pattern }})
+  regexp_extract({{ expr }}, r{{ pattern }})
 {%- endmacro %}
 
 
