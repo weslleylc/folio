@@ -7,8 +7,10 @@ vars:
   # Full re-embed opt-in (ADR-0030).
   allow_full_reembed: false
 
-  model_generate: "{{ 'mistral-large2' if target.type == 'snowflake' else 'databricks-claude-haiku-4-5' if target.type == 'databricks' else 'gemini-2.5-flash' }}"
-  model_classify: "gemini-2.5-flash"
+  # BigQuery AI.GENERATE endpoints (short names). Prefer current Flash IDs from
+  # https://cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-ai-generate
+  model_generate: "{{ 'mistral-large2' if target.type == 'snowflake' else 'databricks-claude-haiku-4-5' if target.type == 'databricks' else 'gemini-3.5-flash' }}"
+  model_classify: "gemini-3.5-flash"
   embedding_model: "{{ 'snowflake-arctic-embed-m-v1.5' if target.type == 'snowflake' else 'databricks-gte-large-en' if target.type == 'databricks' else 'text-embedding-005' }}"
 
   # Financial docs are denser than chatty tickets — slightly larger chunks.

@@ -79,7 +79,9 @@ Demo corpus is ~10 docs — expect a small Vertex bill.
 | Models (BQ) | Role |
 |---|---|
 | `text-embedding-005` | `embed()` |
-| `gemini-2.5-flash` | `classify()` |
+| `gemini-3.5-flash` | `classify()` / generate |
+
+If Vertex returns “Publisher model … was not found”, switch `model_classify` / `model_generate` in [`vars.yml`](../vars.yml) to another ID from the [AI.GENERATE docs](https://cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-ai-generate) (e.g. `gemini-3.5-flash-lite`, `gemini-3.8-flash`) or enable model access in the GCP project.
 
 ## 4. Verify in BigQuery Studio
 
