@@ -259,9 +259,11 @@ def main() -> None:
                 "bronze_layer": "physical_copy",
             }
         )
-        # Collapse whitespace for CSV friendliness but keep sentence boundaries.
+        # Single-line CSV for BigQuery seeds (no allow_quoted_newlines on dbt seed).
+        # Restore newlines in silver_document_bodies via replace('\\n', '\n').
         body_flat = re.sub(r"[ \t]+", " ", md)
         body_flat = re.sub(r"\n{3,}", "\n\n", body_flat).strip()
+        body_flat = body_flat.replace("\\", "\\\\").replace("\n", "\\n")
         body_rows.append(
             {
                 "doc_id": entry["doc_id"],

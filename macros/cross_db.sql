@@ -104,3 +104,22 @@
 {% macro bigquery__folio_date_trunc_day(expr) -%}
   timestamp_trunc({{ expr }}, day)
 {%- endmacro %}
+
+
+{#- Seeds store markdown single-line with literal \n (BigQuery CSV-safe). -#}
+{% macro folio_unescape_newlines(expr) -%}
+  {{ return(adapter.dispatch('folio_unescape_newlines', 'folio')(expr)) }}
+{%- endmacro %}
+
+{% macro default__folio_unescape_newlines(expr) -%}
+  replace({{ expr }}, '\\n', '\n')
+{%- endmacro %}
+
+{% macro duckdb__folio_unescape_newlines(expr) -%}
+  {#- DuckDB does not treat \n as an escape inside ordinary string literals. -#}
+  replace({{ expr }}, chr(92) || 'n', chr(10))
+{%- endmacro %}
+
+{% macro bigquery__folio_unescape_newlines(expr) -%}
+  replace({{ expr }}, '\\n', '\n')
+{%- endmacro %}

@@ -64,16 +64,16 @@ select
     c.*,
     a.*,
     case when b.bronze_docs = 0 then null
-         else cast(s.silver_docs as double) / b.bronze_docs
+         else cast(s.silver_docs as {{ dbt.type_float() }}) / b.bronze_docs
     end as pct_bronze_in_silver,
     case when s.silver_docs = 0 then null
-         else cast(s.silver_ready as double) / s.silver_docs
+         else cast(s.silver_ready as {{ dbt.type_float() }}) / s.silver_docs
     end as pct_silver_ready,
     case when s.silver_docs = 0 then null
-         else cast(s.silver_quarantined as double) / s.silver_docs
+         else cast(s.silver_quarantined as {{ dbt.type_float() }}) / s.silver_docs
     end as pct_quarantined,
     case when b.bronze_docs = 0 then null
-         else cast(g.gold_fact_docs as double) / b.bronze_docs
+         else cast(g.gold_fact_docs as {{ dbt.type_float() }}) / b.bronze_docs
     end as pct_bronze_in_gold
 from bronze b
 cross join silver s

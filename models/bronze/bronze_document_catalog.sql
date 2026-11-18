@@ -15,7 +15,7 @@ select
     source_system,
     title,
     mime_type,
-    cast(byte_size as bigint) as byte_size,
+    cast(byte_size as {{ dbt.type_bigint() }}) as byte_size,
     content_sha256,
     cast(ingested_at as timestamp) as ingested_at,
     bronze_layer

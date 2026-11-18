@@ -13,12 +13,13 @@ with bodies as (
         source_system,
         extractor,
         parse_status,
-        cast(quality_score as double) as quality_score,
+        cast(quality_score as {{ dbt.type_float() }}) as quality_score,
         sensitivity_label,
         {{ folio_try_cast('page_count', dbt.type_int()) }} as page_count,
         content_sha256,
         cast(extracted_at as timestamp) as extracted_at,
-        body_markdown,
+        -- Seeds store markdown as single-line with \n escapes (BigQuery CSV-safe).
+        {{ folio_unescape_newlines('body_markdown') }} as body_markdown,
         citation_url
     from {{ ref('raw_document_bodies') }}
 ),

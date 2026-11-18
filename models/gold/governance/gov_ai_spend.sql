@@ -10,8 +10,8 @@ with started as (
         model_name,
         function_name,
         row_count,
-        cast(est_tokens as double) as est_tokens,
-        cast(est_cost as double) as logged_est_cost,
+        cast(est_tokens as {{ dbt.type_float() }}) as est_tokens,
+        cast(est_cost as {{ dbt.type_float() }}) as logged_est_cost,
         run_at as started_at
     from {{ ref('ai_run_log') }}
     where event = 'started'
@@ -31,7 +31,7 @@ pricing as (
     select
         lower(trim(function_name)) as function_name,
         lower(trim(model_name_pattern)) as model_name_pattern,
-        cast(cost_per_1k_tokens_usd as double) as cost_per_1k_tokens_usd,
+        cast(cost_per_1k_tokens_usd as {{ dbt.type_float() }}) as cost_per_1k_tokens_usd,
         case
             when trim(model_name_pattern) = '*' then 2
             else 1
