@@ -22,7 +22,7 @@
 | Act | Pages | Question it answers |
 |---|---|---|
 | **I Problem** | 1 problem · 2 the case · 3 approach | What are we solving, for whom, with what pattern? |
-| **II Ingest** | 4 discovery · 5 Bronze · 6 Silver | How do files arrive, and which are allowed in? |
+| **II Ingest** | 4 Bronze · 5 discovery · 6 Silver | How do files arrive, and which are allowed in? |
 | **III Structure** | 7 Gold · 8 Embeddings · 9 Taxonomy | How do we turn text into something queryable? |
 | **IV Use it** | 10 Search · 11 Extraction | Does it actually find and read the right documents? |
 | **V Trust** | 12 Evals · 13 Cost & lineage · 14 Wrap-up | Can we measure it, afford it and audit it? |
@@ -74,25 +74,29 @@ Each page: **Goal → Say → Chart (axes · read · so what) → Transition.**
 - **Table:** package capability ↔ Folio model ↔ plain meaning. Don’t read it all; promise to show each.
 - **Transition:** “First: how do files even get in?”
 
-### 4 · Discovery: events vs crawler (2 min)
+### 4 · Bronze: catalog, not meaning (2 min)
+- **Goal:** Bronze = provenance only, and *where the bytes live* is a decision.
+- **Say:** URI + `content_sha256` + type, nothing interpreted. **Zero-copy vs physical copy** first: metadata-only Bronze leaves the file in the bucket (less storage, smaller attack surface; re-parse hits the source); physical copy keeps a snapshot (audit trail; duplicate storage). This demo copies PDFs into git and `dbt seed` (Cloud-friendly); production leans metadata-only.
+- **Table:** point at `uri`, `content_sha256`, `bronze_layer`.
+- **Transition:** “Either way, someone has to fill that catalog. How do new files get noticed?”
+
+### 5 · Discovery: events vs crawler (2 min)
 - **Goal:** show the production ingestion decision (demo uses seeds).
 - **Read the image left → right:** event-driven = upload fires an event → queue → worker → catalog (instant, pay per change). Crawler = scheduled list + hash diff (complete, chatty, late).
 - **Say:** crawl once → events day to day → periodic re-crawl for dark data.
-- **Transition:** “Whatever way they arrive, Bronze records them the same way.”
-
-### 5 · Bronze: catalog, not meaning (2 min)
-- **Goal:** Bronze = provenance only.
-- **Say:** URI + `content_sha256` + type. Zero-copy vs physical copy: this demo copies PDFs into git and `dbt seed` (Cloud-friendly); production leans metadata-only with selective snapshots.
-- **Table:** point at `uri`, `content_sha256`, `bronze_layer`.
-- **Transition:** “Bronze trusts everything. Silver doesn’t.”
+- **Transition:** “Whatever way they arrive, Bronze trusts everything. Silver doesn’t.”
 
 ### 6 · Silver: the gate (3 min) — most important page of Act II
 - **Goal:** answer “what is the silver gate?”
 - **Say:** *it is a column, not a table*: `silver_status` in `silver_document_bodies`, a CASE where the first rule wins (parse failed → quality < 0.4 → restricted PII → ready). Downstream models read the view `silver_ready_documents`.
-- **Chart — documents by Silver status**
-  - *Axes:* Y gate verdict · X number of documents.
-  - *Read:* green = passed (96), red = quarantined, one bar per reason.
-  - *So what:* ~4% are blocked for a concrete reason; they never reach Gold, never cost tokens.
+- **Chart 1 — one square per file (waffle)**
+  - *Axes:* none — 100 squares, one per file; hover shows the file. Sorted by status, green first.
+  - *Read:* green = passed (96); each other colour = a different rule that stopped the file (2 parse failed, 1 low quality, 1 PII).
+  - *So what:* the gate is rare on purpose; the four red/amber/purple squares never reach Gold, never get embedded, never cost tokens.
+- **Chart 2 — quality score histogram with the 0.4 rule**
+  - *Axes:* X parse quality (bins of 0.1) · Y number of files · colour = verdict.
+  - *Read:* left of the dashed line fails rule 2. The purple file is on the right (good quality) but blocked by rule 3 — it contains an SSN.
+  - *So what:* the gate is not just a quality filter; sensitivity is a separate reason to stop a file.
 - **Table — quarantined files and why.**
 - **Anti-pattern cards:** Bronze→Vector embeds the blank scan, garbled fax **and the SSN memo**. *“Vectors without Silver are an ungoverned second copy.”*
 - **Transition:** “Now that the inputs are clean, what can plain SQL tell us?”
@@ -100,11 +104,15 @@ Each page: **Goal → Say → Chart (axes · read · so what) → Transition.**
 ### 7 · Gold: rule-based flags (3 min)
 - **Goal:** explain what “risk flags” mean — they are word matches, **not** a credit score.
 - **Say:** three word lists (past due · covenant · liquidity). Tier: **high** = covenant *and* liquidity · **medium** = any one · **low** = none.
-- **Chart 1 — flagged documents per borrower (stacked)**
-  - *Axes:* Y borrower (only those with ≥1 flag) · X documents · colour = flag type.
-  - *Read:* longer = more risky wording; colour = which kind.
-  - *So what:* Meridian dominates; 9 borrowers have none. Two small bars (Summit Rail, BrightPeak) — **plant the seed**: “remember these two.”
-- **Chart 2 — documents per tier:** most are low; the small red/amber slice is the review queue.
+- **Chart 1 — documents per borrower, split by tier**
+  - *Axes:* Y all 12 borrowers · X number of documents (each counted once) · colour = tier (red high, amber medium, light grey low).
+  - *Read:* the coloured part of a bar is what the rules consider risky.
+  - *So what:* Meridian is mostly red/amber; ten borrowers are all grey. Two bars (Summit Rail, BrightPeak) show **one amber document each** — **plant the seed**: “remember these two.”
+- **Chart 2 — heatmap: Meridian documents × the three word lists**
+  - *Axes:* Y one row per Meridian document with its tier · X past due / covenant / liquidity.
+  - *Read:* red cell = that word list matched. Covenant + liquidity both red = high; one red = medium; none = low.
+  - *So what:* this is the whole “risk” logic — three yes/no questions, no score. Easy to audit, but it only sees words.
+- **Metrics above the charts:** 3 high · 13 medium · 80 low (use them to explain tiers before the charts).
 - **Transition:** “Rules match words. Can we match meaning?”
 
 ### 8 · Embeddings: meaning as numbers (3 min)
@@ -149,7 +157,7 @@ Each page: **Goal → Say → Chart (axes · read · so what) → Transition.**
 - **Say:** a golden set (15 Meridian docs with the human label) is scored with `eval()` — like a unit test. Define **precision** (when it says X, is it right?) and **recall** (of the true X, how many found?).
 - **Chart — precision and recall per label**
   - *Axes:* Y label · X score 0–1 · blue precision, amber recall.
-  - *Read:* full bar = perfect; a **missing bar = undefined** (public_disclosure was never predicted, so precision is blank and recall is 0).
+  - *Read:* full bar = perfect; **“n/a” = undefined** (public_disclosure was never predicted, so precision is n/a and recall is 0.00).
   - *So what:* accuracy 87%, and the misses teach us something.
 - **Misses:** 10Q-Q3-MDA (filing *is* about covenants) and EARN-Q3-2025 (discusses both). Fix is a taxonomy/prompt decision → rerun → metrics move → CI-able.
 - **Transition:** “What did all this cost, and can we trace an answer back?”
@@ -175,13 +183,13 @@ Pick a query, read it aloud, run it. Same SQL as `presentation_queries.sql`; the
 | Min | Pages | Do |
 |---|---|---|
 | 0–6 | 1–3 | Problem, case, approach |
-| 6–15 | 4–6 | Ingest; spend most time on Silver gate |
+| 6–15 | 4–6 | Ingest (Bronze → discovery → Silver); spend most time on the Silver gate |
 | 15–23 | 7–9 | Gold flags → embeddings → taxonomy |
 | 23–29 | 10–11 | Search aha + regex vs extract |
 | 29–34 | 12–14 | Evals, cost/lineage, wrap-up |
 | 34–39 | — | Q&A |
 
-If you need 20 minutes: skip page 4, show page 5 as one sentence, merge 8+9.
+If you need 20 minutes: skip page 5, say page 4 in one sentence, merge 8+9.
 
 ---
 

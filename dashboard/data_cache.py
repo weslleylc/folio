@@ -319,6 +319,12 @@ def talk_queries() -> dict[str, str]:
             from {t('gold_document_facts')}
             group by 1
         """,
+        "gold_tier_by_account": f"""
+            select r.account_name, g.risk_signal_tier, count(*) as docs
+            from {t('gold_document_facts')} g
+            join {t('gold_account_risk_rollup')} r using (account_id)
+            group by 1, 2
+        """,
         "regex_vs_extract": f"""
             select g.doc_id, g.account_id, g.title,
                    g.risk_signal_tier as regex_tier,

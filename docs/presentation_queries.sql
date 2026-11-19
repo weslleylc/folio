@@ -6,7 +6,7 @@
 --
 -- Page ↔ query map
 --   2  The case ............ 02a, 02b
---   5  Bronze .............. 05
+--   4  Bronze .............. 04  (page 5 = discovery, no SQL)
 --   6  Silver gate ......... 06a, 06b
 --   7  Gold flags .......... 07a, 07b, 07c
 --   8  Embeddings .......... 08a, 08b
@@ -40,7 +40,7 @@ order by b.effective_date;
 
 
 -- =============================================================================
--- 05  BRONZE — provenance only: uri + sha256, no interpretation
+-- 04  BRONZE — provenance only: uri + sha256, no interpretation
 -- Chart: none (table). Point at uri / content_sha256 / bronze_layer.
 -- =============================================================================
 select doc_id, doc_type, account_id, account_name, effective_date,
@@ -51,7 +51,7 @@ order by effective_date, doc_id;
 
 -- =============================================================================
 -- 06a  SILVER GATE — what did the gate decide?
--- Chart: bar. Y = silver_status, X = docs. Green = silver_ready, red = quarantine_*.
+-- Chart: waffle (one square per file) or a simple bar of counts. Green = silver_ready.
 -- The gate is the CASE expression in models/silver/silver_document_bodies.sql
 -- (first match wins: parse failed → low quality (<0.4) → restricted_pii → ready).
 -- =============================================================================
@@ -72,13 +72,15 @@ order by silver_status;
 
 
 -- =============================================================================
--- 07a  GOLD — which borrowers trip the regex flags?
--- Chart: stacked bar. Y = account_name, X = docs, colour = past_due / covenant / liquidity.
+-- 07a  GOLD — documents per borrower, split by tier (each document counted once)
+-- Chart: stacked bar. Y = account_name, X = docs, colour = risk_signal_tier.
 -- =============================================================================
-select account_name, document_count, past_due_docs, covenant_docs, liquidity_docs,
-       max_leverage_mentioned, max_risk_tier
-from `roundtable-513102.dbt_wcaldas.gold_account_risk_rollup`
-order by covenant_docs desc, past_due_docs desc;
+select r.account_name, g.risk_signal_tier, count(*) as docs
+from `roundtable-513102.dbt_wcaldas.gold_document_facts` g
+join `roundtable-513102.dbt_wcaldas.gold_account_risk_rollup` r using (account_id)
+group by 1, 2
+order by r.account_name,
+         case g.risk_signal_tier when 'high' then 1 when 'medium' then 2 else 3 end;
 
 
 -- =============================================================================
@@ -94,7 +96,7 @@ order by case risk_signal_tier when 'high' then 1 when 'medium' then 2 else 3 en
 
 -- =============================================================================
 -- 07c  GOLD — Meridian documents and their flags
--- Chart: none (table).
+-- Chart: heatmap. Y = doc_id, X = the three flags, cell red when true.
 -- =============================================================================
 select doc_id, doc_type, flag_past_due, flag_covenant_language, flag_liquidity_language,
        leverage_ratio_mention, risk_signal_tier, effective_date

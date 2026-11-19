@@ -197,8 +197,8 @@ PAGES = [
     "1 · The problem",
     "2 · The case: Meridian",
     "3 · The approach",
-    "4 · Discovery: events vs crawler",
-    "5 · Bronze: catalog, not meaning",
+    "4 · Bronze: catalog, not meaning",
+    "5 · Discovery: events vs crawler",
     "6 · Silver: the gate",
     "7 · Gold: rule-based flags",
     "8 · Embeddings: meaning as numbers",
@@ -398,10 +398,10 @@ elif page == PAGES[2]:
 # ===========================================================================
 # ACT II — INGEST
 # ===========================================================================
-elif page == PAGES[3]:
+elif page == PAGES[4]:
     hero(
-        "Discovery: how do files reach Bronze?",
-        "Push (events) or pull (crawler). Folio seeds the catalog for the demo; this is the production decision.",
+        "Discovery: how do files get into the catalog?",
+        "Bronze is a catalog — someone has to fill it. Push (events) or pull (crawler); Folio seeds it for the demo.",
     )
     teach(
         "<b>Read the diagram left → right</b><br/>"
@@ -432,7 +432,7 @@ elif page == PAGES[3]:
     next_up()
 
 # ===========================================================================
-elif page == PAGES[4]:
+elif page == PAGES[3]:
     hero(
         "Bronze: a catalog, not meaning",
         "Bronze answers “what file is this and can I prove it didn’t change?” — nothing more.",
@@ -485,29 +485,81 @@ elif page == PAGES[5]:
         "Everything downstream reads the view <code>silver_ready_documents</code>, which keeps only #4."
     )
 
-    counts = load("silver_status_counts").copy()
-    counts["gate"] = counts["silver_status"].map(lambda s: "passed" if s == "silver_ready" else "quarantined")
-    st.subheader("What did the gate decide?")
-    bar(
-        counts,
-        "silver_status",
-        "docs",
-        title="Documents by Silver status",
-        cat_title="silver_status (the gate’s verdict)",
-        val_title="Number of documents",
-        color="gate",
-        colors={"passed": GREEN, "quarantined": RED},
+    bodies = load("silver_bodies").copy()
+    STATUS_ORDER = [
+        "silver_ready",
+        "quarantine_parse_failed",
+        "quarantine_low_quality",
+        "quarantine_pii_review",
+    ]
+    STATUS_COLORS = [GREEN, RED, AMBER, "#7d3c98"]
+    bodies["silver_status"] = pd.Categorical(bodies["silver_status"], STATUS_ORDER, ordered=True)
+    bodies = bodies.sort_values(["silver_status", "doc_id"]).reset_index(drop=True)
+    bodies["silver_status"] = bodies["silver_status"].astype(str)
+    bodies["col"] = bodies.index % 10
+    bodies["row"] = bodies.index // 10
+    ready = int((bodies["silver_status"] == "silver_ready").sum())
+    quar = len(bodies) - ready
+
+    c1, c2, c3 = st.columns(3)
+    c1.metric("Files entering Silver", len(bodies))
+    c2.metric("Passed to Gold + AI", ready)
+    c3.metric("Quarantined (never embedded)", quar)
+
+    st.subheader("Every file, one square")
+    waffle = (
+        alt.Chart(bodies)
+        .mark_square(size=620)
+        .encode(
+            x=alt.X("col:O", axis=None),
+            y=alt.Y("row:O", axis=None),
+            color=alt.Color(
+                "silver_status:N",
+                scale=alt.Scale(domain=STATUS_ORDER, range=STATUS_COLORS),
+                legend=alt.Legend(title="silver_status", orient="right"),
+            ),
+            tooltip=["doc_id", "account_id", "doc_type", "silver_status", "quality_score"],
+        )
+        .properties(title=f"{len(bodies)} files after the Silver gate (hover for the file)", height=330, width=420)
     )
-    ready = int(counts.loc[counts["gate"] == "passed", "docs"].sum())
-    quar = int(counts.loc[counts["gate"] == "quarantined", "docs"].sum())
-    c1, c2 = st.columns(2)
-    c1.metric("Passed to Gold + AI", ready)
-    c2.metric("Quarantined (never embedded)", quar)
+    st.altair_chart(waffle, width="content")
     guide(
-        "Y = gate verdict · X = number of documents.",
-        "Green = allowed downstream. Red = stopped here, one bar per reason.",
-        f"The gate is deliberately boring: ~{100 * quar / max(ready + quar, 1):.0f}% of files are blocked for a "
-        "concrete reason. Those never reach Gold, never get embedded, never cost tokens.",
+        "No axes — each square is one file (hover to see which). Squares are sorted by status, green first.",
+        "Green = allowed downstream. Every other colour = quarantined, one colour per rule that stopped it.",
+        f"{quar} of {len(bodies)} files are blocked. They never reach Gold, are never embedded and never cost tokens. "
+        "The gate is rare on purpose — most files are fine; the point is the ones that are not.",
+    )
+
+    st.subheader("Why those four? Quality score vs the 0.4 rule")
+    hist = (
+        alt.Chart(bodies)
+        .mark_bar()
+        .encode(
+            x=alt.X("quality_score:Q", bin=alt.Bin(step=0.1), title="Parse quality score (0 = garbage, 1 = perfect)"),
+            y=alt.Y("count():Q", title="Number of files"),
+            color=alt.Color(
+                "silver_status:N",
+                scale=alt.Scale(domain=STATUS_ORDER, range=STATUS_COLORS),
+                legend=alt.Legend(title=None, orient="bottom"),
+            ),
+            tooltip=["silver_status", "count()"],
+        )
+    )
+    rule = alt.Chart(pd.DataFrame({"x": [0.4]})).mark_rule(color="#1a2332", strokeDash=[6, 4], size=2).encode(x="x:Q")
+    label = (
+        alt.Chart(pd.DataFrame({"x": [0.4], "t": ["rule 2: quality < 0.4 is quarantined"]}))
+        .mark_text(align="left", dx=6, dy=-4, baseline="bottom", color="#1a2332")
+        .encode(x="x:Q", y=alt.value(12), text="t:N")
+    )
+    st.altair_chart(
+        (hist + rule + label).properties(title="Files by quality score, coloured by gate verdict", height=300),
+        width="stretch",
+    )
+    guide(
+        "X = parse quality score in bins of 0.1 · Y = number of files · colour = gate verdict.",
+        "Anything left of the dashed line fails rule 2. A parse-failed file has no usable text, whatever its score. "
+        "The purple file sits on the right of the line — good quality, but blocked by rule 3 (it contains an SSN).",
+        "The gate is not only a quality filter: sensitivity is a separate reason to stop a file.",
     )
 
     st.subheader("The quarantined files — and why")
@@ -555,74 +607,103 @@ elif page == PAGES[6]:
         "<span class='tier-med'>medium</span> = any one flag · <span class='tier-low'>low</span> = none."
     )
 
-    roll = load("gold_rollup")
-    long = roll.melt(
-        id_vars=["account_name"],
-        value_vars=["past_due_docs", "covenant_docs", "liquidity_docs"],
-        var_name="flag",
-        value_name="docs",
+    tiers = load("gold_tier_counts").set_index("risk_signal_tier")["docs"]
+    t1, t2, t3 = st.columns(3)
+    t1.metric("high tier", int(tiers.get("high", 0)), help="covenant AND liquidity words in the same document")
+    t2.metric("medium tier", int(tiers.get("medium", 0)), help="exactly one kind of flag")
+    t3.metric("low tier", int(tiers.get("low", 0)), help="no flag")
+
+    st.subheader("Which borrowers have flagged documents?")
+    by_acct = load("gold_tier_by_account").copy()
+    by_acct["tier_rank"] = by_acct["risk_signal_tier"].map({"high": 0, "medium": 1, "low": 2})
+    names = (
+        by_acct.groupby("account_name")["docs"].sum().sort_values(ascending=False).index.tolist()
     )
-    long["flag"] = long["flag"].map(
-        {"past_due_docs": "past due", "covenant_docs": "covenant", "liquidity_docs": "liquidity"}
-    )
-    long = long[long["docs"] > 0]
-    order = roll["account_name"].tolist()
-    st.subheader("Which borrowers trip the flags?")
     chart = (
-        alt.Chart(long)
+        alt.Chart(by_acct)
         .mark_bar()
         .encode(
-            y=alt.Y("account_name:N", sort=order, title="Borrower"),
-            x=alt.X("docs:Q", title="Documents that trip the flag"),
+            y=alt.Y("account_name:N", sort=names, title="Borrower"),
+            x=alt.X("docs:Q", title="Number of documents (each document counted once)"),
             color=alt.Color(
-                "flag:N",
-                scale=alt.Scale(domain=["past due", "covenant", "liquidity"], range=[RED, BLUE, AMBER]),
-                legend=alt.Legend(title="Flag", orient="bottom"),
+                "risk_signal_tier:N",
+                scale=alt.Scale(domain=["high", "medium", "low"], range=[RED, AMBER, "#c9d1d9"]),
+                legend=alt.Legend(title="Tier", orient="bottom"),
             ),
-            tooltip=["account_name", "flag", "docs"],
+            order=alt.Order("tier_rank:Q"),
+            tooltip=["account_name", "risk_signal_tier", "docs"],
         )
-        .properties(title="Flagged documents per borrower (stacked by flag type)", height=60 + 30 * max(long["account_name"].nunique(), 1))
+        .properties(title="Documents per borrower, split by regex tier", height=420)
     )
     st.altair_chart(chart, width="stretch")
     guide(
-        "Y = borrower (only borrowers with ≥1 flag) · X = number of documents · colour = which flag.",
-        "A longer bar = more documents with risky wording. Colours show whether it is past-due, covenant or liquidity language.",
-        "Meridian dominates — as designed. The other 9 borrowers have zero flags and don’t appear. "
-        "Summit Rail and BrightPeak appear with just one flag each: keep that in mind, we revisit them on page 11.",
+        "Y = borrower (all 12) · X = number of documents · colour = tier (red high, amber medium, light grey low).",
+        "Each document is counted once, in its tier. The coloured part of a bar is what the rules consider risky.",
+        "Meridian is mostly red/amber. Ten borrowers are all grey. Two others show one amber document each "
+        "(Summit Rail, BrightPeak) — remember them: page 11 checks whether the rules were right.",
     )
 
-    tiers = load("gold_tier_counts").copy()
-    tiers["risk_signal_tier"] = pd.Categorical(tiers["risk_signal_tier"], ["high", "medium", "low"], ordered=True)
-    tiers = tiers.sort_values("risk_signal_tier")
-    st.subheader("How many documents land in each tier?")
-    bar(
-        tiers.assign(risk_signal_tier=tiers["risk_signal_tier"].astype(str)),
-        "risk_signal_tier",
-        "docs",
-        title="Documents by regex tier",
-        cat_title="Tier",
-        val_title="Number of documents",
-        color="risk_signal_tier",
-        colors={"high": RED, "medium": AMBER, "low": GREEN},
-        sort=["high", "medium", "low"],
+    st.subheader("Look inside one borrower: which flag did each Meridian document trip?")
+    facts = load("gold_meridian_facts").copy()
+    flag_cols = {
+        "flag_past_due": "past due",
+        "flag_covenant_language": "covenant",
+        "flag_liquidity_language": "liquidity",
+    }
+    heat = facts.melt(
+        id_vars=["doc_id", "risk_signal_tier"],
+        value_vars=list(flag_cols),
+        var_name="flag",
+        value_name="hit",
     )
+    heat["flag"] = heat["flag"].map(flag_cols)
+    heat["hit"] = heat["hit"].map(lambda v: "flag on" if bool(v) else "no match")
+    tier_rank = {"high": 0, "medium": 1, "low": 2}
+    doc_order = sorted(
+        facts["doc_id"].tolist(),
+        key=lambda d: (tier_rank[facts.loc[facts["doc_id"] == d, "risk_signal_tier"].iloc[0]], d),
+    )
+    heat["doc_label"] = heat["doc_id"] + "  [" + heat["risk_signal_tier"] + "]"
+    label_order = [
+        d + "  [" + facts.loc[facts["doc_id"] == d, "risk_signal_tier"].iloc[0] + "]" for d in doc_order
+    ]
+    hm = (
+        alt.Chart(heat)
+        .mark_rect(stroke="white", strokeWidth=2)
+        .encode(
+            x=alt.X("flag:N", title="Word list matched", sort=["past due", "covenant", "liquidity"], axis=alt.Axis(labelAngle=0)),
+            y=alt.Y("doc_label:N", title="Meridian document  [tier]", sort=label_order),
+            color=alt.Color(
+                "hit:N",
+                scale=alt.Scale(domain=["flag on", "no match"], range=[RED, "#eef1f4"]),
+                legend=alt.Legend(title=None, orient="bottom"),
+            ),
+            tooltip=["doc_id", "flag", "hit", "risk_signal_tier"],
+        )
+        .properties(title="Meridian: documents × flags", height=30 * len(facts) + 40)
+    )
+    st.altair_chart(hm, width="stretch")
     guide(
-        "Y = tier · X = number of Silver-ready documents.",
-        "Red = covenant and liquidity words together; amber = one flag; green = clean.",
-        "Most documents are low. The small red/amber slice is the review queue — "
-        "but a word match can be wrong, which is exactly why Act IV exists.",
+        "Y = one row per Meridian document, with its tier in brackets · X = the three word lists.",
+        "A red cell means that word list matched somewhere in the document. "
+        "Two red cells in covenant + liquidity = high; one red cell = medium; none = low.",
+        "This is the whole “risk” logic — three yes/no questions. No model, no score. "
+        "Easy to explain and to audit, but it only sees words.",
     )
 
-    st.subheader("Meridian documents and their flags")
-    facts = load("gold_meridian_facts").rename(
-        columns={
-            "flag_past_due": "past_due",
-            "flag_covenant_language": "covenant",
-            "flag_liquidity_language": "liquidity",
-            "leverage_ratio_mention": "leverage_x",
-        }
-    )
-    st.dataframe(facts, width="stretch", hide_index=True)
+    with st.expander("Same data as a table (with leverage mentions)"):
+        st.dataframe(
+            facts.rename(
+                columns={
+                    "flag_past_due": "past_due",
+                    "flag_covenant_language": "covenant",
+                    "flag_liquidity_language": "liquidity",
+                    "leverage_ratio_mention": "leverage_x",
+                }
+            ),
+            width="stretch",
+            hide_index=True,
+        )
     next_up()
 
 # ===========================================================================
@@ -866,27 +947,32 @@ elif page == PAGES[11]:
 
     pr = metrics[metrics["metric"].isin(["precision", "recall"]) & (metrics["label"] != "__overall__")].copy()
     pr["value"] = pr["value"].astype(float)
-    chart = (
-        alt.Chart(pr.dropna(subset=["value"]))
-        .mark_bar()
-        .encode(
-            y=alt.Y("label:N", title="Label", sort=None),
-            x=alt.X("value:Q", title="Score (0–1)", scale=alt.Scale(domain=[0, 1])),
-            yOffset="metric:N",
-            color=alt.Color(
-                "metric:N",
-                scale=alt.Scale(domain=["precision", "recall"], range=[BLUE, AMBER]),
-                legend=alt.Legend(title=None, orient="bottom"),
-            ),
-            tooltip=["label", "metric", alt.Tooltip("value:Q", format=".2f")],
-        )
-        .properties(title="Precision and recall per label", height=320)
+    pr["shown"] = pr["value"].fillna(0.0)
+    pr["text"] = pr["value"].map(lambda v: "n/a" if pd.isna(v) else f"{v:.2f}")
+    base = alt.Chart(pr)
+    enc_y = alt.Y("label:N", title="Label", sort=None)
+    enc_x = alt.X("shown:Q", title="Score (0–1)", scale=alt.Scale(domain=[0, 1.12]))
+    enc_off = alt.YOffset("metric:N")
+    bars = base.mark_bar().encode(
+        y=enc_y,
+        x=enc_x,
+        yOffset=enc_off,
+        color=alt.Color(
+            "metric:N",
+            scale=alt.Scale(domain=["precision", "recall"], range=[BLUE, AMBER]),
+            legend=alt.Legend(title=None, orient="bottom"),
+        ),
+        tooltip=["label", "metric", "text"],
     )
+    labels = base.mark_text(align="left", dx=4, color="#1a2332").encode(
+        y=enc_y, x=enc_x, yOffset=enc_off, text="text:N"
+    )
+    chart = (bars + labels).properties(title="Precision and recall per label", height=340)
     st.altair_chart(chart, width="stretch")
     guide(
         "Y = label · X = score from 0 to 1 · blue = precision, amber = recall.",
-        "Full-length bars are perfect. A missing bar means undefined: e.g. precision for public_disclosure is blank "
-        "because the model never predicted that label for these documents, and its recall is 0.",
+        "Full-length bars are perfect. “n/a” means undefined: precision for public_disclosure is n/a "
+        "because the model never predicted that label for these documents, and its recall is 0.00.",
         "Accuracy is high but not perfect — and the misses are informative (next table).",
     )
 
@@ -1055,9 +1141,9 @@ else:
         "Same queries as docs/presentation_queries.sql. Pick one, read it, run it.",
     )
     pack = [
-        ("01 Bronze catalog  (page 5)", "pack_bronze"),
+        ("01 Bronze catalog  (page 4)", "pack_bronze"),
         ("02 Silver status mix  (page 6)", "pack_silver_status"),
-        ("03 Gold rollup  (page 7)", "pack_gold_rollup"),
+        ("03 Gold tiers per borrower  (page 7)", "gold_tier_by_account"),
         ("04 Embeddings sample  (page 8)", "pack_embed"),
         ("05 Nearest neighbours  (page 8)", "embed_neighbours"),
         ("06 Search raw vs filtered  (page 10)", "pack_search"),
