@@ -9,6 +9,7 @@ select
     e.effective_date,
     e.citation_url,
     e.content_sha256,
+    e.silver_version_id,
     e.sensitivity_label,
     e.extract_text,
     {{ dbt_context_engineering.field('e.extracted', 'primary_signal') }} as primary_signal,

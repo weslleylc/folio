@@ -42,18 +42,35 @@ models:
       +materialized: table
       +docs:
         node_color: "#D4AF37"   # gold
-    context:
-      +docs:
-        node_color: "#7C93B0"
-      ai:
-        # Real embed()/classify() spend gated behind one flag (package ADR-0030).
+      # Gold / context store — chunks (free) + embeddings (billed, incremental, reusable).
+      context_store:
+        +docs:
+          node_color: "#7C93B0"
+        documents_embed:
+          # Build the vector store alone with embeddings_enabled; ai_functions_enabled implies it.
+          +enabled: "{{ var('embeddings_enabled', false) or var('ai_functions_enabled', false) }}"
+      # Gold / structured domain tables — regex facts (free) + typed extract() (billed).
+      structured:
+        int_extract_corpus:
+          +enabled: "{{ var('ai_functions_enabled', false) }}"
+        documents_extract:
+          +enabled: "{{ var('ai_functions_enabled', false) }}"
+        documents_extract_flat:
+          +enabled: "{{ var('ai_functions_enabled', false) }}"
+      # Gold / serving — use-case products on top of the store (billed, opt-in).
+      serving:
         +enabled: "{{ var('ai_functions_enabled', false) }}"
         +docs:
           node_color: "#7FAFAF"
+      governance:
+        gov_classify_eval_pairs:
+          +enabled: "{{ var('ai_functions_enabled', false) }}"
+        gov_classify_eval:
+          +enabled: "{{ var('ai_functions_enabled', false) }}"
 
   dbt_context_engineering:
     monitoring:
-      +enabled: "{{ var('ai_functions_enabled', false) }}"
+      +enabled: "{{ var('embeddings_enabled', false) or var('ai_functions_enabled', false) }}"
 
 analyses:
   folio:
@@ -69,4 +86,4 @@ seeds:
       # Long markdown bodies need quoting.
       +quote_columns: true
   dbt_context_engineering:
-    +enabled: "{{ var('ai_functions_enabled', false) }}"
+    +enabled: "{{ var('embeddings_enabled', false) or var('ai_functions_enabled', false) }}"

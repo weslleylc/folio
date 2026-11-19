@@ -36,3 +36,7 @@ models:
     description: Sensitivity label × status × doc_type counts (privacy gate).
   - name: gov_classification_breakdown
     description: Content-type classification mix used to filter retrieval.
+  - name: gov_classify_eval_pairs
+    description: Predicted (chunk majority) vs golden labels for Meridian docs.
+  - name: gov_classify_eval
+    description: Package eval() metrics (accuracy / precision / recall) for the classify taxonomy.

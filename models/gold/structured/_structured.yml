@@ -1,5 +1,7 @@
 version: 2
 
+# Gold / structured domain tables — deterministic facts and typed extraction from documents (article §6.1).
+
 models:
   - name: gold_document_facts
     description: >

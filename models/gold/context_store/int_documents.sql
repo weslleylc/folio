@@ -7,9 +7,10 @@ select
     account_id,
     doc_type,
     title,
-    body_markdown as body,
+    body_sanitized as body,
     cast(effective_date as {{ dbt.type_timestamp() }}) as artifact_ts,
     citation_url,
     content_sha256,
+    silver_version_id,
     sensitivity_label
 from {{ ref('silver_ready_documents') }}

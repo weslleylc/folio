@@ -1,0 +1,19 @@
+version: 2
+
+# Gold / serving — use-case products built on top of the context store.
+# Opt-in per use case (ai_functions_enabled); the store itself stays reusable.
+
+models:
+  - name: documents_classify
+    description: >
+      Folio content-type label per chunk. Incremental: re-labels only new/changed chunks or when
+      classify_version (prompt + model) changes.
+    columns:
+      - name: chunk_id
+        tests: [unique, not_null]
+  - name: documents_embedded_classified
+    description: Join of embeddings + chunk labels for knowledge_base.
+  - name: knowledge_base
+    description: Conformed searchable corpus across financial document chunks.
+  - name: search
+    description: Demo retrieval — raw cosine vs cosine + classification filter.

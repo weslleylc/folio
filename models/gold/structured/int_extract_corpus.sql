@@ -14,10 +14,11 @@ select
     d.citation_url,
     d.content_sha256,
     d.sensitivity_label,
+    d.silver_version_id,
     {% if target.type == 'bigquery' -%}
-    substr(d.body_markdown, 1, 3500)
+    substr(d.body_sanitized, 1, 3500)
     {%- else -%}
-    substring(d.body_markdown, 1, 3500)
+    substring(d.body_sanitized, 1, 3500)
     {%- endif %} as extract_text
 from {{ ref('silver_ready_documents') }} d
 join {{ ref('gold_document_facts') }} g on g.doc_id = d.doc_id

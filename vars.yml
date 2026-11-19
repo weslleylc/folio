@@ -1,10 +1,18 @@
 vars:
-  # Master switch for billed AI functions (embed/classify). Default false so
-  # local `dbt build` never spends. Opt in on BigQuery / dbt Cloud:
+  # Two independent switches (both default false so a local `dbt build` never spends):
+  #
+  #   embeddings_enabled   -> Gold / context store only: documents_embed (chunks are always built).
+  #                           Use this to build a reusable vector store and decide later how to use it.
+  #   ai_functions_enabled -> everything billed: store + classify / search / extract / evals.
+  #                           Implies embeddings_enabled.
+  #
+  #   dbt build --vars '{"embeddings_enabled": true}'
   #   dbt build --vars '{"ai_functions_enabled": true}'
+  embeddings_enabled: false
   ai_functions_enabled: false
 
-  # Full re-embed opt-in (ADR-0030).
+  # Full re-embed opt-in (ADR-0030). Also unlocks --full-refresh of documents_classify
+  # (override separately with allow_full_reclassify, intentionally not declared here).
   allow_full_reembed: false
 
   # BigQuery AI.GENERATE endpoints (short names). Prefer current Flash IDs from

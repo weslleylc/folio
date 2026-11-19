@@ -13,6 +13,7 @@ select
     artifact_ts,
     sensitivity_label,
     content_sha256 as bronze_content_sha256,
+    silver_version_id,
     {{ dbt_context_engineering.content_hash('chunk_text') }} as content_hash
 from {{ ref('documents_chunks_meta') }}
 where chunk_text is not null

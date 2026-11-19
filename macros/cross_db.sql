@@ -124,3 +124,21 @@
 {% macro bigquery__folio_unescape_newlines(expr) -%}
   replace({{ expr }}, '\\n', '\n')
 {%- endmacro %}
+
+
+{% macro folio_regexp_replace(expr, pattern, replacement) -%}
+  {{ return(adapter.dispatch('folio_regexp_replace', 'folio')(expr, pattern, replacement)) }}
+{%- endmacro %}
+
+{% macro default__folio_regexp_replace(expr, pattern, replacement) -%}
+  regexp_replace({{ expr }}, {{ pattern }}, {{ replacement }})
+{%- endmacro %}
+
+{% macro duckdb__folio_regexp_replace(expr, pattern, replacement) -%}
+  regexp_replace({{ expr }}, {{ pattern }}, {{ replacement }}, 'g')
+{%- endmacro %}
+
+{% macro bigquery__folio_regexp_replace(expr, pattern, replacement) -%}
+  {#- r'...' raw string; BigQuery REGEXP_REPLACE replaces every match. -#}
+  regexp_replace({{ expr }}, r{{ pattern }}, {{ replacement }})
+{%- endmacro %}

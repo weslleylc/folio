@@ -20,8 +20,3 @@ models:
                 source_text_column: extract_text
                 allow_empty: true
 
-  - name: gov_classify_eval_pairs
-    description: Predicted (chunk majority) vs golden labels for Meridian docs.
-
-  - name: gov_classify_eval
-    description: Package eval() metrics (accuracy / precision / recall) for classify taxonomy.

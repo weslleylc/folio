@@ -27,6 +27,7 @@ with embedded as (
         artifact_ts,
         sensitivity_label,
         bronze_content_sha256,
+        silver_version_id,
         chunk_text,
         content_hash,
         {% if use_stand_in -%}
@@ -48,6 +49,7 @@ select
     artifact_ts,
     sensitivity_label,
     bronze_content_sha256,
+    silver_version_id,
     chunk_text,
     content_hash,
     '{{ var("embedding_model") }}' as model_version,

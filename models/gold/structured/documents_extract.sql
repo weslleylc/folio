@@ -20,6 +20,7 @@ select
     effective_date,
     citation_url,
     content_sha256,
+    silver_version_id,
     sensitivity_label,
     extract_text,
     {% if use_stand_in -%}

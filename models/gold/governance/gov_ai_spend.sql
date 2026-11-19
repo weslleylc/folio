@@ -2,8 +2,10 @@
 -- Pairs started/completed events, fills est_cost from ref_ai_pricing when the
 -- package left est_cost null (cost_per_1k_tokens unset — intentional safety default).
 {# Build after the AI models when they are enabled, so the ledger is not empty on a one-shot build. #}
-{% if var('ai_functions_enabled', false) %}
+{% if var('embeddings_enabled', false) or var('ai_functions_enabled', false) %}
 -- depends_on: {{ ref('documents_embed') }}
+{% endif %}
+{% if var('ai_functions_enabled', false) %}
 -- depends_on: {{ ref('documents_classify') }}
 -- depends_on: {{ ref('documents_extract') }}
 {% endif %}

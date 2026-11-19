@@ -1,0 +1,43 @@
+version: 2
+
+# Gold / context store — "context-aware chunks & vector index" (article §6.1).
+# Reusable by any consumer: chunks are free (no AI), embeddings are incremental + gated.
+
+groups:
+  - name: knowledge_platform
+    owner:
+      name: Folio data platform
+      email: data-platform@example.com
+
+models:
+  - name: int_documents
+    description: Sanitized Silver-ready documents reshaped for chunking (reads body_sanitized only).
+  - name: split_documents
+    description: One row per sentence (split_sentences). Deterministic, zero AI cost.
+  - name: chunk_documents
+    description: Token-bounded chunks via dbt_context_engineering.chunk().
+  - name: documents_chunks_meta
+    description: >
+      Chunks with account, citation, sensitivity, content_sha256 and silver_version_id attached
+      (article pitfall 2: never sever metadata from chunks).
+  - name: documents_hashed
+    description: Chunks with content_hash for governed incremental embedding. Free; always built.
+    config:
+      group: knowledge_platform
+      access: public
+    columns:
+      - name: chunk_id
+        tests: [unique, not_null]
+  - name: documents_embed
+    description: >
+      Governed embeddings of every Silver-ready chunk. Incremental on content_hash and the
+      embedding fingerprint — build it once, reuse it from any project. Lineage columns:
+      chunk_id, bronze_content_sha256, silver_version_id, model_version.
+    config:
+      group: knowledge_platform
+      access: public
+    columns:
+      - name: chunk_id
+        tests: [unique, not_null]
+      - name: silver_version_id
+        tests: [not_null]

@@ -8,6 +8,11 @@ models:
     columns:
       - name: doc_id
         tests: [unique, not_null]
+      - name: silver_version_id
+        description: Hash of extractor + sanitized text; propagated to chunks and embeddings for lineage.
+        tests: [not_null]
+      - name: body_sanitized
+        description: Text with SSN / e-mail spans redacted. The only text Gold may read.
       - name: silver_status
         tests:
           - accepted_values:

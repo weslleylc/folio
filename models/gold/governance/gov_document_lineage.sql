@@ -28,6 +28,8 @@ silver as (
         quality_score,
         sensitivity_label,
         silver_status,
+        silver_version_id,
+        pii_redacted,
         extracted_at,
         citation_url
     from {{ ref('silver_document_bodies') }}
@@ -71,6 +73,8 @@ select
     s.quality_score,
     s.sensitivity_label,
     s.silver_status,
+    s.silver_version_id,
+    s.pii_redacted,
     s.extracted_at,
     s.citation_url,
     g.risk_signal_tier,

@@ -26,7 +26,8 @@ silver as (
         sum(case when sensitivity_label = 'public_market' then 1 else 0 end) as sens_public_market,
         sum(case when sensitivity_label = 'internal' then 1 else 0 end) as sens_internal,
         sum(case when extractor = 'docling' then 1 else 0 end) as extracted_via_docling,
-        sum(case when extractor != 'docling' then 1 else 0 end) as extracted_via_fallback
+        sum(case when extractor != 'docling' then 1 else 0 end) as extracted_via_fallback,
+        sum(case when pii_redacted then 1 else 0 end) as silver_pii_redacted
     from {{ ref('silver_document_bodies') }}
 ),
 
