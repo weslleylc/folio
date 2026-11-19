@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-068",
+  "filename": "NOISE-068_analyst_note.pdf",
+  "relative_path": "bronze/documents/NOISE-068_analyst_note.pdf",
+  "doc_type": "analyst_note",
+  "account_id": "ACC-8806",
+  "account_name": "Pacific Rim Logistics",
+  "effective_date": "2025-09-15",
+  "source_system": "research_desk",
+  "title": "Pacific Rim Logistics analyst note NOISE-068",
+  "content_sha256": "2c69a1b54efd1e1e000a6ea7d6b1f115d0e8a182e8021ad2c3fd53aa07a431b7",
+  "mime_type": "application/pdf",
+  "byte_size": 1625,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-068.md",
+  "body_preview": "## Pacific Rim Logistics analyst note NOISE-068  Account: Pacific Rim Logistics (ACC-8806) Document sequence: NOISE-068 Doc type: analyst\\_note  ## Summary  Routine analyst note for Pacific Rim Logistics. Operations are stable.  Reference amount USD 19,316.00. Balance settled on "
+}

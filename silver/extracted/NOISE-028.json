@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-028",
+  "filename": "NOISE-028_invoice.pdf",
+  "relative_path": "bronze/documents/NOISE-028_invoice.pdf",
+  "doc_type": "invoice",
+  "account_id": "ACC-4402",
+  "account_name": "Northwind Apparel",
+  "effective_date": "2025-05-02",
+  "source_system": "ap_portal",
+  "title": "Northwind Apparel invoice NOISE-028",
+  "content_sha256": "6812996a4a32e92d6641f18e2ecfcd4a12b2fbf0e6f6b1ca12caad73023b31cc",
+  "mime_type": "application/pdf",
+  "byte_size": 1617,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.79,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-028.md",
+  "body_preview": "## Northwind Apparel invoice NOISE-028  Account: Northwind Apparel (ACC-4402)  Document sequence: NOISE-028  Doc type: invoice  ## Summary  Routine invoice for Northwind Apparel. Operations are stable. Reference amount USD 13,836.00. Balance settled on schedule.  ## Notes  Intern"
+}

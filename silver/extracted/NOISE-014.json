@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-014",
+  "filename": "NOISE-014_invoice.pdf",
+  "relative_path": "bronze/documents/NOISE-014_invoice.pdf",
+  "doc_type": "invoice",
+  "account_id": "ACC-3301",
+  "account_name": "Summit Rail Partners",
+  "effective_date": "2025-03-15",
+  "source_system": "ap_portal",
+  "title": "Summit Rail Partners invoice NOISE-014",
+  "content_sha256": "dee0095bcd7ff0fa480c52f3788a6852ae3ea89eeab091e29c5d83fbc17537be",
+  "mime_type": "application/pdf",
+  "byte_size": 1617,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.79,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-014.md",
+  "body_preview": "## Summit Rail Partners invoice NOISE-014  Account: Summit Rail Partners (ACC-3301)  Document sequence: NOISE-014  Doc type: invoice  ## Summary  Routine invoice for Summit Rail Partners. Operations are stable. Reference amount USD 11,918.00. Balance settled on schedule.  ## Note"
+}

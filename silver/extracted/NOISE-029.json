@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-029",
+  "filename": "NOISE-029_credit_facility.pdf",
+  "relative_path": "bronze/documents/NOISE-029_credit_facility.pdf",
+  "doc_type": "credit_facility",
+  "account_id": "ACC-5503",
+  "account_name": "Blue Harbor Utilities",
+  "effective_date": "2025-06-03",
+  "source_system": "treasury_vault",
+  "title": "Blue Harbor Utilities credit facility NOISE-029",
+  "content_sha256": "fedbb8ad53e61316f76516d313b21f7ae6bbb101251ac2d35959014e95771219",
+  "mime_type": "application/pdf",
+  "byte_size": 1627,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.75,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-029.md",
+  "body_preview": "## Blue Harbor Utilities credit facility NOISE-029  Account: Blue Harbor Utilities (ACC-5503) Document sequence: NOISE-029 Doc type: credit\\_facility  ## Summary  Routine credit facility for Blue Harbor Utilities. Operations are stable. Reference amount USD 13,973.00. Balance set"
+}

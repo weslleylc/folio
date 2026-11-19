@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-057",
+  "filename": "NOISE-057_credit_facility.pdf",
+  "relative_path": "bronze/documents/NOISE-057_credit_facility.pdf",
+  "doc_type": "credit_facility",
+  "account_id": "ACC-9907",
+  "account_name": "Ironclad Construction",
+  "effective_date": "2025-10-04",
+  "source_system": "treasury_vault",
+  "title": "Ironclad Construction credit facility NOISE-057",
+  "content_sha256": "07b8f3cb876d0b6c6a7999aeedf94ee292b54fffe5663ef59ac2ba317d139123",
+  "mime_type": "application/pdf",
+  "byte_size": 1627,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.75,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-057.md",
+  "body_preview": "## Ironclad Construction credit facility NOISE-057  Account: Ironclad Construction (ACC-9907)  Document sequence: NOISE-057  Doc type: credit\\_facility  ## Summary  Routine credit facility for Ironclad Construction. Operations are stable. Reference amount USD 17,809.00. Balance s"
+}

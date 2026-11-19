@@ -1,7 +1,11 @@
-.PHONY: pdfs extract deps build build-ai demo dashboard dashboard-bq
+.PHONY: pdfs expand extract deps build build-ai demo dashboard dashboard-bq
 
 pdfs:
 	.venv/bin/python scripts/generate_sample_pdfs.py
+
+# ~100 PDFs + intentional quarantine hooks (Silver chart not all ready)
+expand:
+	.venv/bin/python scripts/expand_corpus.py 100
 
 extract:
 	.venv/bin/python scripts/extract_with_docling.py

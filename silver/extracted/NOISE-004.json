@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-004",
+  "filename": "NOISE-004_sec_filing.pdf",
+  "relative_path": "bronze/documents/NOISE-004_sec_filing.pdf",
+  "doc_type": "sec_filing",
+  "account_id": "ACC-4402",
+  "account_name": "Northwind Apparel",
+  "effective_date": "2025-05-05",
+  "source_system": "sec_edgar",
+  "title": "Northwind Apparel sec filing NOISE-004",
+  "content_sha256": "41773a1646d2f0230d14a0f46b7b546879edce727d3f44e37f812a1e08ccc938",
+  "mime_type": "application/pdf",
+  "byte_size": 1619,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-004.md",
+  "body_preview": "## Northwind Apparel sec filing NOISE-004  Account: Northwind Apparel (ACC-4402)  Document sequence: NOISE-004  Doc type: sec\\_filing  ## Summary  Routine sec filing for Northwind Apparel. Operations are stable. Reference amount USD 10,548.00. Balance settled on schedule.  ## Not"
+}

@@ -1,0 +1,22 @@
+{
+  "doc_id": "MER-X06",
+  "filename": "MER-X06_analyst_note.pdf",
+  "relative_path": "bronze/documents/MER-X06_analyst_note.pdf",
+  "doc_type": "analyst_note",
+  "account_id": "ACC-8847",
+  "account_name": "Meridian Industrial Corp",
+  "effective_date": "2025-11-10",
+  "source_system": "research_desk",
+  "title": "Flash note \u2014 liquidity watch \u2014 Meridian (MER-X06)",
+  "content_sha256": "af91573c78b7b0239e5cbe78d8b2118c3f756603f773451a4d72cfb78b6d4269",
+  "mime_type": "application/pdf",
+  "byte_size": 1479,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.75,
+  "sensitivity_label": "confidential",
+  "markdown_path": "silver/extracted/MER-X06.md",
+  "body_preview": "## Flash note - liquidity watch - Meridian (MER-X06)  Issuer: Meridian Industrial (ACC-8847)  ## Takeaway  Liquidity and days sales outstanding remain the key watch items.  Covenant amendment bought time; cash conversion still thin into year-end."
+}

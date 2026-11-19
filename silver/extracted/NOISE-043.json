@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-043",
+  "filename": "NOISE-043_credit_facility.pdf",
+  "relative_path": "bronze/documents/NOISE-043_credit_facility.pdf",
+  "doc_type": "credit_facility",
+  "account_id": "ACC-7705",
+  "account_name": "Prairie Ag Co-op",
+  "effective_date": "2025-08-17",
+  "source_system": "treasury_vault",
+  "title": "Prairie Ag Co-op credit facility NOISE-043",
+  "content_sha256": "512880f2941f4e7715903bee49eccbaba443f031c1855dac58873b82169b2fdd",
+  "mime_type": "application/pdf",
+  "byte_size": 1625,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-043.md",
+  "body_preview": "## Prairie Ag Co-op credit facility NOISE-043  Account: Prairie Ag Co-op (ACC-7705) Document sequence: NOISE-043 Doc type: credit\\_facility  ## Summary  Routine credit facility for Prairie Ag Co-op. Operations are stable.  Reference amount USD 15,891.00. Balance settled on schedu"
+}

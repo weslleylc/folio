@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-070",
+  "filename": "NOISE-070_invoice.pdf",
+  "relative_path": "bronze/documents/NOISE-070_invoice.pdf",
+  "doc_type": "invoice",
+  "account_id": "ACC-1010",
+  "account_name": "Lumen Health Systems",
+  "effective_date": "2025-11-17",
+  "source_system": "ap_portal",
+  "title": "Lumen Health Systems invoice NOISE-070",
+  "content_sha256": "8cbe0451f27313649f137dc95e245a42c8ca6a6cc285f5d5b61bd5afb41155f3",
+  "mime_type": "application/pdf",
+  "byte_size": 1619,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.79,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-070.md",
+  "body_preview": "## Lumen Health Systems invoice NOISE-070  Account: Lumen Health Systems (ACC-1010)  Document sequence: NOISE-070  Doc type: invoice  ## Summary  Routine invoice for Lumen Health Systems. Operations are stable. Reference amount USD 19,590.00. Balance settled on schedule.  ## Note"
+}

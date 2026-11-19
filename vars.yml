@@ -11,6 +11,8 @@ vars:
   # https://cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-ai-generate
   model_generate: "{{ 'mistral-large2' if target.type == 'snowflake' else 'databricks-claude-haiku-4-5' if target.type == 'databricks' else 'gemini-3.5-flash' }}"
   model_classify: "gemini-3.5-flash"
+  # BigQuery extract() defaults to gemini-2.5-flash in the package — pin to the same Flash we use.
+  model_extract: "gemini-3.5-flash"
   embedding_model: "{{ 'snowflake-arctic-embed-m-v1.5' if target.type == 'snowflake' else 'databricks-gte-large-en' if target.type == 'databricks' else 'text-embedding-005' }}"
 
   # Financial docs are denser than chatty tickets — slightly larger chunks.
@@ -18,10 +20,10 @@ vars:
   chunk_overlap_tokens: 0
 
   # --- Cost gates (dbt_context_engineering guard_batch + output caps) ---
-  # Demo corpus is ~10 docs / a few hundred chunks. Ceilings trip early if
-  # someone points the project at a large table by mistake.
-  max_batch_rows: 500
-  max_est_tokens: 200000
+  # Demo corpus is ~100 docs / a few thousand chunks after expand_corpus.py.
+  # Ceilings still trip early if someone points the project at a large table.
+  max_batch_rows: 5000
+  max_est_tokens: 2000000
   max_output_tokens: 1024
   bq_thinking_budget: 0          # disable Gemini thinking tokens on classify
   cost_per_1k_tokens: 0.00015    # populate ai_run_log.est_cost (classify-ish blend)

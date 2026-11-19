@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-074",
+  "filename": "NOISE-074_sec_filing.pdf",
+  "relative_path": "bronze/documents/NOISE-074_sec_filing.pdf",
+  "doc_type": "sec_filing",
+  "account_id": "ACC-3301",
+  "account_name": "Summit Rail Partners",
+  "effective_date": "2025-03-21",
+  "source_system": "sec_edgar",
+  "title": "Summit Rail Partners sec filing NOISE-074",
+  "content_sha256": "3c0ca4e63ae08cce51eb60211e38c94b96581ca42366c00e07bebce9e12bd8a1",
+  "mime_type": "application/pdf",
+  "byte_size": 1619,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-074.md",
+  "body_preview": "## Summit Rail Partners sec filing NOISE-074  Account: Summit Rail Partners (ACC-3301) Document sequence: NOISE-074 Doc type: sec\\_filing  ## Summary  Routine sec filing for Summit Rail Partners. Operations are stable. Reference amount USD 20,138.00. Balance settled on schedule. "
+}

@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-049",
+  "filename": "NOISE-049_invoice.pdf",
+  "relative_path": "bronze/documents/NOISE-049_invoice.pdf",
+  "doc_type": "invoice",
+  "account_id": "ACC-1102",
+  "account_name": "BrightPeak Foods",
+  "effective_date": "2025-02-23",
+  "source_system": "ap_portal",
+  "title": "BrightPeak Foods invoice NOISE-049",
+  "content_sha256": "a40cf27d2d993a866c08a136a03009864b2c8ef09fa7f9fe5d2636e51968dc77",
+  "mime_type": "application/pdf",
+  "byte_size": 1617,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.79,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-049.md",
+  "body_preview": "## BrightPeak Foods invoice NOISE-049  Account: BrightPeak Foods (ACC-1102)  Document sequence: NOISE-049  Doc type: invoice  ## Summary  Routine invoice for BrightPeak Foods. Operations are stable. Reference amount USD 16,713.00. Balance settled on schedule.  ## Notes  Internal "
+}

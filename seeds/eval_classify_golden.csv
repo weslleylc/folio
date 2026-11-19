@@ -1,0 +1,16 @@
+doc_id,expected_label,notes
+INV-4401,supplier_collections,AlloyForge past-due invoice
+INV-4412,supplier_collections,NorthRiver partial / collections
+CFA-2025-03,covenant_or_credit_risk,Credit facility amendment
+MEMO-CC-991,covenant_or_credit_risk,Credit committee memo
+EARN-Q3-2025,liquidity_or_working_capital,Earnings call liquidity/DSO
+10Q-Q3-MDA,public_disclosure,10-Q MD&A liquidity section
+NOTE-ANL-77,covenant_or_credit_risk,Sell-side covenant watch
+MER-X01,supplier_collections,Past-due supplier notice
+MER-X02,covenant_or_credit_risk,Covenant headroom monitoring
+MER-X03,liquidity_or_working_capital,Liquidity flash note
+MER-X04,supplier_collections,Past-due supplier notice
+MER-X05,covenant_or_credit_risk,Covenant headroom monitoring
+MER-X06,liquidity_or_working_capital,Liquidity flash note
+MER-X07,supplier_collections,Past-due supplier notice
+MER-X08,covenant_or_credit_risk,Covenant headroom monitoring

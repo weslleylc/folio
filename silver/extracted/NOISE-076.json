@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-076",
+  "filename": "NOISE-076_supplier_email.pdf",
+  "relative_path": "bronze/documents/NOISE-076_supplier_email.pdf",
+  "doc_type": "supplier_email",
+  "account_id": "ACC-4402",
+  "account_name": "Northwind Apparel",
+  "effective_date": "2025-05-23",
+  "source_system": "email_archive",
+  "title": "Northwind Apparel supplier email NOISE-076",
+  "content_sha256": "8f5e41009a0cf5095061e97c5502f7d33f454038895fc30599eb7c995a64f318",
+  "mime_type": "application/pdf",
+  "byte_size": 1625,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-076.md",
+  "body_preview": "## Northwind Apparel supplier email NOISE-076  Account: Northwind Apparel (ACC-4402)  Document sequence: NOISE-076  Doc type: supplier\\_email  ## Summary  Routine supplier email for Northwind Apparel. Operations are stable. Reference amount USD 20,412.00. Balance settled on sched"
+}

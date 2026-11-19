@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-012",
+  "filename": "NOISE-012_analyst_note.pdf",
+  "relative_path": "bronze/documents/NOISE-012_analyst_note.pdf",
+  "doc_type": "analyst_note",
+  "account_id": "ACC-2201",
+  "account_name": "Cedar Ridge Chemicals",
+  "effective_date": "2025-01-13",
+  "source_system": "research_desk",
+  "title": "Cedar Ridge Chemicals analyst note NOISE-012",
+  "content_sha256": "f58f886ef17677ca6d962d2b83d890b07e4ae86f25f878690efb8d213ce68b78",
+  "mime_type": "application/pdf",
+  "byte_size": 1628,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-012.md",
+  "body_preview": "## Cedar Ridge Chemicals analyst note NOISE-012  Account: Cedar Ridge Chemicals (ACC-2201)  Document sequence: NOISE-012  Doc type: analyst\\_note  ## Summary  Routine analyst note for Cedar Ridge Chemicals. Operations are stable.  Reference amount USD 11,644.00. Balance settled o"
+}

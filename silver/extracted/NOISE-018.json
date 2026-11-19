@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-018",
+  "filename": "NOISE-018_sec_filing.pdf",
+  "relative_path": "bronze/documents/NOISE-018_sec_filing.pdf",
+  "doc_type": "sec_filing",
+  "account_id": "ACC-6604",
+  "account_name": "Atlas Data Centers",
+  "effective_date": "2025-07-19",
+  "source_system": "sec_edgar",
+  "title": "Atlas Data Centers sec filing NOISE-018",
+  "content_sha256": "c7bec55371cb4c461e24d8071f7240d7018a30d026a09d2d54d8856f4e826f50",
+  "mime_type": "application/pdf",
+  "byte_size": 1618,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-018.md",
+  "body_preview": "## Atlas Data Centers sec filing NOISE-018  Account: Atlas Data Centers (ACC-6604) Document sequence: NOISE-018 Doc type: sec\\_filing  ## Summary  Routine sec filing for Atlas Data Centers. Operations are stable. Reference amount USD 12,466.00. Balance settled on schedule.  ## No"
+}

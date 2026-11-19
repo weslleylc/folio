@@ -3,7 +3,8 @@
 Audience: data / analytics engineers who know tables, are nervous about PDFs + AI spend.  
 Tone: show the **problem**, the **governance moves**, then the **AI payoff** — not “we embedded everything.”
 
-Suggested length: **20–25 min** + 5 min Q&A.
+Suggested length: **25–30 min** + 5 min Q&A.  
+Live UI: Streamlit `make dashboard-bq` (pages **0 → 9**) or BigQuery Studio + `docs/presentation_queries.sql`.
 
 ---
 
@@ -13,19 +14,37 @@ Suggested length: **20–25 min** + 5 min Q&A.
 
 ---
 
-## Narrative arc (slide order)
+## Opening — the ingestion problem (say this first)
 
-| # | Beat | Why it lands |
-|---|---|---|
-| 1 | Meridian story | Concrete: ACC-8847 is stressed; fragments are scattered; noise accounts exist |
-| 2 | Unstructured medallion | Bronze / Silver / Gold is familiar — applied to PDFs, not only tables |
-| 3 | Zero-copy vs physical copy | Architecture decision the room will argue about — own it |
-| 4 | Bronze → Vector shortcut | The anti-pattern; Silver is the spend + quality gate |
-| 5 | Join / regex ceiling | Gold rollup + timeline work — then show what they **cannot** do |
-| 6 | Chunk → embed → classify → search | Context engineering as ordinary dbt models |
-| 7 | Classification buys precision | Same query, raw cosine vs taxonomy filter |
-| 8 | Cost + lineage governance | Gates, `ai_run_log`, RTBF / sha256 — AI is a governed consumer |
-| 9 | Close | Demo choices vs production choices |
+Financial document estates break “table-first” habits:
+
+1. **Signal is scattered** — past-due on an invoice, covenant headroom in a facility PDF, DSO on an earnings call.
+2. **Noise dominates** — healthy accounts drown Meridian in naive keyword / vector search.
+3. **Parses fail** — blank scans and OCR garbage must be quarantined before any embedding bill.
+4. **AI without gates** — embedding Bronze (or everything Silver) is an ungoverned secondary store.
+5. **No citation** — an answer without URI / `content_sha256` / evidence quote is a demo, not audit-ready.
+
+**Folio answer:** Bronze catalog → Silver gate → Gold regex facts **and** package AI (`chunk` / `embed` / `classify` / `extract` / `search`) under `guard_batch` + `eval` / `grounded`.
+
+---
+
+## Narrative arc (slide / Streamlit order)
+
+| # | Beat | Streamlit page | Why it lands |
+|---|---|---|---|
+| 0 | Ingestion problem | `0 · The problem` | Frame why PDFs hurt credit analytics |
+| 0b | What Folio proves | `0b · What Folio proves` | Two Gold paths: regex **and** AI |
+| 1 | Meridian story | Overview / Gold | ACC-8847 stressed; ~100-doc corpus with noise |
+| 2 | Unstructured medallion | D1–D3 | Familiar layers on unfamiliar data |
+| 3 | Zero-copy vs physical copy | D1 | Own the Cloud demo choice (seeds) |
+| 4 | Bronze → Vector anti-pattern | D3 | Silver must show quarantine bars |
+| 5 | Join / regex ceiling | `1 · Gold rollup` | Explain flags/tiers didactically |
+| 6 | Embeddings mart | `6 · Embeddings mart` | What a vector row *is* |
+| 7 | Classify + search | `3` / `4` | Precision unlock |
+| 8 | Typed extract | `7 · Typed extraction` | Package `extract()` + evidence |
+| 9 | Evals | `8 · Evals & package` | `eval` / `grounded` like unit tests |
+| 10 | Cost + lineage | `5` | Gates + sha256 |
+| 11 | SQL pack | `9 · SQL talk pack` | Live Studio click-through |
 
 ---
 
@@ -48,28 +67,55 @@ order by effective_date;
 - *Production pattern:* metadata-only Bronze — binaries stay in GCS/S3; warehouse keeps URI + sha256; selective snapshot only when you must.  
 - *Punchline:* zero-copy is about **not duplicating the source of truth**; Silver/embeddings are still derived copies by design.
 
-### B. Silver — the gate
+### B. Silver — the gate (chart must show quarantine)
 
 ```sql
-select doc_id, quality_score, sensitivity_label, silver_status
+select silver_status, count(*) as docs
 from silver_document_bodies
+group by 1;
+
+select doc_id, quality_score, parse_status, sensitivity_label, silver_status
+from silver_document_bodies
+where silver_status != 'silver_ready'
 order by quality_score;
 ```
 
-**Say:** “Quarantine before vectors. Low quality and failed parses never get an embedding bill.”
+**How to read `silver_status` (say this out loud):**
+- `silver_ready` — parse ok **and** quality ≥ 0.4 → allowed into Gold / chunk / embed
+- `quarantine_low_quality` — body too thin / garbled (quality &lt; 0.4)
+- `quarantine_parse_failed` — extractor marked `failed`
 
-### C. Gold — structured ceiling
+**Say:** “If every bar is ready, Silver looks fake. We plant a few bad scans on purpose — those never get an embedding bill.”  
+**Note:** `sensitivity_label` (e.g. `restricted_pii`) is a governance tag; it is **not** the same as quarantine.
+
+### C. Gold — what “risks” actually are
 
 ```sql
+-- Per document: three boolean flags from SQL regex on Silver markdown
+select doc_id, title,
+       flag_past_due, flag_covenant_language, flag_liquidity_language,
+       risk_signal_tier
+from gold_document_facts
+where account_id = 'ACC-8847'
+order by risk_signal_tier desc;
+
+-- Per account: count of docs that tripped each flag
 select * from gold_account_risk_rollup
 order by max_risk_tier desc, covenant_docs desc;
 ```
 
-Meridian should stand out (past-due + covenant + liquidity).
+**How to read Gold “risks” (not a credit score):**
+| Flag | Text match (demo) |
+|---|---|
+| `flag_past_due` | past due / overdue / credit hold |
+| `flag_covenant_language` | covenant / leverage ratio / event of default |
+| `flag_liquidity_language` | working capital / DSO / liquidity |
 
-Then timeline (compile/run `analyses/meridian_narrative.sql`):
+**Tier:** `high` = covenant **and** liquidity in the **same** doc · `medium` = any one flag · `low` = none.
 
-**Say:** “Joins reconstruct a timeline. They don’t answer: *which passage talks about covenant headroom across mixed PDFs?*”
+**Say:** “Meridian’s story PDFs trip these phrases on purpose; noise accounts stay clean so the rollup chart is readable. Joins reconstruct a timeline — they still don’t answer *which passage* talks about covenant headroom across mixed PDFs.”
+
+Then timeline (compile/run `analyses/meridian_narrative.sql`).
 
 ### D. Context engineering — meaning + filter
 
@@ -86,6 +132,41 @@ order by demo, score desc;
 2. **Classified** filter (`covenant_or_credit_risk` / `liquidity_or_working_capital`) is the precision unlock — same lesson as Jaffle logistics.
 
 Point at taxonomy in `macros/prompts/folio_content_type.sql` (closed enum = governable labels).
+
+### D2. Embeddings mart — show the shape
+
+```sql
+select chunk_id, account_id, embedding_dimension, model_version,
+       substr(chunk_text, 1, 100) as preview
+from documents_embed
+where account_id = 'ACC-8847'
+limit 10;
+```
+
+**Say:** “An embedding is a derived float array under a pinned model. `content_hash` decides refresh; fingerprint decides full re-embed.”
+
+### D3. Typed extraction — package `extract()`
+
+```sql
+select doc_id, primary_signal, leverage_mention, usd_amount_mention,
+       substr(evidence, 1, 120) as evidence
+from documents_extract_flat
+order by primary_signal;
+```
+
+**Say:** “Regex Gold is free and brittle. `extract()` returns typed fields **plus** a verbatim evidence quote — `grounded` fails hallucinated citations in CI.”
+
+### D4. Evals — score the taxonomy
+
+```sql
+select * from gov_classify_eval order by metric, label;
+
+select doc_id, expected_label, predicted_label, is_correct
+from gov_classify_eval_pairs
+order by is_correct, doc_id;
+```
+
+**Say:** “Prompt/schema changes are product changes. `eval()` gives accuracy/precision/recall against a golden Meridian set — same discipline as a dbt test.”
 
 ### E. Governance — cost + lineage
 

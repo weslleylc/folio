@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-006",
+  "filename": "NOISE-006_supplier_email.pdf",
+  "relative_path": "bronze/documents/NOISE-006_supplier_email.pdf",
+  "doc_type": "supplier_email",
+  "account_id": "ACC-6604",
+  "account_name": "Atlas Data Centers",
+  "effective_date": "2025-07-07",
+  "source_system": "email_archive",
+  "title": "Atlas Data Centers supplier email NOISE-006",
+  "content_sha256": "11cd2fd286b619c7d819ed5d650c8650742163bf85a5fbb256e63007be19264f",
+  "mime_type": "application/pdf",
+  "byte_size": 1625,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-006.md",
+  "body_preview": "## Atlas Data Centers supplier email NOISE-006  Account: Atlas Data Centers (ACC-6604) Document sequence: NOISE-006 Doc type: supplier\\_email  ## Summary  Routine supplier email for Atlas Data Centers. Operations are stable.  Reference amount USD 10,822.00. Balance settled on sch"
+}

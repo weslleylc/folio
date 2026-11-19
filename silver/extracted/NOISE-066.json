@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-066",
+  "filename": "NOISE-066_earnings_call.pdf",
+  "relative_path": "bronze/documents/NOISE-066_earnings_call.pdf",
+  "doc_type": "earnings_call",
+  "account_id": "ACC-6604",
+  "account_name": "Atlas Data Centers",
+  "effective_date": "2025-07-13",
+  "source_system": "ir_transcripts",
+  "title": "Atlas Data Centers earnings call NOISE-066",
+  "content_sha256": "32a4da06f31b13af53e1ba56239749369c568840c8d92cba2e18578411047a22",
+  "mime_type": "application/pdf",
+  "byte_size": 1623,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "public_market",
+  "markdown_path": "silver/extracted/NOISE-066.md",
+  "body_preview": "## Atlas Data Centers earnings call NOISE-066  Account: Atlas Data Centers (ACC-6604) Document sequence: NOISE-066 Doc type: earnings\\_call  ## Summary  Routine earnings call for Atlas Data Centers. Operations are stable.  Reference amount USD 19,042.00. Balance settled on schedu"
+}

@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-015",
+  "filename": "NOISE-015_credit_facility.pdf",
+  "relative_path": "bronze/documents/NOISE-015_credit_facility.pdf",
+  "doc_type": "credit_facility",
+  "account_id": "ACC-2201",
+  "account_name": "Cedar Ridge Chemicals",
+  "effective_date": "2025-04-16",
+  "source_system": "treasury_vault",
+  "title": "Cedar Ridge Chemicals credit facility NOISE-015",
+  "content_sha256": "228eab87310e35076b2b68511bb0511059d16428d0e35da29f99ee49cbb9a536",
+  "mime_type": "application/pdf",
+  "byte_size": 1629,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.75,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-015.md",
+  "body_preview": "## Cedar Ridge Chemicals credit facility NOISE-015  Account: Cedar Ridge Chemicals (ACC-2201) Document sequence: NOISE-015 Doc type: credit\\_facility  ## Summary  Routine credit facility for Cedar Ridge Chemicals. Operations are stable.  Reference amount USD 12,055.00. Balance se"
+}

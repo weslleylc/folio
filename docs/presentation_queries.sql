@@ -227,3 +227,67 @@ order by doc_id;
 -- =============================================================================
 select *
 from `roundtable-513102.dbt_wcaldas.gov_medallion_health`;
+
+
+-- =============================================================================
+-- 11  EMBEDDINGS MART — what a vector row looks like
+-- Chart: none (table). Point at embedding_dimension / model_version / content_hash.
+-- =============================================================================
+select
+  chunk_id,
+  account_id,
+  doc_type,
+  embedding_dimension,
+  model_version,
+  content_hash,
+  substr(chunk_text, 1, 120) as preview
+from `roundtable-513102.dbt_wcaldas.documents_embed`
+where account_id = 'ACC-8847'
+order by chunk_id
+limit 25;
+
+
+-- =============================================================================
+-- 12  TYPED EXTRACTION — package extract() flattened (+ evidence quote)
+-- Chart: Bar — primary_signal counts; table for evidence drill-down.
+-- =============================================================================
+select
+  doc_id,
+  doc_type,
+  primary_signal,
+  leverage_mention,
+  usd_amount_mention,
+  substr(evidence, 1, 160) as evidence,
+  title
+from `roundtable-513102.dbt_wcaldas.documents_extract_flat`
+order by primary_signal, doc_id;
+
+
+-- =============================================================================
+-- 13  CLASSIFY EVAL — package eval() vs golden Meridian labels
+-- Chart: Metric = accuracy; table of misses for the “taxonomy is a product” beat.
+-- =============================================================================
+select metric, label, round(value, 4) as value
+from `roundtable-513102.dbt_wcaldas.gov_classify_eval`
+order by metric, label;
+
+select
+  doc_id,
+  expected_label,
+  predicted_label,
+  is_correct,
+  chunk_votes,
+  notes
+from `roundtable-513102.dbt_wcaldas.gov_classify_eval_pairs`
+order by is_correct, doc_id;
+
+
+-- =============================================================================
+-- 14  PACKAGE TOOLKIT CHEAT-SHEET (comment-only for the slide)
+-- chunk / embed / classify / extract / vector_search / knowledge_base
+-- guard_batch / log_ai_run / content_hash / embedding_fn_fingerprint
+-- eval / grounded / conforms_to_schema
+-- Folio models: documents_embed, documents_classify, documents_extract_flat,
+--               search, gov_classify_eval, gov_ai_spend
+-- =============================================================================
+select 'see models/context/ai + dbt_packages/dbt_context_engineering/README.md' as note;

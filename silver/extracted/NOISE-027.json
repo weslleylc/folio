@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-027",
+  "filename": "NOISE-027_supplier_email.pdf",
+  "relative_path": "bronze/documents/NOISE-027_supplier_email.pdf",
+  "doc_type": "supplier_email",
+  "account_id": "ACC-2201",
+  "account_name": "Cedar Ridge Chemicals",
+  "effective_date": "2025-04-01",
+  "source_system": "email_archive",
+  "title": "Cedar Ridge Chemicals supplier email NOISE-027",
+  "content_sha256": "d7e52206b87aa9e179981da1560113e6130501998bd18cb6b6b00118fd8da875",
+  "mime_type": "application/pdf",
+  "byte_size": 1629,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-027.md",
+  "body_preview": "## Cedar Ridge Chemicals supplier email NOISE-027  Account: Cedar Ridge Chemicals (ACC-2201)  Document sequence: NOISE-027  Doc type: supplier\\_email  ## Summary  Routine supplier email for Cedar Ridge Chemicals. Operations are stable. Reference amount USD 13,699.00. Balance sett"
+}

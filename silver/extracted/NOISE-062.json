@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-062",
+  "filename": "NOISE-062_supplier_email.pdf",
+  "relative_path": "bronze/documents/NOISE-062_supplier_email.pdf",
+  "doc_type": "supplier_email",
+  "account_id": "ACC-3301",
+  "account_name": "Summit Rail Partners",
+  "effective_date": "2025-03-09",
+  "source_system": "email_archive",
+  "title": "Summit Rail Partners supplier email NOISE-062",
+  "content_sha256": "3134cd39ba2b45ba1ed981f1ea81bbc6881548ca874d3107f75039bf426e6994",
+  "mime_type": "application/pdf",
+  "byte_size": 1625,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-062.md",
+  "body_preview": "## Summit Rail Partners supplier email NOISE-062  Account: Summit Rail Partners (ACC-3301) Document sequence: NOISE-062 Doc type: supplier\\_email  ## Summary  Routine supplier email for Summit Rail Partners. Operations are stable. Reference amount USD 18,494.00. Balance settled o"
+}

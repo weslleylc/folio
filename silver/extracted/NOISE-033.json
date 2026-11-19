@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-033",
+  "filename": "NOISE-033_analyst_note.pdf",
+  "relative_path": "bronze/documents/NOISE-033_analyst_note.pdf",
+  "doc_type": "analyst_note",
+  "account_id": "ACC-9907",
+  "account_name": "Ironclad Construction",
+  "effective_date": "2025-10-07",
+  "source_system": "research_desk",
+  "title": "Ironclad Construction analyst note NOISE-033",
+  "content_sha256": "a335e09f98f546fa99c89441aaee6984a89ba67bec37eacd62b0f2bd2019d08d",
+  "mime_type": "application/pdf",
+  "byte_size": 1626,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-033.md",
+  "body_preview": "## Ironclad Construction analyst note NOISE-033  Account: Ironclad Construction (ACC-9907)  Document sequence: NOISE-033  Doc type: analyst\\_note  ## Summary  Routine analyst note for Ironclad Construction. Operations are stable.  Reference amount USD 14,521.00. Balance settled o"
+}

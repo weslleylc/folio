@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-016",
+  "filename": "NOISE-016_credit_memo.pdf",
+  "relative_path": "bronze/documents/NOISE-016_credit_memo.pdf",
+  "doc_type": "credit_memo",
+  "account_id": "ACC-4402",
+  "account_name": "Northwind Apparel",
+  "effective_date": "2025-05-17",
+  "source_system": "credit_risk",
+  "title": "Northwind Apparel credit memo NOISE-016",
+  "content_sha256": "8952d5c2d36cd76a10f41a4fa5484ada5afc05e162c5b90770647ca26a418253",
+  "mime_type": "application/pdf",
+  "byte_size": 1622,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-016.md",
+  "body_preview": "## Northwind Apparel credit memo NOISE-016  Account: Northwind Apparel (ACC-4402)  Document sequence: NOISE-016  Doc type: credit\\_memo  ## Summary  Routine credit memo for Northwind Apparel. Operations are stable. Reference amount USD 12,192.00. Balance settled on schedule.  ## "
+}

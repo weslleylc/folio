@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-069",
+  "filename": "NOISE-069_supplier_email.pdf",
+  "relative_path": "bronze/documents/NOISE-069_supplier_email.pdf",
+  "doc_type": "supplier_email",
+  "account_id": "ACC-9907",
+  "account_name": "Ironclad Construction",
+  "effective_date": "2025-10-16",
+  "source_system": "email_archive",
+  "title": "Ironclad Construction supplier email NOISE-069",
+  "content_sha256": "5c31bee2918f61406afc741df5371dd0fc1beec15a2330d399f9cd746b45a9d5",
+  "mime_type": "application/pdf",
+  "byte_size": 1627,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-069.md",
+  "body_preview": "## Ironclad Construction supplier email NOISE-069  Account: Ironclad Construction (ACC-9907)  Document sequence: NOISE-069  Doc type: supplier\\_email  ## Summary  Routine supplier email for Ironclad Construction. Operations are stable. Reference amount USD 19,453.00. Balance sett"
+}

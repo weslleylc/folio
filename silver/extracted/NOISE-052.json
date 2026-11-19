@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-052",
+  "filename": "NOISE-052_earnings_call.pdf",
+  "relative_path": "bronze/documents/NOISE-052_earnings_call.pdf",
+  "doc_type": "earnings_call",
+  "account_id": "ACC-4402",
+  "account_name": "Northwind Apparel",
+  "effective_date": "2025-05-26",
+  "source_system": "ir_transcripts",
+  "title": "Northwind Apparel earnings call NOISE-052",
+  "content_sha256": "1b834e88dba4aa34892a258e6a9e8fae358b27bfdafdc556530aa1037ab5a88e",
+  "mime_type": "application/pdf",
+  "byte_size": 1624,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "public_market",
+  "markdown_path": "silver/extracted/NOISE-052.md",
+  "body_preview": "## Northwind Apparel earnings call NOISE-052  Account: Northwind Apparel (ACC-4402)  Document sequence: NOISE-052  Doc type: earnings\\_call  ## Summary  Routine earnings call for Northwind Apparel. Operations are stable. Reference amount USD 17,124.00. Balance settled on schedule"
+}

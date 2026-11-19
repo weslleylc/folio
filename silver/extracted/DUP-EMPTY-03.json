@@ -1,0 +1,22 @@
+{
+  "doc_id": "DUP-EMPTY-03",
+  "filename": "DUP-EMPTY-03_blank_pages.pdf",
+  "relative_path": "bronze/documents/DUP-EMPTY-03_blank_pages.pdf",
+  "doc_type": "sec_filing",
+  "account_id": "ACC-5503",
+  "account_name": "Blue Harbor Utilities",
+  "effective_date": "2025-05-20",
+  "source_system": "sec_edgar",
+  "title": "Blank filing stub \u2014 Blue Harbor (quarantine)",
+  "content_sha256": "b1004f699330b1b6070b0339fb9464e48060aa8d5655a36db5d206280d0181c4",
+  "mime_type": "application/pdf",
+  "byte_size": 1299,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "failed",
+  "page_count": 1,
+  "quality_score": 0.1,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/DUP-EMPTY-03.md",
+  "body_preview": "## Blank filing stub - Blue Harbor (quarantine)"
+}

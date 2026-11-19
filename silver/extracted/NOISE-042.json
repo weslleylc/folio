@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-042",
+  "filename": "NOISE-042_invoice.pdf",
+  "relative_path": "bronze/documents/NOISE-042_invoice.pdf",
+  "doc_type": "invoice",
+  "account_id": "ACC-6604",
+  "account_name": "Atlas Data Centers",
+  "effective_date": "2025-07-16",
+  "source_system": "ap_portal",
+  "title": "Atlas Data Centers invoice NOISE-042",
+  "content_sha256": "248356d5242cee1cdd5bd937402d8e3b4342e4bdc76db6bde9a99559f1ea3d1b",
+  "mime_type": "application/pdf",
+  "byte_size": 1617,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.79,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-042.md",
+  "body_preview": "## Atlas Data Centers invoice NOISE-042  Account: Atlas Data Centers (ACC-6604) Document sequence: NOISE-042 Doc type: invoice  ## Summary  Routine invoice for Atlas Data Centers. Operations are stable.  Reference amount USD 15,754.00. Balance settled on schedule.  ## Notes  Inte"
+}

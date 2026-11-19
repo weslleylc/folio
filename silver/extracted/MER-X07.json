@@ -1,0 +1,22 @@
+{
+  "doc_id": "MER-X07",
+  "filename": "MER-X07_invoice.pdf",
+  "relative_path": "bronze/documents/MER-X07_invoice.pdf",
+  "doc_type": "invoice",
+  "account_id": "ACC-8847",
+  "account_name": "Meridian Industrial Corp",
+  "effective_date": "2025-09-11",
+  "source_system": "ap_portal",
+  "title": "Past-due notice \u2014 secondary supplier \u2014 Meridian (MER-X07)",
+  "content_sha256": "e6c33b339458f0c3ba2c41529e5ef55ebcc34391b5ed30dbb52a370c889269ee",
+  "mime_type": "application/pdf",
+  "byte_size": 1561,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.72,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/MER-X07.md",
+  "body_preview": "## Past-due notice - secondary supplier - Meridian (MER-X07)  Vendor: RiverBend Coatings Bill-to: Meridian Industrial Corp (ACC-8847) Status: PAST DUE / OVERDUE - credit hold warning  ## Collections  Meridian AP stretch continues. Open balance USD 28,400.00.  Reference ACC-8847. "
+}

@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-077",
+  "filename": "NOISE-077_invoice.pdf",
+  "relative_path": "bronze/documents/NOISE-077_invoice.pdf",
+  "doc_type": "invoice",
+  "account_id": "ACC-5503",
+  "account_name": "Blue Harbor Utilities",
+  "effective_date": "2025-06-24",
+  "source_system": "ap_portal",
+  "title": "Blue Harbor Utilities invoice NOISE-077",
+  "content_sha256": "df30c385a65a9620de58c974fc9c8578178b80d72bf60bbef33e5233bdfbfda0",
+  "mime_type": "application/pdf",
+  "byte_size": 1621,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.79,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-077.md",
+  "body_preview": "## Blue Harbor Utilities invoice NOISE-077  Account: Blue Harbor Utilities (ACC-5503)  Document sequence: NOISE-077  Doc type: invoice  ## Summary  Routine invoice for Blue Harbor Utilities. Operations are stable. Reference amount USD 20,549.00. Balance settled on schedule.  ## N"
+}

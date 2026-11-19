@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-026",
+  "filename": "NOISE-026_analyst_note.pdf",
+  "relative_path": "bronze/documents/NOISE-026_analyst_note.pdf",
+  "doc_type": "analyst_note",
+  "account_id": "ACC-3301",
+  "account_name": "Summit Rail Partners",
+  "effective_date": "2025-03-27",
+  "source_system": "research_desk",
+  "title": "Summit Rail Partners analyst note NOISE-026",
+  "content_sha256": "36a6bda54a06442db9888a803e4c806ff2127e399e08f7c31862ae54ba6108b3",
+  "mime_type": "application/pdf",
+  "byte_size": 1623,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-026.md",
+  "body_preview": "## Summit Rail Partners analyst note NOISE-026  Account: Summit Rail Partners (ACC-3301) Document sequence: NOISE-026 Doc type: analyst\\_note  ## Summary  Routine analyst note for Summit Rail Partners. Operations are stable.  Reference amount USD 13,562.00. Balance settled on sch"
+}

@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-025",
+  "filename": "NOISE-025_sec_filing.pdf",
+  "relative_path": "bronze/documents/NOISE-025_sec_filing.pdf",
+  "doc_type": "sec_filing",
+  "account_id": "ACC-1102",
+  "account_name": "BrightPeak Foods",
+  "effective_date": "2025-02-26",
+  "source_system": "sec_edgar",
+  "title": "BrightPeak Foods sec filing NOISE-025",
+  "content_sha256": "a044d287c89f981053be40446d679f0cd2dd553182720ed259d30bb9d064afb7",
+  "mime_type": "application/pdf",
+  "byte_size": 1620,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-025.md",
+  "body_preview": "## BrightPeak Foods sec filing NOISE-025  Account: BrightPeak Foods (ACC-1102)  Document sequence: NOISE-025  Doc type: sec\\_filing  ## Summary  Routine sec filing for BrightPeak Foods. Operations are stable. Reference amount USD 13,425.00. Balance settled on schedule.  ## Notes "
+}

@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-005",
+  "filename": "NOISE-005_analyst_note.pdf",
+  "relative_path": "bronze/documents/NOISE-005_analyst_note.pdf",
+  "doc_type": "analyst_note",
+  "account_id": "ACC-5503",
+  "account_name": "Blue Harbor Utilities",
+  "effective_date": "2025-06-06",
+  "source_system": "research_desk",
+  "title": "Blue Harbor Utilities analyst note NOISE-005",
+  "content_sha256": "e1a161e66e6f6b9ee429be007b398a06580d0cb93476cb63aca0f61fdcd9fe46",
+  "mime_type": "application/pdf",
+  "byte_size": 1627,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-005.md",
+  "body_preview": "## Blue Harbor Utilities analyst note NOISE-005  Account: Blue Harbor Utilities (ACC-5503)  Document sequence: NOISE-005  Doc type: analyst\\_note  ## Summary  Routine analyst note for Blue Harbor Utilities. Operations are stable. Reference amount USD 10,685.00. Balance settled on"
+}

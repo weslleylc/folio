@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-035",
+  "filename": "NOISE-035_invoice.pdf",
+  "relative_path": "bronze/documents/NOISE-035_invoice.pdf",
+  "doc_type": "invoice",
+  "account_id": "ACC-1111",
+  "account_name": "Skyline REITs",
+  "effective_date": "2025-12-09",
+  "source_system": "ap_portal",
+  "title": "Skyline REITs invoice NOISE-035",
+  "content_sha256": "c50e58429afd00067f5f7859079209ae187b64afeec58af617c2e2467fdbc563",
+  "mime_type": "application/pdf",
+  "byte_size": 1614,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.79,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-035.md",
+  "body_preview": "## Skyline REITs invoice NOISE-035  Account: Skyline REITs (ACC-1111) Document sequence: NOISE-035 Doc type: invoice  ## Summary  Routine invoice for Skyline REITs. Operations are stable.  Reference amount USD 14,795.00. Balance settled on schedule.  ## Notes  Internal filing cop"
+}

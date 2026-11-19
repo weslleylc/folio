@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-040",
+  "filename": "NOISE-040_analyst_note.pdf",
+  "relative_path": "bronze/documents/NOISE-040_analyst_note.pdf",
+  "doc_type": "analyst_note",
+  "account_id": "ACC-4402",
+  "account_name": "Northwind Apparel",
+  "effective_date": "2025-05-14",
+  "source_system": "research_desk",
+  "title": "Northwind Apparel analyst note NOISE-040",
+  "content_sha256": "f52b544b0cc8bbb7b5d7ab53d312875e971e3fd8821888cb38a0354c2622160d",
+  "mime_type": "application/pdf",
+  "byte_size": 1623,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-040.md",
+  "body_preview": "## Northwind Apparel analyst note NOISE-040  Account: Northwind Apparel (ACC-4402)  Document sequence: NOISE-040  Doc type: analyst\\_note  ## Summary  Routine analyst note for Northwind Apparel. Operations are stable. Reference amount USD 15,480.00. Balance settled on schedule.  "
+}

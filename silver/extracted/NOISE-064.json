@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-064",
+  "filename": "NOISE-064_credit_facility.pdf",
+  "relative_path": "bronze/documents/NOISE-064_credit_facility.pdf",
+  "doc_type": "credit_facility",
+  "account_id": "ACC-4402",
+  "account_name": "Northwind Apparel",
+  "effective_date": "2025-05-11",
+  "source_system": "treasury_vault",
+  "title": "Northwind Apparel credit facility NOISE-064",
+  "content_sha256": "d8e04d70dbad70fff60e0e9b66b1af5048647133971aa9cd956206a288e2962b",
+  "mime_type": "application/pdf",
+  "byte_size": 1625,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-064.md",
+  "body_preview": "## Northwind Apparel credit facility NOISE-064  Account: Northwind Apparel (ACC-4402)  Document sequence: NOISE-064  Doc type: credit\\_facility  ## Summary  Routine credit facility for Northwind Apparel. Operations are stable.  Reference amount USD 18,768.00. Balance settled on s"
+}

@@ -24,6 +24,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 BRONZE_DIR = ROOT / "bronze" / "documents"
 MANIFEST = ROOT / "bronze" / "manifest.jsonl"
+FORCE_META = ROOT / "bronze" / "force_meta.jsonl"
 SILVER_DIR = ROOT / "silver" / "extracted"
 SEEDS = ROOT / "seeds"
 
@@ -44,6 +45,21 @@ def load_manifest() -> list[dict]:
             if line:
                 rows.append(json.loads(line))
     return rows
+
+
+def load_force_meta() -> dict[str, dict]:
+    """Optional quarantine hooks from expand_corpus.py (force quality / parse)."""
+    if not FORCE_META.exists():
+        return {}
+    out: dict[str, dict] = {}
+    with FORCE_META.open(encoding="utf-8") as f:
+        for line in f:
+            line = line.strip()
+            if not line:
+                continue
+            row = json.loads(line)
+            out[row["doc_id"]] = row
+    return out
 
 
 def extract_one(pdf_path: Path) -> tuple[str, dict]:
@@ -194,6 +210,15 @@ def write_seeds(catalog_rows: list[dict], body_rows: list[dict]) -> None:
             "ACC-8847": "industrials",
             "ACC-1102": "consumer_staples",
             "ACC-3301": "transportation",
+            "ACC-2201": "materials",
+            "ACC-4402": "consumer_discretionary",
+            "ACC-5503": "utilities",
+            "ACC-6604": "technology",
+            "ACC-7705": "consumer_staples",
+            "ACC-8806": "transportation",
+            "ACC-9907": "industrials",
+            "ACC-1010": "health_care",
+            "ACC-1111": "real_estate",
         }
         for aid, name in sorted(accounts.items()):
             w.writerow(
@@ -212,6 +237,7 @@ def main() -> None:
 
     SILVER_DIR.mkdir(parents=True, exist_ok=True)
     manifest = load_manifest()
+    force_meta = load_force_meta()
     catalog_rows: list[dict] = []
     body_rows: list[dict] = []
     now = datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ")
@@ -225,7 +251,12 @@ def main() -> None:
         digest = sha256_file(pdf_path)
         mime = mimetypes.guess_type(pdf_path.name)[0] or "application/pdf"
         md, meta = extract_one(pdf_path)
+        hook = force_meta.get(entry["doc_id"], {})
+        if hook.get("force_parse"):
+            meta = {**meta, "parse_status": hook["force_parse"]}
         q = quality_score(md, meta)
+        if hook.get("force_quality") is not None:
+            q = float(hook["force_quality"])
         sensitivity = detect_sensitivity(md)
 
         md_path = SILVER_DIR / f"{entry['doc_id']}.md"

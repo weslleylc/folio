@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-001",
+  "filename": "NOISE-001_credit_facility.pdf",
+  "relative_path": "bronze/documents/NOISE-001_credit_facility.pdf",
+  "doc_type": "credit_facility",
+  "account_id": "ACC-1102",
+  "account_name": "BrightPeak Foods",
+  "effective_date": "2025-02-02",
+  "source_system": "treasury_vault",
+  "title": "BrightPeak Foods credit facility NOISE-001",
+  "content_sha256": "bf8ffb07c1cc0d8addfdb580a3f9b4377efdb2a0db0b57941f4e01cc6db7b531",
+  "mime_type": "application/pdf",
+  "byte_size": 1625,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-001.md",
+  "body_preview": "## BrightPeak Foods credit facility NOISE-001  Account: BrightPeak Foods (ACC-1102) Document sequence: NOISE-001 Doc type: credit\\_facility  ## Summary  Routine credit facility for BrightPeak Foods. Operations are stable. Reference amount USD 10,137.00. Balance settled on schedul"
+}

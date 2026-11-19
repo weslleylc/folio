@@ -1,4 +1,13 @@
 account_id,account_name,sector
+ACC-1010,Lumen Health Systems,health_care
 ACC-1102,BrightPeak Foods,consumer_staples
+ACC-1111,Skyline REITs,real_estate
+ACC-2201,Cedar Ridge Chemicals,materials
 ACC-3301,Summit Rail Partners,transportation
+ACC-4402,Northwind Apparel,consumer_discretionary
+ACC-5503,Blue Harbor Utilities,utilities
+ACC-6604,Atlas Data Centers,technology
+ACC-7705,Prairie Ag Co-op,consumer_staples
+ACC-8806,Pacific Rim Logistics,transportation
 ACC-8847,Meridian Industrial Corp,industrials
+ACC-9907,Ironclad Construction,industrials

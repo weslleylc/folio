@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-054",
+  "filename": "NOISE-054_analyst_note.pdf",
+  "relative_path": "bronze/documents/NOISE-054_analyst_note.pdf",
+  "doc_type": "analyst_note",
+  "account_id": "ACC-6604",
+  "account_name": "Atlas Data Centers",
+  "effective_date": "2025-07-01",
+  "source_system": "research_desk",
+  "title": "Atlas Data Centers analyst note NOISE-054",
+  "content_sha256": "f701cec2f0b47908d6732fb597069433346f748f0a2c32213d6e2c15903d78c8",
+  "mime_type": "application/pdf",
+  "byte_size": 1622,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-054.md",
+  "body_preview": "## Atlas Data Centers analyst note NOISE-054  Account: Atlas Data Centers (ACC-6604) Document sequence: NOISE-054 Doc type: analyst\\_note  ## Summary  Routine analyst note for Atlas Data Centers. Operations are stable.  Reference amount USD 17,398.00. Balance settled on schedule."
+}

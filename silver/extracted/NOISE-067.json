@@ -1,0 +1,22 @@
+{
+  "doc_id": "NOISE-067",
+  "filename": "NOISE-067_sec_filing.pdf",
+  "relative_path": "bronze/documents/NOISE-067_sec_filing.pdf",
+  "doc_type": "sec_filing",
+  "account_id": "ACC-7705",
+  "account_name": "Prairie Ag Co-op",
+  "effective_date": "2025-08-14",
+  "source_system": "sec_edgar",
+  "title": "Prairie Ag Co-op sec filing NOISE-067",
+  "content_sha256": "a957ebbf3cfccccdc4cfec88cc39f17c5af573673bbe9e2305c4f586571d722c",
+  "mime_type": "application/pdf",
+  "byte_size": 1619,
+  "extracted_at": "2026-11-19T01:48:06Z",
+  "extractor": "docling",
+  "parse_status": "ok",
+  "page_count": 1,
+  "quality_score": 0.74,
+  "sensitivity_label": "internal",
+  "markdown_path": "silver/extracted/NOISE-067.md",
+  "body_preview": "## Prairie Ag Co-op sec filing NOISE-067  Account: Prairie Ag Co-op (ACC-7705) Document sequence: NOISE-067 Doc type: sec\\_filing  ## Summary  Routine sec filing for Prairie Ag Co-op. Operations are stable.  Reference amount USD 19,179.00. Balance settled on schedule.  ## Notes  "
+}
