@@ -20,3 +20,11 @@ __pycache__/
 
 site/
 *.jar
+profiles.yml
+
+# GCP / dbt Cloud service-account keys — never commit
+roundtable-*.json
+**/credentials*.json
+**/*creds*.json
+**/*service*account*.json
+**/*-sa.json

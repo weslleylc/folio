@@ -1,8 +1,7 @@
 #!/usr/bin/env python3
 """Folio talk dashboard — Streamlit over BigQuery (or local DuckDB).
 
-BigQuery (default for the Cloud talk):
-  gcloud auth application-default login
+BigQuery (uses local SA JSON if present, or GOOGLE_APPLICATION_CREDENTIALS):
   make dashboard-bq
 
 Local DuckDB:
@@ -18,7 +17,13 @@ import pandas as pd
 import streamlit as st
 
 ROOT = Path(__file__).resolve().parents[1]
+ASSETS = Path(__file__).resolve().parent / "assets"
 DB_PATH = ROOT / "folio.duckdb"
+DEFAULT_SA = ROOT / "roundtable-513102-545d77a8a510.json"
+
+# Prefer explicit env, else local SA key (gitignored).
+if not os.environ.get("GOOGLE_APPLICATION_CREDENTIALS") and DEFAULT_SA.exists():
+    os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = str(DEFAULT_SA)
 
 WAREHOUSE = os.environ.get("FOLIO_WAREHOUSE", "bigquery").strip().lower()
 BQ_PROJECT = os.environ.get("FOLIO_BQ_PROJECT", "roundtable-513102")
@@ -55,6 +60,10 @@ st.markdown(
         font-size: 2.2rem; line-height: 1.1; margin-bottom: 0.2rem; color: #15202b;
       }
       .folio-sub { color: #5c6b7a; margin-bottom: 1.25rem; }
+      .decision-box {
+        background: #fff; border: 1px solid #d7d0c3; border-radius: 12px;
+        padding: 1rem 1.1rem; margin-bottom: 0.75rem;
+      }
     </style>
     """,
     unsafe_allow_html=True,
@@ -70,7 +79,12 @@ def t(name: str) -> str:
 @st.cache_resource
 def bq_client():
     from google.cloud import bigquery
+    from google.oauth2 import service_account
 
+    creds_path = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS")
+    if creds_path and Path(creds_path).exists():
+        credentials = service_account.Credentials.from_service_account_file(creds_path)
+        return bigquery.Client(project=BQ_PROJECT, credentials=credentials)
     return bigquery.Client(project=BQ_PROJECT)
 
 
@@ -120,12 +134,21 @@ def hero(title: str, sub: str) -> None:
     st.markdown(f'<div class="folio-sub">{sub}</div>', unsafe_allow_html=True)
 
 
+def show_asset(name: str, caption: str | None = None) -> None:
+    path = ASSETS / name
+    if path.exists():
+        st.image(str(path), use_container_width=True, caption=caption)
+
+
 # ---------------------------------------------------------------------------
 st.sidebar.markdown("### Folio")
 st.sidebar.caption("Medallion × context engineering · Meridian talk")
 page = st.sidebar.radio(
     "Talk pages",
     [
+        "D1 · Zero-copy vs physical copy",
+        "D2 · Crawler vs event-driven",
+        "D3 · Why not Bronze→Vector",
         "1 · Gold rollup",
         "2 · Silver gate",
         "3 · Search raw vs classified",
@@ -137,6 +160,8 @@ page = st.sidebar.radio(
 st.sidebar.markdown("---")
 if WAREHOUSE == "bigquery":
     st.sidebar.caption(f"BigQuery · `{BQ_PROJECT}.{BQ_DATASET}`")
+    sa = os.environ.get("GOOGLE_APPLICATION_CREDENTIALS", "")
+    st.sidebar.caption("SA key · " + ("ok" if sa and Path(sa).exists() else "missing"))
 else:
     st.sidebar.caption(f"DuckDB · `{DB_PATH.name}`")
 if st.sidebar.button("Refresh data"):
@@ -145,10 +170,163 @@ if st.sidebar.button("Refresh data"):
     st.rerun()
 
 # ===========================================================================
-if page == "1 · Gold rollup":
+if page == "D1 · Zero-copy vs physical copy":
+    hero(
+        "Decision — Zero-copy vs physical-copy Bronze",
+        "From Beyond Tables: metadata-first Bronze with selective snapshots. Folio demo uses physical copy + seeds for Cloud simplicity.",
+    )
+    show_asset(
+        "medallion-unstructured.png",
+        "Medallion for unstructured data — Jojo Joseph, Beyond Tables",
+    )
+
+    left, right = st.columns(2)
+    with left:
+        st.markdown("#### Zero-copy / metadata-only")
+        st.markdown(
+            """
+            - Catalog: URI + MIME + sha256 + ACLs — **no binary duplicate**
+            - Lower storage / egress; smaller attack surface
+            - Simpler RTBF when source deletes the file
+            - Fast time-to-catalog at petabyte scale
+            - Tradeoff: re-parse hits source over the network; link rot / throttling
+            """
+        )
+    with right:
+        st.markdown("#### Physical copy / snapshot")
+        st.markdown(
+            """
+            - Binaries land in a lakehouse landing zone
+            - Quarantine / malware scan before Silver
+            - Point-in-time audit if source overwrites/deletes
+            - Tradeoff: storage sprawl, dual security perimeter
+            """
+        )
+
+    st.markdown("#### Folio talk choice")
+    st.info(
+        "**Demo = physical-copy PDFs in git + `dbt seed` into BigQuery.** "
+        "Production lean = metadata-only Bronze (`gs://…` URI + sha256) with selective snapshots "
+        "for high-compliance records. Same catalog shape either way."
+    )
+    if table_exists("bronze_document_catalog"):
+        st.subheader("Live catalog shape (demo)")
+        st.dataframe(
+            q(
+                f"""
+                select doc_id, uri, content_sha256, bronze_layer, mime_type, byte_size
+                from {t('bronze_document_catalog')}
+                order by effective_date
+                """
+            ),
+            use_container_width=True,
+            hide_index=True,
+        )
+    st.caption(
+        "Source: [Beyond Tables…](https://jjojo.medium.com/beyond-tables-applying-the-medallion-architecture-to-unstructured-data-governance-39a81cfa3835)"
+    )
+
+# ===========================================================================
+elif page == "D2 · Crawler vs event-driven":
+    hero(
+        "Decision — Active crawl vs event-driven discovery",
+        "From Governing the Unstructured Enterprise Part 3: combine both — baseline crawl + continuous events.",
+    )
+    show_asset(
+        "discovery-ingestion.png",
+        "Data discovery & ingestion — Jojo Joseph, Part 3",
+    )
+
+    left, right = st.columns(2)
+    with left:
+        st.markdown("#### Active crawling")
+        st.markdown(
+            """
+            - Agent walks shares / buckets / libraries
+            - **Complete inventory snapshot**
+            - Heavy; can take days–weeks at scale
+            - Only as current as last crawl finish
+            """
+        )
+    with right:
+        st.markdown("#### Event-driven (passive)")
+        st.markdown(
+            """
+            - S3 events, SharePoint webhooks, audit logs
+            - **Near-real-time** create/update discovery
+            - Misses dark data never emitting events
+            - Needs initial crawl as baseline
+            """
+        )
+
+    st.success(
+        "**Recommended pattern:** full crawl once → continuous event updates → "
+        "periodic re-crawl to catch missed events. Folio skips connectors for the talk "
+        "(seeded catalog); the decision still belongs on stage."
+    )
+    st.markdown(
+        """
+        Also decide **batch vs streaming** ingestion (Part 3 §3.4): daily batch is enough for most
+        document estates; stream when sensitivity must restrict access immediately.
+        """
+    )
+    st.caption(
+        "Source: [Part 3 — Discovery & Ingestion](https://jjojo.medium.com/governing-the-unstructured-enterprise-part-3-03cc9ab06e83)"
+    )
+
+# ===========================================================================
+elif page == "D3 · Why not Bronze→Vector":
+    hero(
+        "Anti-pattern — Bronze-to-Vector shortcut",
+        "Skip Silver and you embed PII, boilerplate, and bad parses into the same index AI will trust.",
+    )
+    cols = st.columns(3)
+    cols[0].markdown(
+        """
+        <div class="decision-box"><b>Bronze</b><br/>
+        Provenance only — URI, hash, mime. No interpretation.</div>
+        """,
+        unsafe_allow_html=True,
+    )
+    cols[1].markdown(
+        """
+        <div class="decision-box"><b>Silver gate</b><br/>
+        Parse quality, sensitivity, quarantine — then promote.</div>
+        """,
+        unsafe_allow_html=True,
+    )
+    cols[2].markdown(
+        """
+        <div class="decision-box"><b>Gold / context</b><br/>
+        Facts + chunk → embed → classify → search under cost gates.</div>
+        """,
+        unsafe_allow_html=True,
+    )
+    st.markdown(
+        """
+        **Sound bite:** *Vectors without Silver are an ungoverned secondary store.*
+
+        Folio enforces this: `silver_ready_documents` feeds chunking; AI models stay behind
+        `ai_functions_enabled` + `guard_batch`.
+        """
+    )
+    if table_exists("silver_document_bodies"):
+        st.subheader("Silver statuses in this demo")
+        st.bar_chart(
+            q(
+                f"""
+                select silver_status, count(*) as docs
+                from {t('silver_document_bodies')}
+                group by 1
+                """
+            ).set_index("silver_status")
+        )
+
+# ===========================================================================
+elif page == "1 · Gold rollup":
     hero(
         "Gold rollup — Meridian stands out",
-        "Unstructured risk signals by account. Noise accounts (BrightPeak, Summit) keep naive search from being trivial.",
+        "Unstructured risk signals by account. Noise accounts keep naive search from being trivial.",
     )
     if not table_exists("gold_account_risk_rollup"):
         st.error("Missing gold_account_risk_rollup — run dbt build on BigQuery.")
@@ -174,16 +352,15 @@ if page == "1 · Gold rollup":
         c3.metric("Past-due docs", int(m["past_due_docs"]))
         c4.metric("Max risk tier", str(m["max_risk_tier"]))
 
-    chart = rollup.set_index("account_name")[["covenant_docs", "liquidity_docs", "past_due_docs"]]
     st.subheader("Risk flags by account")
-    st.bar_chart(chart)
+    st.bar_chart(rollup.set_index("account_name")[["covenant_docs", "liquidity_docs", "past_due_docs"]])
     st.dataframe(rollup, use_container_width=True, hide_index=True)
 
 # ===========================================================================
 elif page == "2 · Silver gate":
     hero(
         "Silver — quality & sensitivity before vectors",
-        "Quarantine low-quality parses before any embedding spend. Avoid the Bronze-to-vector shortcut.",
+        "Quarantine low-quality parses before any embedding spend.",
     )
     if not table_exists("silver_document_bodies"):
         st.error("Missing silver_document_bodies.")
@@ -208,8 +385,7 @@ elif page == "2 · Silver gate":
         st.bar_chart(silver.set_index("doc_id")["quality_score"].astype(float))
     with right:
         st.subheader("Sensitivity mix")
-        sens = silver.groupby("sensitivity_label").size().rename("docs")
-        st.bar_chart(sens)
+        st.bar_chart(silver.groupby("sensitivity_label").size().rename("docs"))
 
     st.dataframe(silver, use_container_width=True, hide_index=True)
 
@@ -221,7 +397,7 @@ elif page == "3 · Search raw vs classified":
     )
     if not table_exists("search"):
         st.warning(
-            "No `search` table. Re-run on BigQuery:\n\n"
+            "No `search` table. Re-run:\n\n"
             "`dbt build --vars '{\"ai_functions_enabled\": true}'`"
         )
         st.stop()
@@ -245,23 +421,13 @@ elif page == "3 · Search raw vs classified":
     )
 
     st.subheader("Hits by demo × classification")
-    pivot = compare.pivot_table(
-        index="demo", columns="classification", values="hits", fill_value=0
-    )
-    st.bar_chart(pivot)
-
+    st.bar_chart(compare.pivot_table(index="demo", columns="classification", values="hits", fill_value=0))
     st.subheader("Avg score by demo × classification")
-    pivot_score = compare.pivot_table(
-        index="demo", columns="classification", values="avg_score", fill_value=0
+    st.bar_chart(
+        compare.pivot_table(index="demo", columns="classification", values="avg_score", fill_value=0)
     )
-    st.bar_chart(pivot_score)
-
     demo_pick = st.selectbox("Show passages for", sorted(detail["demo"].unique()))
-    st.dataframe(
-        detail.loc[detail["demo"] == demo_pick],
-        use_container_width=True,
-        hide_index=True,
-    )
+    st.dataframe(detail.loc[detail["demo"] == demo_pick], use_container_width=True, hide_index=True)
 
 # ===========================================================================
 elif page == "4 · Taxonomy":
@@ -283,7 +449,6 @@ elif page == "4 · Taxonomy":
     if tax.empty:
         st.warning("No classified chunks yet.")
         st.stop()
-
     st.bar_chart(tax.set_index("classification")["chunk_count"])
     st.dataframe(tax, use_container_width=True, hide_index=True)
 
@@ -291,16 +456,12 @@ elif page == "4 · Taxonomy":
 elif page == "5 · Cost & lineage":
     hero(
         "Governed AI spend & RTBF lineage",
-        "Cost gates (ai_functions_enabled, guard_batch) + content_sha256 through chunks for purge/citation.",
+        "Cost gates + content_sha256 through chunks for purge/citation.",
     )
-
     left, right = st.columns(2)
-
     with left:
         st.subheader("AI spend")
-        if not table_exists("gov_ai_spend"):
-            st.info("No gov_ai_spend yet.")
-        else:
+        if table_exists("gov_ai_spend"):
             spend = q(
                 f"""
                 select function_name, model_name, row_count, est_tokens,
@@ -310,24 +471,23 @@ elif page == "5 · Cost & lineage":
                 """
             )
             if spend.empty:
-                st.info("ai_run_log has no events yet.")
+                st.info("No AI run events yet.")
             else:
                 c1, c2, c3 = st.columns(3)
                 c1.metric("Runs", len(spend))
                 c2.metric("Est. tokens", f"{float(spend['est_tokens'].fillna(0).sum()):,.0f}")
                 c3.metric("Est. USD", f"${float(spend['est_cost_usd'].fillna(0).sum()):.5f}")
                 by_fn = spend.groupby("function_name", as_index=False).agg(
-                    tokens=("est_tokens", "sum"),
-                    cost_usd=("est_cost_usd", "sum"),
+                    tokens=("est_tokens", "sum"), cost_usd=("est_cost_usd", "sum")
                 )
                 st.bar_chart(by_fn.set_index("function_name")[["tokens", "cost_usd"]])
                 st.dataframe(spend, use_container_width=True, hide_index=True)
+        else:
+            st.info("No gov_ai_spend yet.")
 
     with right:
         st.subheader("Meridian lineage (sha256)")
-        if not table_exists("gov_document_lineage"):
-            st.info("No gov_document_lineage yet.")
-        else:
+        if table_exists("gov_document_lineage"):
             lin = q(
                 f"""
                 select doc_id, account_id, content_sha256, chunk_count,
@@ -347,9 +507,11 @@ elif page == "5 · Cost & lineage":
                     f"status: {row['lineage_status']}",
                     language="text",
                 )
+        else:
+            st.info("No gov_document_lineage yet.")
 
 # ===========================================================================
-else:  # Overview
+else:
     hero(
         "Governance overview",
         "Bronze → Silver → Gold + AI spend snapshot for the Meridian story.",
@@ -365,17 +527,17 @@ else:  # Overview
     c3.metric("Quarantined %", f"{100 * float(h['pct_quarantined'] or 0):.0f}%")
     c4.metric("Est. AI tokens", f"{int(h['ai_total_est_tokens']):,}")
     c5.metric("Est. AI cost", f"${float(h['ai_total_est_cost_usd']):.4f}")
-
-    funnel = pd.DataFrame(
-        {
-            "stage": ["Bronze", "Silver bodies", "Silver ready", "Gold facts", "Hashed chunks"],
-            "count": [
-                int(h["bronze_docs"]),
-                int(h["silver_docs"]),
-                int(h["silver_ready"]),
-                int(h["gold_fact_docs"]),
-                int(h["hashed_chunks"]),
-            ],
-        }
+    st.bar_chart(
+        pd.DataFrame(
+            {
+                "stage": ["Bronze", "Silver bodies", "Silver ready", "Gold facts", "Hashed chunks"],
+                "count": [
+                    int(h["bronze_docs"]),
+                    int(h["silver_docs"]),
+                    int(h["silver_ready"]),
+                    int(h["gold_fact_docs"]),
+                    int(h["hashed_chunks"]),
+                ],
+            }
+        ).set_index("stage")
     )
-    st.bar_chart(funnel.set_index("stage"))

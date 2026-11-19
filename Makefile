@@ -21,9 +21,10 @@ demo: build
 dashboard:
 	FOLIO_WAREHOUSE=duckdb .venv/bin/streamlit run dashboard/app.py
 
-# Talk dashboard against dbt Cloud BigQuery marts
+# Talk dashboard against dbt Cloud BigQuery marts (uses gitignored SA JSON if present)
 dashboard-bq:
 	FOLIO_WAREHOUSE=bigquery \
 	FOLIO_BQ_PROJECT=$${FOLIO_BQ_PROJECT:-roundtable-513102} \
 	FOLIO_BQ_DATASET=$${FOLIO_BQ_DATASET:-dbt_wcaldas} \
+	GOOGLE_APPLICATION_CREDENTIALS=$${GOOGLE_APPLICATION_CREDENTIALS:-$(CURDIR)/roundtable-513102-545d77a8a510.json} \
 	.venv/bin/streamlit run dashboard/app.py
