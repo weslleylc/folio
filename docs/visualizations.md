@@ -1,27 +1,29 @@
-# Folio visualizations — Looker Studio
+# Folio visualizations — Streamlit + BigQuery
 
-**Primary path for the talk:** Looker Studio on BigQuery marts.  
-Step-by-step pages + custom SQL: **[`looker-studio.md`](looker-studio.md)**
+Talk charts are built for you in Streamlit, reading the dbt Cloud dataset.
 
-| | |
-|---|---|
-| Project | `roundtable-513102` |
-| Dataset | `dbt_wcaldas` |
-| Report | 5 pages: Rollup → Silver → Search compare → Taxonomy → Cost/Lineage |
-| Raw SQL backup | [`presentation_queries.sql`](presentation_queries.sql) in BigQuery Studio |
+```bash
+cd /Users/weslleylc/Documents/Projects/Blue\ Orange/folio
+source .venv/bin/activate
+pip install -r requirements.txt
 
-## Why Looker (for this talk)
+# one-time: ADC for BigQuery
+gcloud auth application-default login
 
-- Shareable link / fullscreen — cleaner than clicking Studio charts live  
-- Multi-chart pages (scorecards + bar + table) per beat  
-- Same BigQuery tables you already built with dbt Cloud  
+make dashboard-bq
+# → http://localhost:8501
+```
 
-## Quick start
+Sidebar pages (talk order):
 
-1. [lookerstudio.google.com](https://lookerstudio.google.com/) → Create report → BigQuery → **Custom query**
-2. Follow [`looker-studio.md`](looker-studio.md) — add DS1…DS7, build 5 pages
-3. Share → View → present
+1. Gold rollup — Meridian vs noise  
+2. Silver gate — quality / sensitivity  
+3. Search raw vs classified  
+4. Taxonomy  
+5. Cost & lineage  
+6. Overview  
 
-## Fallback
+Defaults: project `roundtable-513102`, dataset `dbt_wcaldas`  
+Override: `FOLIO_BQ_PROJECT` / `FOLIO_BQ_DATASET`
 
-BigQuery Studio saved queries still work for Bronze catalog / narrative timeline tables if you don’t put those in Looker.
+Local DuckDB fallback: `make dashboard`
