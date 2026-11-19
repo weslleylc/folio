@@ -1,17 +1,13 @@
-## Northwind Apparel earnings call NOISE-052
+## Ironclad Construction earnings call (NOISE-052)
 
-Account: Northwind Apparel (ACC-4402)
+Account: Ironclad Construction (ACC-9907)
 
-Document sequence: NOISE-052
-
-Doc type: earnings\_call
+Reference: NOISE-052
 
 ## Summary
 
-Routine earnings call for Northwind Apparel. Operations are stable. Reference amount USD 17,124.00. Balance settled on schedule.
+Management reviewed quarterly results and reaffirmed full-year guidance. Reference amount USD 17,124.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Revenue grew modestly; margins in line with plan. No unusual items. No watchlist items on this account.

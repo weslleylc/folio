@@ -1,17 +1,17 @@
-## Northwind Apparel analyst note NOISE-040
+## Pacific Rim Logistics analyst note (NOISE-040)
 
-Account: Northwind Apparel (ACC-4402)
+Account: Pacific Rim Logistics (ACC-8806)
 
-Document sequence: NOISE-040
-
-Doc type: analyst\_note
+Reference: NOISE-040
 
 ## Summary
 
-Routine analyst note for Northwind Apparel. Operations are stable. Reference amount USD 15,480.00. Balance settled on schedule.
+Initiating at neutral. Steady operator, fairly valued on current estimates.
+
+Reference amount USD 15,480.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
+No change to estimates this quarter. Maintain rating.
 
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+No watchlist items on this account.

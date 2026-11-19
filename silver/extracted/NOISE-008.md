@@ -1,15 +1,13 @@
-## Pacific Rim Logistics credit facility NOISE-008
+## Ironclad Construction credit facility (NOISE-008)
 
-Account: Pacific Rim Logistics (ACC-8806) Document sequence: NOISE-008 Doc type: credit\_facility
+Account: Ironclad Construction (ACC-9907)
+
+Reference: NOISE-008
 
 ## Summary
 
-Routine credit facility for Pacific Rim Logistics. Operations are stable.
-
-Reference amount USD 11,096.00. Balance settled on schedule.
+Revolving credit facility, standard pricing grid, annual review completed. Reference amount USD 11,096.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Borrower reported on time. No amendments requested. Commitment unchanged. No watchlist items on this account.

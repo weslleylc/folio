@@ -1,9 +1,9 @@
-## Monitoring update - covenant headroom - Meridian (MER-X05)
+## Waiver request - covenant cure period (MER-X05)
 
 Subject account: Meridian Industrial Corp (ACC-8847)
 
-## Update
+## Request
 
-Interim leverage certificate printed 3.55x against 3.75x amended covenant. Limited headroom. Continue weekly cash reporting and DSO remediation.
+Borrower asks for a 60-day cure period if leverage prints above 3.60x. Credit committee to review the covenant waiver before the next test date.
 
-Event of default risk rises if leverage exceeds 3.60x on next certificate.
+Sponsor equity support has not been confirmed in writing.

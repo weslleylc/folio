@@ -1,9 +1,11 @@
-## Past-due notice - secondary supplier - Meridian (MER-X07)
+## Partial payment - Kestrel Logistics (MER-X07)
 
-Vendor: RiverBend Coatings Bill-to: Meridian Industrial Corp (ACC-8847) Status: PAST DUE / OVERDUE - credit hold warning
+Vendor: Kestrel Logistics
+
+Bill-to: Meridian Industrial Corp (ACC-8847)
+
+Status: PARTIAL - credit hold on new shipments until balance clears.
 
 ## Collections
 
-Meridian AP stretch continues. Open balance USD 28,400.00.
-
-Reference ACC-8847. Payment plan requested; working capital pressure noted.
+Open balance USD 19,780.00 after a USD 10,000.00 partial payment.

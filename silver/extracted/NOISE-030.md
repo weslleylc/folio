@@ -1,13 +1,13 @@
-## Atlas Data Centers credit memo NOISE-030
+## Ironclad Construction credit memo (NOISE-030)
 
-Account: Atlas Data Centers (ACC-6604) Document sequence: NOISE-030 Doc type: credit\_memo
+Account: Ironclad Construction (ACC-9907)
+
+Reference: NOISE-030
 
 ## Summary
 
-Routine credit memo for Atlas Data Centers. Operations are stable. Reference amount USD 14,110.00. Balance settled on schedule.
+Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 14,110.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Rating affirmed. Recommend renewing the existing limit on current terms. No watchlist items on this account.

@@ -1,13 +1,15 @@
-## Summit Rail Partners supplier email NOISE-062
+## Pacific Rim Logistics supplier email (NOISE-062)
 
-Account: Summit Rail Partners (ACC-3301) Document sequence: NOISE-062 Doc type: supplier\_email
+Account: Pacific Rim Logistics (ACC-8806)
+
+Reference: NOISE-062
 
 ## Summary
 
-Routine supplier email for Summit Rail Partners. Operations are stable. Reference amount USD 18,494.00. Balance settled on schedule.
+Confirming delivery schedule for next month. No issues to report.
+
+Reference amount USD 18,494.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Thanks for the prompt payment. Purchase order attached for the next cycle. No watchlist items on this account.

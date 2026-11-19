@@ -1,17 +1,13 @@
-## Blue Harbor Utilities supplier email NOISE-041
+## Ironclad Construction supplier email (NOISE-041)
 
-Account: Blue Harbor Utilities (ACC-5503)
+Account: Ironclad Construction (ACC-9907)
 
-Document sequence: NOISE-041
-
-Doc type: supplier\_email
+Reference: NOISE-041
 
 ## Summary
 
-Routine supplier email for Blue Harbor Utilities. Operations are stable. Reference amount USD 15,617.00. Balance settled on schedule.
+Thanks for the prompt payment. Purchase order attached for the next cycle. Reference amount USD 15,617.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Confirming delivery schedule for next month. No issues to report. No watchlist items on this account.

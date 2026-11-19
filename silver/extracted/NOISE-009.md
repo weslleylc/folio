@@ -1,17 +1,13 @@
-## Ironclad Construction credit memo NOISE-009
+## Lumen Health Systems credit memo (NOISE-009)
 
-Account: Ironclad Construction (ACC-9907)
+Account: Lumen Health Systems (ACC-1010)
 
-Document sequence: NOISE-009
-
-Doc type: credit\_memo
+Reference: NOISE-009
 
 ## Summary
 
-Routine credit memo for Ironclad Construction. Operations are stable. Reference amount USD 11,233.00. Balance settled on schedule.
+Rating affirmed. Recommend renewing the existing limit on current terms. Reference amount USD 11,233.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Annual relationship review. Borrower profile unchanged since last cycle. No watchlist items on this account.

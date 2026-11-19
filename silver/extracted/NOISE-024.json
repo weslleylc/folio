@@ -7,16 +7,16 @@
   "account_name": "Cedar Ridge Chemicals",
   "effective_date": "2025-01-25",
   "source_system": "ir_transcripts",
-  "title": "Cedar Ridge Chemicals earnings call NOISE-024",
-  "content_sha256": "981d3f8d2850c8fc15008e6d49e1c3ef5d6d0c766cce602bc2b862d81c9bb23f",
+  "title": "Cedar Ridge Chemicals earnings call (NOISE-024)",
+  "content_sha256": "0b1e13264847a4edf687768f5065f0a546efeb717b9cf834e599d57fcd742f8b",
   "mime_type": "application/pdf",
-  "byte_size": 1628,
-  "extracted_at": "2026-11-19T01:48:06Z",
+  "byte_size": 1559,
+  "extracted_at": "2026-11-19T14:55:12Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
-  "quality_score": 0.74,
+  "quality_score": 0.72,
   "sensitivity_label": "public_market",
   "markdown_path": "silver/extracted/NOISE-024.md",
-  "body_preview": "## Cedar Ridge Chemicals earnings call NOISE-024  Account: Cedar Ridge Chemicals (ACC-2201)  Document sequence: NOISE-024  Doc type: earnings\\_call  ## Summary  Routine earnings call for Cedar Ridge Chemicals. Operations are stable.  Reference amount USD 13,288.00. Balance settle"
+  "body_preview": "## Cedar Ridge Chemicals earnings call (NOISE-024)  Account: Cedar Ridge Chemicals (ACC-2201)  Reference: NOISE-024  ## Summary  Management reviewed quarterly results and reaffirmed full-year guidance.  Reference amount USD 13,288.00.  ## Notes  Revenue grew modestly; margins in "
 }

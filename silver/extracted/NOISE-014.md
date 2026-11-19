@@ -1,17 +1,13 @@
-## Summit Rail Partners invoice NOISE-014
+## Northwind Apparel invoice (NOISE-014)
 
-Account: Summit Rail Partners (ACC-3301)
+Account: Northwind Apparel (ACC-4402)
 
-Document sequence: NOISE-014
-
-Doc type: invoice
+Reference: NOISE-014
 
 ## Summary
 
-Routine invoice for Summit Rail Partners. Operations are stable. Reference amount USD 11,918.00. Balance settled on schedule.
+Invoice for contracted services, payable on standard 30-day terms. Reference amount USD 11,918.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Payment received in full on the due date. Account in good standing. No watchlist items on this account.

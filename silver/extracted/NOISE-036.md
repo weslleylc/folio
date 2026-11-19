@@ -1,15 +1,15 @@
-## Cedar Ridge Chemicals credit facility NOISE-036
+## Northwind Apparel credit facility (NOISE-036)
 
-Account: Cedar Ridge Chemicals (ACC-2201) Document sequence: NOISE-036 Doc type: credit\_facility
+Account: Northwind Apparel (ACC-4402)
+
+Reference: NOISE-036
 
 ## Summary
 
-Routine credit facility for Cedar Ridge Chemicals. Operations are stable.
+Revolving credit facility, standard pricing grid, annual review completed.
 
-Reference amount USD 14,932.00. Balance settled on schedule.
+Reference amount USD 14,932.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Borrower reported on time. No amendments requested. Commitment unchanged. No watchlist items on this account.

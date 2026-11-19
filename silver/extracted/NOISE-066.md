@@ -1,15 +1,13 @@
-## Atlas Data Centers earnings call NOISE-066
+## BrightPeak Foods earnings call (NOISE-066)
 
-Account: Atlas Data Centers (ACC-6604) Document sequence: NOISE-066 Doc type: earnings\_call
+Account: BrightPeak Foods (ACC-1102)
+
+Reference: NOISE-066
 
 ## Summary
 
-Routine earnings call for Atlas Data Centers. Operations are stable.
-
-Reference amount USD 19,042.00. Balance settled on schedule.
+Management reviewed quarterly results and reaffirmed full-year guidance. Reference amount USD 19,042.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Revenue grew modestly; margins in line with plan. No unusual items. No watchlist items on this account.

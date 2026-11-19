@@ -1,17 +1,13 @@
-## Northwind Apparel invoice NOISE-028
+## Prairie Ag Co-op invoice (NOISE-028)
 
-Account: Northwind Apparel (ACC-4402)
+Account: Prairie Ag Co-op (ACC-7705)
 
-Document sequence: NOISE-028
-
-Doc type: invoice
+Reference: NOISE-028
 
 ## Summary
 
-Routine invoice for Northwind Apparel. Operations are stable. Reference amount USD 13,836.00. Balance settled on schedule.
+Invoice for contracted services, payable on standard 30-day terms. Reference amount USD 13,836.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Payment received in full on the due date. Account in good standing. No watchlist items on this account.

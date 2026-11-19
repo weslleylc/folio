@@ -1,17 +1,15 @@
-## BrightPeak Foods sec filing NOISE-025
+## Northwind Apparel sec filing (NOISE-025)
 
-Account: BrightPeak Foods (ACC-1102)
+Account: Northwind Apparel (ACC-4402)
 
-Document sequence: NOISE-025
-
-Doc type: sec\_filing
+Reference: NOISE-025
 
 ## Summary
 
-Routine sec filing for BrightPeak Foods. Operations are stable. Reference amount USD 13,425.00. Balance settled on schedule.
+No material changes to risk factors since the last annual report.
+
+Reference amount USD 13,425.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Quarterly report: results of operations in line with prior periods. No watchlist items on this account.

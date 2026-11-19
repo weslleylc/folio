@@ -1,9 +1,13 @@
-## Past-due notice - secondary supplier - Meridian (MER-X01)
+## Past-due notice - RiverBend Coatings (MER-X01)
 
-Vendor: RiverBend Coatings Bill-to: Meridian Industrial Corp (ACC-8847) Status: PAST DUE / OVERDUE - credit hold warning
+Vendor: RiverBend Coatings
+
+Bill-to: Meridian Industrial Corp (ACC-8847)
+
+Status: PAST DUE - 38 days. Credit hold warning issued.
 
 ## Collections
 
-Meridian AP stretch continues. Open balance USD 28,400.00.
+Open balance USD 28,400.00. Payment plan requested by Meridian AP.
 
-Reference ACC-8847. Payment plan requested; working capital pressure noted.
+Vendor notes Meridian is stretching payables to protect working capital.

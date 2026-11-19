@@ -1,17 +1,13 @@
-## Skyline REITs credit memo NOISE-023
+## Summit Rail Partners credit memo (NOISE-023)
 
-Account: Skyline REITs (ACC-1111)
+Account: Summit Rail Partners (ACC-3301)
 
-Document sequence: NOISE-023
-
-Doc type: credit\_memo
+Reference: NOISE-023
 
 ## Summary
 
-Routine credit memo for Skyline REITs. Operations are stable. Reference amount USD 13,151.00. Balance settled on schedule.
+Rating affirmed. Recommend renewing the existing limit on current terms. Reference amount USD 13,151.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Annual relationship review. Borrower profile unchanged since last cycle. No watchlist items on this account.

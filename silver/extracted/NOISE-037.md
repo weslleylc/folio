@@ -1,17 +1,13 @@
-## BrightPeak Foods credit memo NOISE-037
+## Blue Harbor Utilities credit memo (NOISE-037)
 
-Account: BrightPeak Foods (ACC-1102)
+Account: Blue Harbor Utilities (ACC-5503)
 
-Document sequence: NOISE-037
-
-Doc type: credit\_memo
+Reference: NOISE-037
 
 ## Summary
 
-Routine credit memo for BrightPeak Foods. Operations are stable. Reference amount USD 15,069.00. Balance settled on schedule.
+Rating affirmed. Recommend renewing the existing limit on current terms. Reference amount USD 15,069.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Annual relationship review. Borrower profile unchanged since last cycle. No watchlist items on this account.

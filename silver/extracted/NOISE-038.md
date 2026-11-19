@@ -1,13 +1,13 @@
-## Summit Rail Partners earnings call NOISE-038
+## Atlas Data Centers earnings call (NOISE-038)
 
-Account: Summit Rail Partners (ACC-3301) Document sequence: NOISE-038 Doc type: earnings\_call
+Account: Atlas Data Centers (ACC-6604)
+
+Reference: NOISE-038
 
 ## Summary
 
-Routine earnings call for Summit Rail Partners. Operations are stable. Reference amount USD 15,206.00. Balance settled on schedule.
+Management reviewed quarterly results and reaffirmed full-year guidance. Reference amount USD 15,206.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Revenue grew modestly; margins in line with plan. No unusual items. No watchlist items on this account.

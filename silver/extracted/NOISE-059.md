@@ -1,13 +1,13 @@
-## Skyline REITs earnings call NOISE-059
+## Blue Harbor Utilities earnings call (NOISE-059)
 
-Account: Skyline REITs (ACC-1111) Document sequence: NOISE-059 Doc type: earnings\_call
+Account: Blue Harbor Utilities (ACC-5503)
+
+Reference: NOISE-059
 
 ## Summary
 
-Routine earnings call for Skyline REITs. Operations are stable. Reference amount USD 18,083.00. Balance settled on schedule.
+Revenue grew modestly; margins in line with plan. No unusual items. Reference amount USD 18,083.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Management reviewed quarterly results and reaffirmed full-year guidance. No watchlist items on this account.

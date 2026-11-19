@@ -1,259 +1,204 @@
-# Folio — speaker guide (demo / talk)
+# Folio — speaker guide
 
-Audience: data / analytics engineers who know tables, are nervous about PDFs + AI spend.  
-Tone: show the **problem**, the **governance moves**, then the **AI payoff** — not “we embedded everything.”
-
-Suggested length: **25–30 min** + 5 min Q&A.  
-Live UI: Streamlit `make dashboard-bq` (pages **0 → 9**) or BigQuery Studio + `docs/presentation_queries.sql`.
+**Audience:** data / analytics engineers who know tables and are nervous about PDFs + AI spend.
+**Length:** 30 min + 5 Q&A.
+**Surface:** Streamlit `make dashboard-bq` (pages 1 → 14, sidebar order = speaker order). Backup: BigQuery Studio + [`presentation_queries.sql`](presentation_queries.sql) (query ids map to page numbers).
 
 ---
 
-## One-sentence pitch
+## The problem, in four sentences (say this first, verbatim if you like)
 
-> When the signal for one credit account lives across invoices, covenants, memos, and filings, medallion governance + context engineering beats “dump PDFs into a vector DB.”
+1. A credit analyst must answer **one question**: *“Is this borrower heading toward a covenant breach — and which documents prove it?”*
+2. The evidence is **not in a table**. It is spread over invoices, loan agreements, credit memos, analyst notes, earnings calls and SEC filings.
+3. Naive AI (“put every PDF in a vector database”) is **noisy, expensive and unauditable**: it embeds blank scans and PII, returns other borrowers’ boilerplate, and cannot cite a file.
+4. **Folio’s answer:** treat documents like data — Bronze → Silver → Gold — and only then spend AI tokens, with tests, a cost ledger and lineage.
 
----
-
-## Opening — the ingestion problem (say this first)
-
-Financial document estates break “table-first” habits:
-
-1. **Signal is scattered** — past-due on an invoice, covenant headroom in a facility PDF, DSO on an earnings call.
-2. **Noise dominates** — healthy accounts drown Meridian in naive keyword / vector search.
-3. **Parses fail** — blank scans and OCR garbage must be quarantined before any embedding bill.
-4. **AI without gates** — embedding Bronze (or everything Silver) is an ungoverned secondary store.
-5. **No citation** — an answer without URI / `content_sha256` / evidence quote is a demo, not audit-ready.
-
-**Folio answer:** Bronze catalog → Silver gate → Gold regex facts **and** package AI (`chunk` / `embed` / `classify` / `extract` / `search`) under `guard_batch` + `eval` / `grounded`.
+**One-sentence pitch:** *Medallion governance + context engineering beats “dump PDFs into a vector DB.”*
 
 ---
 
-## Narrative arc (slide / Streamlit order)
+## Agenda (5 acts, 14 pages)
 
-| # | Beat | Streamlit page | Why it lands |
-|---|---|---|---|
-| 0 | Ingestion problem | `0 · The problem` | Frame why PDFs hurt credit analytics |
-| 0b | What Folio proves | `0b · What Folio proves` | Two Gold paths: regex **and** AI |
-| 1 | Meridian story | Overview / Gold | ACC-8847 stressed; ~100-doc corpus with noise |
-| 2 | Unstructured medallion | D1–D3 | Familiar layers on unfamiliar data |
-| 3 | Zero-copy vs physical copy | D1 | Own the Cloud demo choice (seeds) |
-| 4 | Bronze → Vector anti-pattern | D3 | Silver must show quarantine bars |
-| 5 | Join / regex ceiling | `1 · Gold rollup` | Explain flags/tiers didactically |
-| 6 | Embeddings mart | `6 · Embeddings mart` | What a vector row *is* |
-| 7 | Classify + search | `3` / `4` | Precision unlock |
-| 8 | Typed extract | `7 · Typed extraction` | Package `extract()` + evidence |
-| 9 | Evals | `8 · Evals & package` | `eval` / `grounded` like unit tests |
-| 10 | Cost + lineage | `5` | Gates + sha256 |
-| 11 | SQL pack | `9 · SQL talk pack` | Live Studio click-through |
+| Act | Pages | Question it answers |
+|---|---|---|
+| **I Problem** | 1 problem · 2 the case · 3 approach | What are we solving, for whom, with what pattern? |
+| **II Ingest** | 4 discovery · 5 Bronze · 6 Silver | How do files arrive, and which are allowed in? |
+| **III Structure** | 7 Gold · 8 Embeddings · 9 Taxonomy | How do we turn text into something queryable? |
+| **IV Use it** | 10 Search · 11 Extraction | Does it actually find and read the right documents? |
+| **V Trust** | 12 Evals · 13 Cost & lineage · 14 Wrap-up | Can we measure it, afford it and audit it? |
+
+Appendix page **A** is the SQL pack (live click-through in BigQuery Studio).
 
 ---
 
-## Live demo script (BigQuery / dbt Cloud)
+## Data you can quote (current build)
 
-Run order. Keep SQL short; talk over results.
-
-### A. Bronze — provenance, not interpretation
-
-```sql
-select doc_id, doc_type, account_id, uri, content_sha256, bronze_layer
-from bronze_document_catalog
-order by effective_date;
-```
-
-**Say:** “No NLP here. Hash + URI + source system. That’s the contract.”
-
-**Zero-copy aside (30–45s):**  
-- *This demo:* physical-copy PDFs in git + **seeds** into BQ (easy for Cloud).  
-- *Production pattern:* metadata-only Bronze — binaries stay in GCS/S3; warehouse keeps URI + sha256; selective snapshot only when you must.  
-- *Punchline:* zero-copy is about **not duplicating the source of truth**; Silver/embeddings are still derived copies by design.
-
-### B. Silver — the gate (chart must show quarantine)
-
-```sql
-select silver_status, count(*) as docs
-from silver_document_bodies
-group by 1;
-
-select doc_id, quality_score, parse_status, sensitivity_label, silver_status
-from silver_document_bodies
-where silver_status != 'silver_ready'
-order by quality_score;
-```
-
-**How to read `silver_status` (say this out loud):**
-- `silver_ready` — parse ok **and** quality ≥ 0.4 → allowed into Gold / chunk / embed
-- `quarantine_low_quality` — body too thin / garbled (quality &lt; 0.4)
-- `quarantine_parse_failed` — extractor marked `failed`
-
-**Say:** “If every bar is ready, Silver looks fake. We plant a few bad scans on purpose — those never get an embedding bill.”  
-**Note:** `sensitivity_label` (e.g. `restricted_pii`) is a governance tag; it is **not** the same as quarantine.
-
-### C. Gold — what “risks” actually are
-
-```sql
--- Per document: three boolean flags from SQL regex on Silver markdown
-select doc_id, title,
-       flag_past_due, flag_covenant_language, flag_liquidity_language,
-       risk_signal_tier
-from gold_document_facts
-where account_id = 'ACC-8847'
-order by risk_signal_tier desc;
-
--- Per account: count of docs that tripped each flag
-select * from gold_account_risk_rollup
-order by max_risk_tier desc, covenant_docs desc;
-```
-
-**How to read Gold “risks” (not a credit score):**
-| Flag | Text match (demo) |
+| Fact | Value |
 |---|---|
-| `flag_past_due` | past due / overdue / credit hold |
-| `flag_covenant_language` | covenant / leverage ratio / event of default |
-| `flag_liquidity_language` | working capital / DSO / liquidity |
+| Files / borrowers / formats | 100 / 12 / 7 |
+| Meridian (ACC-8847) files | 16 (15 usable, 1 quarantined for PII) |
+| Silver | 96 ready · 4 quarantined (2 parse failed, 1 low quality, 1 PII) |
+| Gold tiers | 3 high · 13 medium · 80 low |
+| Chunks embedded | 102 (text-embedding-005, 768 dims) |
+| Search top 10 for *“Which borrower is at risk of default?”* | raw: 5 other-borrower results · filtered: 0 |
+| Regex vs extract() on 17 docs | 14 agree · 2 regex false alarms · 1 regex missed |
+| Classify eval | 87% accuracy (13/15); misses 10Q-Q3-MDA and EARN-Q3-2025 |
+| AI spend (est.) | ≈ $0.025 total; classify is the largest line |
 
-**Tier:** `high` = covenant **and** liquidity in the **same** doc · `medium` = any one flag · `low` = none.
-
-**Say:** “Meridian’s story PDFs trip these phrases on purpose; noise accounts stay clean so the rollup chart is readable. Joins reconstruct a timeline — they still don’t answer *which passage* talks about covenant headroom across mixed PDFs.”
-
-Then timeline (compile/run `analyses/meridian_narrative.sql`).
-
-### D. Context engineering — meaning + filter
-
-After `dbt build --vars '{"ai_functions_enabled": true}'`:
-
-```sql
-select demo, classification, left(text, 120) as snippet, score
-from search
-order by demo, score desc;
-```
-
-**Say:**  
-1. **Raw** cosine recalls related text — often boilerplate.  
-2. **Classified** filter (`covenant_or_credit_risk` / `liquidity_or_working_capital`) is the precision unlock — same lesson as Jaffle logistics.
-
-Point at taxonomy in `macros/prompts/folio_content_type.sql` (closed enum = governable labels).
-
-### D2. Embeddings mart — show the shape
-
-```sql
-select chunk_id, account_id, embedding_dimension, model_version,
-       substr(chunk_text, 1, 100) as preview
-from documents_embed
-where account_id = 'ACC-8847'
-limit 10;
-```
-
-**Say:** “An embedding is a derived float array under a pinned model. `content_hash` decides refresh; fingerprint decides full re-embed.”
-
-### D3. Typed extraction — package `extract()`
-
-```sql
-select doc_id, primary_signal, leverage_mention, usd_amount_mention,
-       substr(evidence, 1, 120) as evidence
-from documents_extract_flat
-order by primary_signal;
-```
-
-**Say:** “Regex Gold is free and brittle. `extract()` returns typed fields **plus** a verbatim evidence quote — `grounded` fails hallucinated citations in CI.”
-
-### D4. Evals — score the taxonomy
-
-```sql
-select * from gov_classify_eval order by metric, label;
-
-select doc_id, expected_label, predicted_label, is_correct
-from gov_classify_eval_pairs
-order by is_correct, doc_id;
-```
-
-**Say:** “Prompt/schema changes are product changes. `eval()` gives accuracy/precision/recall against a golden Meridian set — same discipline as a dbt test.”
-
-### E. Governance — cost + lineage
-
-```sql
-select function_name, model_name, row_count, est_tokens, est_cost_usd, cost_source
-from gov_ai_spend;
-
-select doc_id, content_sha256, chunk_count, lineage_status
-from gov_document_lineage
-where account_id = 'ACC-8847';
-```
-
-**Say:** “Spend is logged and gated (`ai_functions_enabled`, `guard_batch` ceilings). Lineage carries `content_sha256` so a Gold answer can cite a file hash — RTBF / purge has a drill path.”
-
-Optional: Streamlit dashboard locally if the room is DuckDB-friendly; otherwise BigQuery Studio on `gov_*`.
+Re-check after any rebuild: `make dashboard-warm` then page 14.
 
 ---
 
-## Decisions worth defending (talking points)
+## Page-by-page script
 
-### 1. Seeds vs zero-copy (this talk)
+Each page: **Goal → Say → Chart (axes · read · so what) → Transition.**
 
-| Choice | Folio demo | Production lean |
-|---|---|---|
-| Bronze binaries | In-repo PDFs | Object store; catalog only |
-| Land text in WH | `dbt seed` markdown | Pipeline → table or Object Table |
-| Why seeds here | One `dbt build` on Cloud; no GCS setup in the talk | Ops reality at scale |
+### 1 · The problem (2 min)
+- **Goal:** the room can repeat the analyst question and the five failure modes.
+- **Say:** the four-sentence problem above; point at the three metrics (100 files, 12 borrowers, 7 formats).
+- **Five failure modes:** scattered signal · noise · unusable files · tokens billed per call · answers without proof.
+- **Transition:** “Let’s meet the borrower.”
 
-**Tip:** Don’t apologize for seeds — frame as *presentation fidelity*. Show the URI/sha256 columns as the hook to zero-copy later.
+### 2 · The case: Meridian (2 min)
+- **Goal:** make the needle-in-haystack concrete.
+- **Chart 1 — files per borrower**
+  - *Axes:* Y borrower · X number of files.
+  - *Read:* red = Meridian (16), grey = healthy borrowers (7–9 each).
+  - *So what:* a search across everything returns plenty of other people’s paperwork.
+- **Table — Meridian’s case file:** 16 files in 6 formats, one already marked `quarantine_pii_review`.
+- **Transition:** “How do we get from this folder to an answer without trusting everything blindly?”
 
-### 2. Silver before vectors
+### 3 · The approach (2 min)
+- **Goal:** one picture of the pipeline and the package.
+- **Say:** four cards (Bronze / Silver / Gold / Context). Two kinds of Gold: **rule-based** (free, literal) and **AI-based** (semantic, billed). “The talk is *and*, not *replace*.”
+- **Table:** package capability ↔ Folio model ↔ plain meaning. Don’t read it all; promise to show each.
+- **Transition:** “First: how do files even get in?”
 
-Embedding Bronze is cheap to start and expensive to trust. Quality + sensitivity + quarantine first.  
-**Sound bite:** “Vectors without Silver are an ungoverned secondary store.”
+### 4 · Discovery: events vs crawler (2 min)
+- **Goal:** show the production ingestion decision (demo uses seeds).
+- **Read the image left → right:** event-driven = upload fires an event → queue → worker → catalog (instant, pay per change). Crawler = scheduled list + hash diff (complete, chatty, late).
+- **Say:** crawl once → events day to day → periodic re-crawl for dark data.
+- **Transition:** “Whatever way they arrive, Bronze records them the same way.”
 
-### 3. Deterministic Gold vs AI Gold
+### 5 · Bronze: catalog, not meaning (2 min)
+- **Goal:** Bronze = provenance only.
+- **Say:** URI + `content_sha256` + type. Zero-copy vs physical copy: this demo copies PDFs into git and `dbt seed` (Cloud-friendly); production leans metadata-only with selective snapshots.
+- **Table:** point at `uri`, `content_sha256`, `bronze_layer`.
+- **Transition:** “Bronze trusts everything. Silver doesn’t.”
 
-| Path | What | Cost |
-|---|---|---|
-| Regex / SQL facts | `gold_document_facts`, rollup | Free, explainable, brittle |
-| Context engineering | chunk → embed → classify → search | Billed, semantic, needs gates |
+### 6 · Silver: the gate (3 min) — most important page of Act II
+- **Goal:** answer “what is the silver gate?”
+- **Say:** *it is a column, not a table*: `silver_status` in `silver_document_bodies`, a CASE where the first rule wins (parse failed → quality < 0.4 → restricted PII → ready). Downstream models read the view `silver_ready_documents`.
+- **Chart — documents by Silver status**
+  - *Axes:* Y gate verdict · X number of documents.
+  - *Read:* green = passed (96), red = quarantined, one bar per reason.
+  - *So what:* ~4% are blocked for a concrete reason; they never reach Gold, never cost tokens.
+- **Table — quarantined files and why.**
+- **Anti-pattern cards:** Bronze→Vector embeds the blank scan, garbled fax **and the SSN memo**. *“Vectors without Silver are an ungoverned second copy.”*
+- **Transition:** “Now that the inputs are clean, what can plain SQL tell us?”
 
-Show **both**. The talk is “and,” not “replace SQL with RAG.”
+### 7 · Gold: rule-based flags (3 min)
+- **Goal:** explain what “risk flags” mean — they are word matches, **not** a credit score.
+- **Say:** three word lists (past due · covenant · liquidity). Tier: **high** = covenant *and* liquidity · **medium** = any one · **low** = none.
+- **Chart 1 — flagged documents per borrower (stacked)**
+  - *Axes:* Y borrower (only those with ≥1 flag) · X documents · colour = flag type.
+  - *Read:* longer = more risky wording; colour = which kind.
+  - *So what:* Meridian dominates; 9 borrowers have none. Two small bars (Summit Rail, BrightPeak) — **plant the seed**: “remember these two.”
+- **Chart 2 — documents per tier:** most are low; the small red/amber slice is the review queue.
+- **Transition:** “Rules match words. Can we match meaning?”
 
-### 4. Classification taxonomy is a product decision
+### 8 · Embeddings: meaning as numbers (3 min)
+- **Goal:** demystify the embedding.
+- **Say:** a passage becomes 768 numbers; similar meaning ⇒ nearby numbers. Picture a map of dots.
+- **Chart — nearest neighbours of one chunk**
+  - *Axes:* Y chunk id · X cosine similarity to the anchor (1.0 = identical) · colour = doc type.
+  - *Read:* anchor is a past-due invoice (MER-X01); top neighbours are other invoices, covenant memos appear later.
+  - *So what:* that is “meaning”, measured — without a keyword list.
+- **Mention:** `content_hash` (re-embed only if text changes), fingerprint (model change ⇒ rebuild).
+- **Transition:** “To filter by meaning we need labels.”
 
-Five labels in `folio_content_type` — designed for *this* credit story.  
-**Tip:** Say out loud that a bad taxonomy quietly filters the right answer away. Governance of prompts/schemas matters as much as model choice.
+### 9 · Taxonomy: classify (2 min)
+- **Goal:** closed label list = governable filter.
+- **Say:** five labels, one per chunk. “The label set is a product decision.”
+- **Chart — chunks per label:** Y label · X chunks · red = risk labels, grey = routine/disclosure. Risk labels are a small slice from one borrower — a filter on them removes most noise.
+- **Table:** one example chunk per label.
+- **Transition:** “Let’s prove the filter helps.”
 
-### 5. Cost gates are part of the architecture
+### 10 · Search: raw vs filtered (3 min) — the “aha”
+- **Question on screen:** *“Which borrower is at risk of default?”*
+- **Chart — who shows up in the top 10?**
+  - *Axes:* X search variant (A raw cosine · B cosine + label filter) · Y results out of 10 · colour = Meridian (green) vs other borrowers (red).
+  - *Read:* A has 5 red results; B has none.
+  - *So what:* same model, same vectors; one `WHERE classification in (…)` buys precision.
+- **Tables:** point at the `account_key` column — any value other than ACC-8847 is noise.
+- **Transition:** “Search finds passages. Can the model read a whole document and fill in a record?”
 
-- `ai_functions_enabled: false` by default  
-- `max_batch_rows` / `max_est_tokens` circuit breaker  
-- `bq_thinking_budget: 0` (don’t pay Gemini thinking for classify)  
-- `allow_full_reembed: false`  
-- `cost_per_1k_tokens` + `gov_ai_spend` for a visible ledger  
+### 11 · Extraction: regex vs extract() (3 min) — pays off page 7’s seed
+- **Say:** `extract()` returns typed fields **and a verbatim quote**; `grounded` fails the build if the quote isn’t in the source. Cost gate: only Meridian + regex-flagged docs (17 of 96).
+- **Chart — agreement of the two methods on 17 docs**
+  - *Axes:* Y verdict · X documents.
+  - *Read:* green = agree (14); red = regex false alarm (2); amber = regex missed it (1).
+  - *So what:* rules are mostly right, but the misses hurt — use rules for triage, model for subtle wording.
+- **The three disagreements:**
+  - **CFA-2024-11** (Summit Rail): regex sees “covenant” → medium; it’s a comfortable-headroom disclosure.
+  - **EARN-Q2-BP** (BrightPeak): regex sees “liquidity” in a routine call; model says none.
+  - **INV-4412** (Meridian): “cash timing pressure tied to delayed receivables” — no keyword, regex says low; model catches it.
+- **Transition:** “The model disagreed with regex. Who checks the model?”
 
-**Tip:** Flip AI **on** mid-talk so the room sees the gate is real, not slideware.
+### 12 · Evals: is the AI right? (3 min)
+- **Say:** a golden set (15 Meridian docs with the human label) is scored with `eval()` — like a unit test. Define **precision** (when it says X, is it right?) and **recall** (of the true X, how many found?).
+- **Chart — precision and recall per label**
+  - *Axes:* Y label · X score 0–1 · blue precision, amber recall.
+  - *Read:* full bar = perfect; a **missing bar = undefined** (public_disclosure was never predicted, so precision is blank and recall is 0).
+  - *So what:* accuracy 87%, and the misses teach us something.
+- **Misses:** 10Q-Q3-MDA (filing *is* about covenants) and EARN-Q3-2025 (discusses both). Fix is a taxonomy/prompt decision → rerun → metrics move → CI-able.
+- **Transition:** “What did all this cost, and can we trace an answer back?”
 
-### 6. Lineage is the citation story
+### 13 · Cost & lineage (2 min)
+- **Chart — estimated tokens per AI function:** Y function · X tokens · green = started *and* completed (a red bar = orphaned run). **classify is the biggest line** (prompt resent with every chunk); embed is the smallest (incremental on `content_hash`).
+- **Gates:** `max_batch_rows=5000`, `max_est_tokens=2,000,000` — a runaway job fails before it bills. AI is opt-in (`ai_functions_enabled`).
+- **Chart — lineage status:** `fully_promoted` vs `quarantined`; every row keeps `content_sha256` + `citation_url`. Use the drill-down to show a hash.
+- **Transition:** “Let’s close the loop on the analyst’s question.”
 
-`content_sha256` from Bronze → Silver → chunk metadata.  
-Agent answer without hash/URI is a demo; with hash it’s an audit trail.
+### 14 · Wrap-up (2 min)
+- **Chart — document funnel:** 100 Bronze → 96 Silver ready → 96 Gold → 16 flagged. AI spend happens on stage 2, not stage 1.
+- **Answer the opening question** (the text on screen): Meridian — usable docs, past-due / covenant / liquidity counts, leverage up to 3.75x — with quotes, hashes, and a measured error rate.
+- **Three sound bites:** (1) vectors without Silver are an ungoverned second copy · (2) rules are cheap and explainable, models understand meaning — use both and measure both · (3) treat AI outputs like dbt models: tests, evals, ledger, lineage.
 
-### 7. Noise documents are intentional
-
-BrightPeak / Summit Rail docs exist so naive search isn’t trivial.  
-**Tip:** If search only ever returns Meridian, the demo is too clean — mention the noise.
-
-### 8. Warehouse-native AI (BigQuery `AI.*`)
-
-Same dbt project, DuckDB locally (stand-ins) vs BigQuery (real spend).  
-**Tip:** “Portable patterns, engine-specific functions” — package dispatch, not a sidecar vector DB for the happy path.
+### A · SQL pack (optional, live)
+Pick a query, read it aloud, run it. Same SQL as `presentation_queries.sql`; the number in each query id equals the page number.
 
 ---
 
-## Slide-ready contrasts (use as diagrams)
+## Timing cheat sheet
 
-```text
-Physical copy          Metadata-only (zero-copy lean)
-─────────────────      ──────────────────────────────
-PDF bytes in lake      PDF bytes stay in bucket
-Catalog + optional     Catalog: uri + sha256 + mime
-  binary snapshot      Snapshot only when required
-Demo / regulated       Default for large estates
-  freeze
-```
+| Min | Pages | Do |
+|---|---|---|
+| 0–6 | 1–3 | Problem, case, approach |
+| 6–15 | 4–6 | Ingest; spend most time on Silver gate |
+| 15–23 | 7–9 | Gold flags → embeddings → taxonomy |
+| 23–29 | 10–11 | Search aha + regex vs extract |
+| 29–34 | 12–14 | Evals, cost/lineage, wrap-up |
+| 34–39 | — | Q&A |
+
+If you need 20 minutes: skip page 4, show page 5 as one sentence, merge 8+9.
+
+---
+
+## Decisions worth defending
+
+1. **Seeds vs zero-copy** — demo copies PDFs + `dbt seed` for one-click Cloud; production uses metadata-only Bronze. Frame as *presentation fidelity*, show the URI/sha256 hook.
+2. **Silver before vectors** — quality + sensitivity + quarantine first.
+3. **Rules *and* AI** — Gold regex vs AI path; show both, with the disagreements.
+4. **Taxonomy is a product decision** — a bad label set quietly filters the right answer away; evals make it testable.
+5. **Cost gates are architecture** — `ai_functions_enabled: false` by default, `guard_batch` ceilings, `allow_full_reembed: false`, `bq_thinking_budget: 0`, `gov_ai_spend` ledger.
+6. **Lineage is the citation story** — `content_sha256` from Bronze → Silver → chunks.
+7. **Noise is intentional** — other borrowers’ boilerplate makes raw search fail visibly; if search only returned Meridian the demo would be too clean.
+8. **Warehouse-native AI** — same dbt project on BigQuery (Gemini / `AI.*`) or Redshift (Bedrock UDFs); one provider per target, not mixed in one build.
+
+---
+
+## Slide-ready contrasts
 
 ```text
 Bronze → Vector shortcut          Folio path
@@ -265,65 +210,37 @@ Cite file? weak                   sha256 through chunks
 ```
 
 ```text
-Query style                Strength              Blind spot
+Method                     Strength              Blind spot
 ─────────────────────      ──────────────────    ────────────────────
-account_id join + regex    Timeline, rollups     Wording / meaning
+regex flags (Gold)         Free, explainable     Matches words, not meaning
 vector search              Recall by meaning     Boilerplate pollution
 + classification filter    Precision             Taxonomy design debt
+extract() + grounded       Typed + cited         Costs tokens; needs evals
 ```
 
 ---
 
-## Questions you should pre-answer
+## Questions to pre-answer
 
 | Likely question | Short answer |
 |---|---|
-| Why not only a vector DB? | Lose warehouse lineage, tests, cost controls, joins to account dims |
-| Why classify if embed is semantic? | Embed = recall; closed taxonomy = precision for *this* question class |
+| What is the silver gate? | A CASE expression producing `silver_status`; downstream reads `silver_ready_documents` |
+| Why not only a vector DB? | Lose warehouse lineage, tests, cost controls and joins |
+| Why classify if embeddings are semantic? | Embed = recall; a closed taxonomy = precision for this question class |
+| Why did regex flag Summit Rail? | It matches the word “covenant” — the doc says headroom is comfortable (page 11) |
+| Why is precision blank for public_disclosure? | The model never predicted that label on the golden docs |
 | Who owns sensitivity labels? | Silver stewardship — same as PII columns on tables |
 | How do you RTBF a PDF? | Find `content_sha256` / `doc_id` in lineage; purge object + downstream chunks/embeddings |
+| Can I mix Bedrock and Gemini? | Not in one build; use two targets (BigQuery → Gemini, Redshift → Bedrock) |
 | What breaks first in prod? | Bad parses, prompt drift, full-refresh re-embed bills, taxonomy mismatch |
-
----
-
-## Timing cheat sheet
-
-| Min | Do |
-|---|---|
-| 0–3 | Meridian story + “signal is scattered” |
-| 3–7 | Medallion walk (Bronze → Silver → Gold SQL) |
-| 7–10 | Zero-copy vs copy + why seeds for *this* talk |
-| 10–14 | Join ceiling → turn on AI / show search raw vs classified |
-| 14–20 | Cost gates + lineage + taxonomy as decisions |
-| 20–25 | Prod checklist + Q&A |
 
 ---
 
 ## Props / links to open beforehand
 
-1. GitHub: `https://github.com/weslleylc/folio`  
-2. Article: [Beyond Tables…](https://jjojo.medium.com/beyond-tables-applying-the-medallion-architecture-to-unstructured-data-governance-39a81cfa3835)  
-3. Package: [`dbt_context_engineering`](https://github.com/dbt-labs/dbt-context-engineering)  
-4. Ready SQL: [`presentation_queries.sql`](presentation_queries.sql) (BigQuery, `dbt_wcaldas`)  
-5. Charts: **`make dashboard-bq`** — Streamlit over BigQuery ([`visualizations.md`](visualizations.md))  
-6. SQL backup: [`presentation_queries.sql`](presentation_queries.sql)  
-7. Optional: `folio_content_type` macro open in IDE  
-
----
-
-## Queries + viz (Cloud talk)
-
-**Streamlit + BigQuery** is the presentation surface (`make dashboard-bq`).
-
-| Page | Beat |
-|---|---|
-| 1 | Gold rollup — Meridian spike |
-| 2 | Silver gate |
-| 3 | Search raw vs classified |
-| 4 | Taxonomy |
-| 5 | Cost + lineage |
-
-```bash
-gcloud auth application-default login
-make dashboard-bq   # http://localhost:8501
-```
+1. GitHub: `https://github.com/weslleylc/folio`
+2. Article: [Beyond Tables…](https://jjojo.medium.com/beyond-tables-applying-the-medallion-architecture-to-unstructured-data-governance-39a81cfa3835)
+3. Package: [`dbt_context_engineering`](https://github.com/dbt-labs/dbt-context-engineering)
+4. Streamlit: `make dashboard-warm && make dashboard-bq` → http://localhost:8505
+5. SQL backup: [`presentation_queries.sql`](presentation_queries.sql)
+6. Optional: `models/silver/silver_document_bodies.sql` open in the IDE for page 6

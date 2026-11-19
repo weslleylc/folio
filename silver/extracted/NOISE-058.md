@@ -1,19 +1,13 @@
-## Lumen Health Systems credit memo NOISE-058
+## Northwind Apparel credit memo (NOISE-058)
 
-Account: Lumen Health Systems (ACC-1010)
+Account: Northwind Apparel (ACC-4402)
 
-Document sequence: NOISE-058
-
-Doc type: credit\_memo
+Reference: NOISE-058
 
 ## Summary
 
-Routine credit memo for Lumen Health Systems. Operations are stable.
-
-Reference amount USD 17,946.00. Balance settled on schedule.
+Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 17,946.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Rating affirmed. Recommend renewing the existing limit on current terms. No watchlist items on this account.

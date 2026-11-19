@@ -1,17 +1,15 @@
-## Cedar Ridge Chemicals supplier email NOISE-048
+## Blue Harbor Utilities supplier email (NOISE-048)
 
-Account: Cedar Ridge Chemicals (ACC-2201)
+Account: Blue Harbor Utilities (ACC-5503)
 
-Document sequence: NOISE-048
-
-Doc type: supplier\_email
+Reference: NOISE-048
 
 ## Summary
 
-Routine supplier email for Cedar Ridge Chemicals. Operations are stable. Reference amount USD 16,576.00. Balance settled on schedule.
+Confirming delivery schedule for next month. No issues to report.
+
+Reference amount USD 16,576.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Thanks for the prompt payment. Purchase order attached for the next cycle. No watchlist items on this account.

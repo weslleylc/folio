@@ -1,15 +1,17 @@
-## Atlas Data Centers analyst note NOISE-054
+## Skyline REITs analyst note (NOISE-054)
 
-Account: Atlas Data Centers (ACC-6604) Document sequence: NOISE-054 Doc type: analyst\_note
+Account: Skyline REITs (ACC-1111)
+
+Reference: NOISE-054
 
 ## Summary
 
-Routine analyst note for Atlas Data Centers. Operations are stable.
+Initiating at neutral. Steady operator, fairly valued on current estimates.
 
-Reference amount USD 17,398.00. Balance settled on schedule.
+Reference amount USD 17,398.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
+No change to estimates this quarter. Maintain rating.
 
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+No watchlist items on this account.

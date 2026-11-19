@@ -1,15 +1,15 @@
-## Prairie Ag Co-op sec filing NOISE-067
+## Summit Rail Partners sec filing (NOISE-067)
 
-Account: Prairie Ag Co-op (ACC-7705) Document sequence: NOISE-067 Doc type: sec\_filing
+Account: Summit Rail Partners (ACC-3301)
+
+Reference: NOISE-067
 
 ## Summary
 
-Routine sec filing for Prairie Ag Co-op. Operations are stable.
+No material changes to risk factors since the last annual report.
 
-Reference amount USD 19,179.00. Balance settled on schedule.
+Reference amount USD 19,179.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Quarterly report: results of operations in line with prior periods. No watchlist items on this account.

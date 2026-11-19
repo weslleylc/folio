@@ -1,17 +1,13 @@
-## Cedar Ridge Chemicals credit memo NOISE-072
+## Prairie Ag Co-op credit memo (NOISE-072)
 
-Account: Cedar Ridge Chemicals (ACC-2201)
+Account: Prairie Ag Co-op (ACC-7705)
 
-Document sequence: NOISE-072
-
-Doc type: credit\_memo
+Reference: NOISE-072
 
 ## Summary
 
-Routine credit memo for Cedar Ridge Chemicals. Operations are stable. Reference amount USD 19,864.00. Balance settled on schedule.
+Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 19,864.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Rating affirmed. Recommend renewing the existing limit on current terms. No watchlist items on this account.

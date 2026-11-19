@@ -1,9 +1,7 @@
-## Monitoring update - covenant headroom - Meridian (MER-X08)
+## Forecast - covenant step-down (MER-X08)
 
 Subject account: Meridian Industrial Corp (ACC-8847)
 
-## Update
+## Forecast
 
-Interim leverage certificate printed 3.55x against 3.75x amended covenant. Limited headroom. Continue weekly cash reporting and DSO remediation.
-
-Event of default risk rises if leverage exceeds 3.60x on next certificate.
+The covenant steps down to 3.50x in Q1. Current run-rate leverage is 3.58x. Without an amendment or deleveraging, a breach is likely at the Q1 test.

@@ -1,13 +1,15 @@
-## Cedar Ridge Chemicals sec filing NOISE-039
+## Prairie Ag Co-op sec filing (NOISE-039)
 
-Account: Cedar Ridge Chemicals (ACC-2201) Document sequence: NOISE-039 Doc type: sec\_filing
+Account: Prairie Ag Co-op (ACC-7705)
+
+Reference: NOISE-039
 
 ## Summary
 
-Routine sec filing for Cedar Ridge Chemicals. Operations are stable. Reference amount USD 15,343.00. Balance settled on schedule.
+No material changes to risk factors since the last annual report.
+
+Reference amount USD 15,343.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Quarterly report: results of operations in line with prior periods. No watchlist items on this account.

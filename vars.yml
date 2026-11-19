@@ -32,6 +32,6 @@ vars:
 
   embedding_canary_vector_dimension: 768
 
-  # Demo search query (Meridian liquidity / covenant story).
-  search_query_meridian: "Meridian working capital stress and covenant headroom"
-  search_account_id: "ACC-8847"
+  # Demo search question — deliberately generic (no borrower name). Raw cosine drags in
+  # boilerplate credit-facility text from healthy accounts; the label filter does not.
+  search_query: "Which borrower is at risk of default?"

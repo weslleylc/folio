@@ -1,17 +1,13 @@
-## Lumen Health Systems supplier email NOISE-034
+## Summit Rail Partners supplier email (NOISE-034)
 
-Account: Lumen Health Systems (ACC-1010)
+Account: Summit Rail Partners (ACC-3301)
 
-Document sequence: NOISE-034
-
-Doc type: supplier\_email
+Reference: NOISE-034
 
 ## Summary
 
-Routine supplier email for Lumen Health Systems. Operations are stable. Reference amount USD 14,658.00. Balance settled on schedule.
+Confirming delivery schedule for next month. No issues to report. Reference amount USD 14,658.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Thanks for the prompt payment. Purchase order attached for the next cycle. No watchlist items on this account.

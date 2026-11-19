@@ -1,15 +1,13 @@
-## Prairie Ag Co-op supplier email NOISE-055
+## BrightPeak Foods supplier email (NOISE-055)
 
-Account: Prairie Ag Co-op (ACC-7705) Document sequence: NOISE-055 Doc type: supplier\_email
+Account: BrightPeak Foods (ACC-1102)
+
+Reference: NOISE-055
 
 ## Summary
 
-Routine supplier email for Prairie Ag Co-op. Operations are stable.
-
-Reference amount USD 17,535.00. Balance settled on schedule.
+Thanks for the prompt payment. Purchase order attached for the next cycle. Reference amount USD 17,535.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Confirming delivery schedule for next month. No issues to report. No watchlist items on this account.

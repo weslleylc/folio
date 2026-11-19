@@ -1,13 +1,15 @@
-## Summit Rail Partners credit facility NOISE-050
+## Prairie Ag Co-op credit facility (NOISE-050)
 
-Account: Summit Rail Partners (ACC-3301) Document sequence: NOISE-050 Doc type: credit\_facility
+Account: Prairie Ag Co-op (ACC-7705)
+
+Reference: NOISE-050
 
 ## Summary
 
-Routine credit facility for Summit Rail Partners. Operations are stable. Reference amount USD 16,850.00. Balance settled on schedule.
+Revolving credit facility, standard pricing grid, annual review completed.
+
+Reference amount USD 16,850.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Borrower reported on time. No amendments requested. Commitment unchanged. No watchlist items on this account.

@@ -1,17 +1,13 @@
-## Ironclad Construction invoice NOISE-021
+## Skyline REITs invoice (NOISE-021)
 
-Account: Ironclad Construction (ACC-9907)
+Account: Skyline REITs (ACC-1111)
 
-Document sequence: NOISE-021
-
-Doc type: invoice
+Reference: NOISE-021
 
 ## Summary
 
-Routine invoice for Ironclad Construction. Operations are stable. Reference amount USD 12,877.00. Balance settled on schedule.
+Payment received in full on the due date. Account in good standing. Reference amount USD 12,877.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Invoice for contracted services, payable on standard 30-day terms. No watchlist items on this account.

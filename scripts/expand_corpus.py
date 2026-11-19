@@ -58,71 +58,159 @@ SOURCES = {
 }
 
 
-def _noise_body(account_id: str, account_name: str, doc_type: str, idx: int) -> list[str]:
-    """Boilerplate without Meridian risk keywords (covenant / past due / liquidity / DSO).
+# ---------------------------------------------------------------------------
+# Healthy-account filler ("noise"). Written to look like real, uneventful paperwork
+# and to AVOID every Gold regex phrase (covenant / leverage ratio / event of default /
+# past due / overdue / credit hold / working capital / DSO / liquidity), so the
+# rollup chart stays readable and any hit on these accounts is a true surprise.
+# ---------------------------------------------------------------------------
+_NOISE_TEMPLATES: dict[str, list[str]] = {
+    "invoice": [
+        "Invoice for contracted services, payable on standard 30-day terms.",
+        "Payment received in full on the due date. Account in good standing.",
+    ],
+    "credit_facility": [
+        "Revolving credit facility, standard pricing grid, annual review completed.",
+        "Borrower reported on time. No amendments requested. Commitment unchanged.",
+    ],
+    "credit_memo": [
+        "Annual relationship review. Borrower profile unchanged since last cycle.",
+        "Rating affirmed. Recommend renewing the existing limit on current terms.",
+    ],
+    "earnings_call": [
+        "Management reviewed quarterly results and reaffirmed full-year guidance.",
+        "Revenue grew modestly; margins in line with plan. No unusual items.",
+    ],
+    "sec_filing": [
+        "Quarterly report: results of operations in line with prior periods.",
+        "No material changes to risk factors since the last annual report.",
+    ],
+    "analyst_note": [
+        "Initiating at neutral. Steady operator, fairly valued on current estimates.",
+        "No change to estimates this quarter. Maintain rating.",
+    ],
+    "supplier_email": [
+        "Confirming delivery schedule for next month. No issues to report.",
+        "Thanks for the prompt payment. Purchase order attached for the next cycle.",
+    ],
+}
 
-    Gold flags are regex over those phrases — noise must stay 'clean' so Meridian
-    still stands out on the rollup chart.
-    """
+
+def _noise_body(account_id: str, account_name: str, doc_type: str, idx: int) -> list[str]:
     amt = 10_000 + (idx * 137) % 90_000
+    lines = _NOISE_TEMPLATES[doc_type]
     return [
         f"Account: {account_name} ({account_id})",
-        f"Document sequence: NOISE-{idx:03d}",
-        f"Doc type: {doc_type}",
+        f"Reference: NOISE-{idx:03d}",
         "",
         "## Summary",
-        f"Routine {doc_type.replace('_', ' ')} for {account_name}. Operations are stable.",
-        f"Reference amount USD {amt:,}.00. Balance settled on schedule.",
+        lines[idx % len(lines)],
+        f"Reference amount USD {amt:,}.00.",
         "",
         "## Notes",
-        "Internal filing copy for the demo corpus. No watchlist items on this account.",
-        "This document is unrelated to Meridian Industrial ACC-8847.",
-        "Collections status: CURRENT.",
+        lines[(idx + 1) % len(lines)],
+        "No watchlist items on this account.",
     ]
 
 
-def _meridian_extra(idx: int) -> tuple[str, str, list[str]]:
-    """Extra Meridian signal docs so the story still dominates search/rollup."""
-    variants = [
-        (
-            "invoice",
-            "Past-due notice — secondary supplier",
-            [
-                "Vendor: RiverBend Coatings",
-                "Bill-to: Meridian Industrial Corp (ACC-8847)",
-                "Status: PAST DUE / OVERDUE — credit hold warning",
-                "",
-                "## Collections",
-                "Meridian AP stretch continues. Open balance USD 28,400.00.",
-                "Reference ACC-8847. Payment plan requested; working capital pressure noted.",
-            ],
-        ),
-        (
-            "credit_memo",
-            "Monitoring update — covenant headroom",
-            [
-                "Subject account: Meridian Industrial Corp (ACC-8847)",
-                "",
-                "## Update",
-                "Interim leverage certificate printed 3.55x against 3.75x amended covenant.",
-                "Limited headroom. Continue weekly cash reporting and DSO remediation.",
-                "Event of default risk rises if leverage exceeds 3.60x on next certificate.",
-            ],
-        ),
-        (
-            "analyst_note",
-            "Flash note — liquidity watch",
-            [
-                "Issuer: Meridian Industrial (ACC-8847)",
-                "",
-                "## Takeaway",
-                "Liquidity and days sales outstanding remain the key watch items.",
-                "Covenant amendment bought time; cash conversion still thin into year-end.",
-            ],
-        ),
-    ]
-    doc_type, title_suffix, body = variants[idx % len(variants)]
-    return doc_type, title_suffix, body
+# ---------------------------------------------------------------------------
+# Meridian follow-up documents. Eight DISTINCT items (different counterparties, numbers,
+# wording) so retrieval results are not copies of one another.
+# ---------------------------------------------------------------------------
+_MERIDIAN_EXTRA: list[tuple[str, str, str, list[str]]] = [
+    # (doc_type, title, effective_date, body)
+    (
+        "invoice", "Past-due notice - RiverBend Coatings", "2025-09-12",
+        [
+            "Vendor: RiverBend Coatings",
+            "Bill-to: Meridian Industrial Corp (ACC-8847)",
+            "Status: PAST DUE - 38 days. Credit hold warning issued.",
+            "",
+            "## Collections",
+            "Open balance USD 28,400.00. Payment plan requested by Meridian AP.",
+            "Vendor notes Meridian is stretching payables to protect working capital.",
+        ],
+    ),
+    (
+        "credit_memo", "Monitoring update - leverage certificate", "2025-09-26",
+        [
+            "Subject account: Meridian Industrial Corp (ACC-8847)",
+            "",
+            "## Update",
+            "Interim leverage certificate printed 3.55x against the 3.75x amended covenant.",
+            "Headroom is limited. Continue weekly cash reporting.",
+            "Event of default risk rises if leverage exceeds 3.60x on the next certificate.",
+        ],
+    ),
+    (
+        "analyst_note", "Flash note - receivables slowing", "2025-10-08",
+        [
+            "Issuer: Meridian Industrial (ACC-8847)",
+            "",
+            "## Takeaway",
+            "Days sales outstanding rose to 71 days from 58 a year ago.",
+            "Cash conversion is thin and liquidity depends on the revolver into year-end.",
+        ],
+    ),
+    (
+        "invoice", "Overdue invoice - Delta Packaging", "2025-10-17",
+        [
+            "Vendor: Delta Packaging",
+            "Bill-to: Meridian Industrial Corp (ACC-8847)",
+            "Status: OVERDUE - 45 days past terms.",
+            "",
+            "## Collections",
+            "Open balance USD 41,250.00. Two reminders sent, no payment date confirmed.",
+            "Delta has moved Meridian to prepay-only pending a call with treasury.",
+        ],
+    ),
+    (
+        "credit_memo", "Waiver request - covenant cure period", "2025-10-29",
+        [
+            "Subject account: Meridian Industrial Corp (ACC-8847)",
+            "",
+            "## Request",
+            "Borrower asks for a 60-day cure period if leverage prints above 3.60x.",
+            "Credit committee to review the covenant waiver before the next test date.",
+            "Sponsor equity support has not been confirmed in writing.",
+        ],
+    ),
+    (
+        "analyst_note", "Revolver usage climbing", "2025-11-06",
+        [
+            "Issuer: Meridian Industrial (ACC-8847)",
+            "",
+            "## Takeaway",
+            "Revolver is 78% drawn, up from 52% in the spring.",
+            "Remaining liquidity covers roughly two quarters of working capital needs.",
+        ],
+    ),
+    (
+        "invoice", "Partial payment - Kestrel Logistics", "2025-11-14",
+        [
+            "Vendor: Kestrel Logistics",
+            "Bill-to: Meridian Industrial Corp (ACC-8847)",
+            "Status: PARTIAL - credit hold on new shipments until balance clears.",
+            "",
+            "## Collections",
+            "Open balance USD 19,780.00 after a USD 10,000.00 partial payment.",
+        ],
+    ),
+    (
+        "credit_memo", "Forecast - covenant step-down", "2025-11-25",
+        [
+            "Subject account: Meridian Industrial Corp (ACC-8847)",
+            "",
+            "## Forecast",
+            "The covenant steps down to 3.50x in Q1. Current run-rate leverage is 3.58x.",
+            "Without an amendment or deleveraging, a breach is likely at the Q1 test.",
+        ],
+    ),
+]
+
+
+def _meridian_extra(idx: int) -> tuple[str, str, str, list[str]]:
+    return _MERIDIAN_EXTRA[idx % len(_MERIDIAN_EXTRA)]
 
 
 def _quarantine_docs() -> list[dict]:
@@ -191,10 +279,11 @@ def _quarantine_docs() -> list[dict]:
 
 
 def build_documents(target: int = 100) -> list[dict]:
-    docs = [dict(d) for d in gen.DOCUMENTS]  # original Meridian + 3 noise
-    # Extra Meridian signal
-    for i in range(8):
-        doc_type, suffix, body = _meridian_extra(i)
+    docs = [dict(d) for d in gen.DOCUMENTS]  # original Meridian story + 3 healthy-account docs
+
+    # Eight distinct Meridian follow-ups (the story keeps escalating through Q4).
+    for i in range(len(_MERIDIAN_EXTRA)):
+        doc_type, title, eff_date, body = _meridian_extra(i)
         doc_id = f"MER-X{i+1:02d}"
         docs.append(
             {
@@ -203,24 +292,21 @@ def build_documents(target: int = 100) -> list[dict]:
                 "doc_type": doc_type,
                 "account_id": "ACC-8847",
                 "account_name": "Meridian Industrial Corp",
-                "effective_date": f"2025-{(9 + i % 3):02d}-{(5 + i):02d}",
+                "effective_date": eff_date,
                 "source_system": SOURCES[doc_type],
-                "title": f"{suffix} — Meridian ({doc_id})",
+                "title": f"{title} ({doc_id})",
                 "body": body,
             }
         )
 
     docs.extend(_quarantine_docs())
 
+    # Filler for the OTHER 11 accounts only — Meridian's file is exactly the story docs.
     rng = random.Random(42)
+    others = [a for a in ACCOUNTS if a[0] != "ACC-8847"]
     n = 1
-    while len(docs) < target:
-        aid, aname, _sector = ACCOUNTS[n % len(ACCOUNTS)]
-        if aid == "ACC-8847" and n % 5 != 0:
-            # mostly noise on other accounts
-            aid, aname, _sector = ACCOUNTS[(n + 3) % len(ACCOUNTS)]
-            if aid == "ACC-8847":
-                aid, aname, _sector = ACCOUNTS[1]
+    while len(docs) < target and n <= 500:
+        aid, aname, _sector = others[n % len(others)]
         doc_type = DOC_TYPES[n % len(DOC_TYPES)]
         doc_id = f"NOISE-{n:03d}"
         docs.append(
@@ -232,13 +318,11 @@ def build_documents(target: int = 100) -> list[dict]:
                 "account_name": aname,
                 "effective_date": f"2025-{(1 + n % 12):02d}-{(1 + n % 27):02d}",
                 "source_system": SOURCES[doc_type],
-                "title": f"{aname} {doc_type.replace('_', ' ')} {doc_id}",
+                "title": f"{aname} {doc_type.replace('_', ' ')} ({doc_id})",
                 "body": _noise_body(aid, aname, doc_type, n),
             }
         )
         n += 1
-        if n > 500:
-            break
 
     # Stable shuffle so Meridian isn't only at the top of every file listing
     head, rest = docs[:10], docs[10:]

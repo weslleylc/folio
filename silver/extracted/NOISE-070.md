@@ -1,17 +1,13 @@
-## Lumen Health Systems invoice NOISE-070
+## Blue Harbor Utilities invoice (NOISE-070)
 
-Account: Lumen Health Systems (ACC-1010)
+Account: Blue Harbor Utilities (ACC-5503)
 
-Document sequence: NOISE-070
-
-Doc type: invoice
+Reference: NOISE-070
 
 ## Summary
 
-Routine invoice for Lumen Health Systems. Operations are stable. Reference amount USD 19,590.00. Balance settled on schedule.
+Invoice for contracted services, payable on standard 30-day terms. Reference amount USD 19,590.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Payment received in full on the due date. Account in good standing. No watchlist items on this account.

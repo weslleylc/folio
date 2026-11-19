@@ -1,15 +1,13 @@
-## Cedar Ridge Chemicals credit facility NOISE-015
+## Blue Harbor Utilities credit facility (NOISE-015)
 
-Account: Cedar Ridge Chemicals (ACC-2201) Document sequence: NOISE-015 Doc type: credit\_facility
+Account: Blue Harbor Utilities (ACC-5503)
+
+Reference: NOISE-015
 
 ## Summary
 
-Routine credit facility for Cedar Ridge Chemicals. Operations are stable.
-
-Reference amount USD 12,055.00. Balance settled on schedule.
+Borrower reported on time. No amendments requested. Commitment unchanged. Reference amount USD 12,055.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Revolving credit facility, standard pricing grid, annual review completed. No watchlist items on this account.

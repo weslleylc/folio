@@ -1,17 +1,13 @@
-## Cedar Ridge Chemicals invoice NOISE-063
+## Ironclad Construction invoice (NOISE-063)
 
-Account: Cedar Ridge Chemicals (ACC-2201)
+Account: Ironclad Construction (ACC-9907)
 
-Document sequence: NOISE-063
-
-Doc type: invoice
+Reference: NOISE-063
 
 ## Summary
 
-Routine invoice for Cedar Ridge Chemicals. Operations are stable. Reference amount USD 18,631.00. Balance settled on schedule.
+Payment received in full on the due date. Account in good standing. Reference amount USD 18,631.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Invoice for contracted services, payable on standard 30-day terms. No watchlist items on this account.

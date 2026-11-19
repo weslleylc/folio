@@ -1,15 +1,15 @@
-## Atlas Data Centers invoice NOISE-042
+## Lumen Health Systems invoice (NOISE-042)
 
-Account: Atlas Data Centers (ACC-6604) Document sequence: NOISE-042 Doc type: invoice
+Account: Lumen Health Systems (ACC-1010)
+
+Reference: NOISE-042
 
 ## Summary
 
-Routine invoice for Atlas Data Centers. Operations are stable.
+Invoice for contracted services, payable on standard 30-day terms.
 
-Reference amount USD 15,754.00. Balance settled on schedule.
+Reference amount USD 15,754.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Payment received in full on the due date. Account in good standing. No watchlist items on this account.

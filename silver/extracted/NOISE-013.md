@@ -1,17 +1,13 @@
-## BrightPeak Foods supplier email NOISE-013
+## Cedar Ridge Chemicals supplier email (NOISE-013)
 
-Account: BrightPeak Foods (ACC-1102)
+Account: Cedar Ridge Chemicals (ACC-2201)
 
-Document sequence: NOISE-013
-
-Doc type: supplier\_email
+Reference: NOISE-013
 
 ## Summary
 
-Routine supplier email for BrightPeak Foods. Operations are stable. Reference amount USD 11,781.00. Balance settled on schedule.
+Thanks for the prompt payment. Purchase order attached for the next cycle. Reference amount USD 11,781.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Confirming delivery schedule for next month. No issues to report. No watchlist items on this account.

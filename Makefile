@@ -1,4 +1,4 @@
-.PHONY: pdfs expand extract deps build build-ai demo dashboard dashboard-bq
+.PHONY: pdfs expand extract deps build build-ai demo dashboard dashboard-bq dashboard-warm
 
 pdfs:
 	.venv/bin/python scripts/generate_sample_pdfs.py
@@ -24,6 +24,14 @@ demo: build
 
 dashboard:
 	FOLIO_WAREHOUSE=duckdb .venv/bin/streamlit run dashboard/app.py
+
+# Prefetch all Streamlit talk queries into dashboard/.cache (instant page flips)
+dashboard-warm:
+	FOLIO_WAREHOUSE=bigquery \
+	FOLIO_BQ_PROJECT=$${FOLIO_BQ_PROJECT:-roundtable-513102} \
+	FOLIO_BQ_DATASET=$${FOLIO_BQ_DATASET:-dbt_wcaldas} \
+	GOOGLE_APPLICATION_CREDENTIALS=$${GOOGLE_APPLICATION_CREDENTIALS:-$(CURDIR)/roundtable-513102-545d77a8a510.json} \
+	.venv/bin/python dashboard/data_cache.py --force
 
 # Talk dashboard against dbt Cloud BigQuery marts (uses gitignored SA JSON if present)
 dashboard-bq:

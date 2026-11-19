@@ -1,19 +1,17 @@
-## Cedar Ridge Chemicals analyst note NOISE-012
+## Summit Rail Partners analyst note (NOISE-012)
 
-Account: Cedar Ridge Chemicals (ACC-2201)
+Account: Summit Rail Partners (ACC-3301)
 
-Document sequence: NOISE-012
-
-Doc type: analyst\_note
+Reference: NOISE-012
 
 ## Summary
 
-Routine analyst note for Cedar Ridge Chemicals. Operations are stable.
+Initiating at neutral. Steady operator, fairly valued on current estimates.
 
-Reference amount USD 11,644.00. Balance settled on schedule.
+Reference amount USD 11,644.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
+No change to estimates this quarter. Maintain rating.
 
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+No watchlist items on this account.

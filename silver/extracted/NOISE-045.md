@@ -1,17 +1,15 @@
-## Ironclad Construction earnings call NOISE-045
+## Summit Rail Partners earnings call (NOISE-045)
 
-Account: Ironclad Construction (ACC-9907)
+Account: Summit Rail Partners (ACC-3301)
 
-Document sequence: NOISE-045
-
-Doc type: earnings\_call
+Reference: NOISE-045
 
 ## Summary
 
-Routine earnings call for Ironclad Construction. Operations are stable. Reference amount USD 16,165.00. Balance settled on schedule.
+Revenue grew modestly; margins in line with plan. No unusual items.
+
+Reference amount USD 16,165.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Management reviewed quarterly results and reaffirmed full-year guidance. No watchlist items on this account.

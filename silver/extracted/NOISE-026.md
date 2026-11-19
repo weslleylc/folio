@@ -1,15 +1,15 @@
-## Summit Rail Partners analyst note NOISE-026
+## Blue Harbor Utilities analyst note (NOISE-026)
 
-Account: Summit Rail Partners (ACC-3301) Document sequence: NOISE-026 Doc type: analyst\_note
+Account: Blue Harbor Utilities (ACC-5503)
+
+Reference: NOISE-026
 
 ## Summary
 
-Routine analyst note for Summit Rail Partners. Operations are stable.
-
-Reference amount USD 13,562.00. Balance settled on schedule.
+Initiating at neutral. Steady operator, fairly valued on current estimates. Reference amount USD 13,562.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
+No change to estimates this quarter. Maintain rating.
 
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+No watchlist items on this account.

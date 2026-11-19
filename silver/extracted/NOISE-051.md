@@ -1,17 +1,13 @@
-## Cedar Ridge Chemicals credit memo NOISE-051
+## Pacific Rim Logistics credit memo (NOISE-051)
 
-Account: Cedar Ridge Chemicals (ACC-2201)
+Account: Pacific Rim Logistics (ACC-8806)
 
-Document sequence: NOISE-051
-
-Doc type: credit\_memo
+Reference: NOISE-051
 
 ## Summary
 
-Routine credit memo for Cedar Ridge Chemicals. Operations are stable. Reference amount USD 16,987.00. Balance settled on schedule.
+Rating affirmed. Recommend renewing the existing limit on current terms. Reference amount USD 16,987.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Annual relationship review. Borrower profile unchanged since last cycle. No watchlist items on this account.

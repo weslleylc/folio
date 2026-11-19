@@ -1,17 +1,13 @@
-## Blue Harbor Utilities credit memo NOISE-065
+## Skyline REITs credit memo (NOISE-065)
 
-Account: Blue Harbor Utilities (ACC-5503)
+Account: Skyline REITs (ACC-1111)
 
-Document sequence: NOISE-065
-
-Doc type: credit\_memo
+Reference: NOISE-065
 
 ## Summary
 
-Routine credit memo for Blue Harbor Utilities. Operations are stable. Reference amount USD 18,905.00. Balance settled on schedule.
+Rating affirmed. Recommend renewing the existing limit on current terms. Reference amount USD 18,905.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Annual relationship review. Borrower profile unchanged since last cycle. No watchlist items on this account.

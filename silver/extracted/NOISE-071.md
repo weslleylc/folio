@@ -1,13 +1,13 @@
-## Skyline REITs credit facility NOISE-071
+## Atlas Data Centers credit facility (NOISE-071)
 
-Account: Skyline REITs (ACC-1111) Document sequence: NOISE-071 Doc type: credit\_facility
+Account: Atlas Data Centers (ACC-6604) Reference: NOISE-071
 
 ## Summary
 
-Routine credit facility for Skyline REITs. Operations are stable. Reference amount USD 19,727.00. Balance settled on schedule.
+Borrower reported on time. No amendments requested. Commitment unchanged.
+
+Reference amount USD 19,727.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Revolving credit facility, standard pricing grid, annual review completed. No watchlist items on this account.

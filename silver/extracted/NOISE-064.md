@@ -1,19 +1,15 @@
-## Northwind Apparel credit facility NOISE-064
+## Lumen Health Systems credit facility (NOISE-064)
 
-Account: Northwind Apparel (ACC-4402)
+Account: Lumen Health Systems (ACC-1010)
 
-Document sequence: NOISE-064
-
-Doc type: credit\_facility
+Reference: NOISE-064
 
 ## Summary
 
-Routine credit facility for Northwind Apparel. Operations are stable.
+Revolving credit facility, standard pricing grid, annual review completed.
 
-Reference amount USD 18,768.00. Balance settled on schedule.
+Reference amount USD 18,768.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Borrower reported on time. No amendments requested. Commitment unchanged. No watchlist items on this account.

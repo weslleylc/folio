@@ -12,20 +12,17 @@ make dashboard-bq
 # → http://localhost:8501
 ```
 
-Sidebar pages (talk order):
+Sidebar pages (speaker order — see `docs/presentation.md`):
 
-**Decisions (article)**  
-- D1 Zero-copy vs physical copy  
-- D2 Crawler vs event-driven  
-- D3 Why not Bronze→Vector  
+**Act I Problem** — 1 The problem · 2 The case: Meridian · 3 The approach  
+**Act II Ingest** — 4 Discovery (events vs crawler) · 5 Bronze · 6 Silver gate  
+**Act III Structure** — 7 Gold flags · 8 Embeddings · 9 Taxonomy  
+**Act IV Use it** — 10 Search raw vs filtered · 11 Extraction (regex vs `extract()`)  
+**Act V Trust** — 12 Evals · 13 Cost & lineage · 14 Wrap-up  
+**Appendix** — A SQL pack
 
-**Live BigQuery marts**  
-1. Gold rollup  
-2. Silver gate  
-3. Search raw vs classified  
-4. Taxonomy  
-5. Cost & lineage  
-6. Overview  
+Every chart has axis titles, value labels and a "How to read" box (axes → reading → so what).  
+Queries are cached to disk: `make dashboard-warm` once, then page flips are instant.
 
 Defaults: project `roundtable-513102`, dataset `dbt_wcaldas`  
 Override: `FOLIO_BQ_PROJECT` / `FOLIO_BQ_DATASET`

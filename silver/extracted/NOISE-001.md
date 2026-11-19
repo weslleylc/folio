@@ -1,13 +1,13 @@
-## BrightPeak Foods credit facility NOISE-001
+## Summit Rail Partners credit facility (NOISE-001)
 
-Account: BrightPeak Foods (ACC-1102) Document sequence: NOISE-001 Doc type: credit\_facility
+Account: Summit Rail Partners (ACC-3301)
+
+Reference: NOISE-001
 
 ## Summary
 
-Routine credit facility for BrightPeak Foods. Operations are stable. Reference amount USD 10,137.00. Balance settled on schedule.
+Borrower reported on time. No amendments requested. Commitment unchanged. Reference amount USD 10,137.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Revolving credit facility, standard pricing grid, annual review completed. No watchlist items on this account.

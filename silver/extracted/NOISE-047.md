@@ -1,15 +1,15 @@
-## Skyline REITs analyst note NOISE-047
+## Northwind Apparel analyst note (NOISE-047)
 
-Account: Skyline REITs (ACC-1111) Document sequence: NOISE-047 Doc type: analyst\_note
+Account: Northwind Apparel (ACC-4402)
+
+Reference: NOISE-047
 
 ## Summary
 
-Routine analyst note for Skyline REITs. Operations are stable.
+No change to estimates this quarter. Maintain rating.
 
-Reference amount USD 16,439.00. Balance settled on schedule.
+Reference amount USD 16,439.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Initiating at neutral. Steady operator, fairly valued on current estimates. No watchlist items on this account.

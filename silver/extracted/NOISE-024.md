@@ -1,19 +1,15 @@
-## Cedar Ridge Chemicals earnings call NOISE-024
+## Cedar Ridge Chemicals earnings call (NOISE-024)
 
 Account: Cedar Ridge Chemicals (ACC-2201)
 
-Document sequence: NOISE-024
-
-Doc type: earnings\_call
+Reference: NOISE-024
 
 ## Summary
 
-Routine earnings call for Cedar Ridge Chemicals. Operations are stable.
+Management reviewed quarterly results and reaffirmed full-year guidance.
 
-Reference amount USD 13,288.00. Balance settled on schedule.
+Reference amount USD 13,288.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Revenue grew modestly; margins in line with plan. No unusual items. No watchlist items on this account.

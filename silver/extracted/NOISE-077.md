@@ -1,17 +1,13 @@
-## Blue Harbor Utilities invoice NOISE-077
+## BrightPeak Foods invoice (NOISE-077)
 
-Account: Blue Harbor Utilities (ACC-5503)
+Account: BrightPeak Foods (ACC-1102)
 
-Document sequence: NOISE-077
-
-Doc type: invoice
+Reference: NOISE-077
 
 ## Summary
 
-Routine invoice for Blue Harbor Utilities. Operations are stable. Reference amount USD 20,549.00. Balance settled on schedule.
+Payment received in full on the due date. Account in good standing. Reference amount USD 20,549.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Invoice for contracted services, payable on standard 30-day terms. No watchlist items on this account.

@@ -1,13 +1,15 @@
-## Skyline REITs sec filing NOISE-011
+## BrightPeak Foods sec filing (NOISE-011)
 
-Account: Skyline REITs (ACC-1111) Document sequence: NOISE-011 Doc type: sec\_filing
+Account: BrightPeak Foods (ACC-1102)
+
+Reference: NOISE-011
 
 ## Summary
 
-Routine sec filing for Skyline REITs. Operations are stable. Reference amount USD 11,507.00. Balance settled on schedule.
+No material changes to risk factors since the last annual report.
+
+Reference amount USD 11,507.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Quarterly report: results of operations in line with prior periods. No watchlist items on this account.

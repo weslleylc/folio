@@ -1,15 +1,15 @@
-## Northwind Apparel sec filing NOISE-004
+## Blue Harbor Utilities sec filing (NOISE-004)
 
-Account: Northwind Apparel (ACC-4402)
+Account: Blue Harbor Utilities (ACC-5503)
 
-Document sequence: NOISE-004
-
-Doc type: sec\_filing
+Reference: NOISE-004
 
 ## Summary
 
-Routine sec filing for Northwind Apparel. Operations are stable. Reference amount USD 10,548.00. Balance settled on schedule.
+Quarterly report: results of operations in line with prior periods.
+
+Reference amount USD 10,548.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account. This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+No material changes to risk factors since the last annual report. No watchlist items on this account.

@@ -1,19 +1,13 @@
-## Lumen Health Systems earnings call NOISE-010
+## Skyline REITs earnings call (NOISE-010)
 
-Account: Lumen Health Systems (ACC-1010)
+Account: Skyline REITs (ACC-1111)
 
-Document sequence: NOISE-010
-
-Doc type: earnings\_call
+Reference: NOISE-010
 
 ## Summary
 
-Routine earnings call for Lumen Health Systems. Operations are stable.
-
-Reference amount USD 11,370.00. Balance settled on schedule.
+Management reviewed quarterly results and reaffirmed full-year guidance. Reference amount USD 11,370.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Revenue grew modestly; margins in line with plan. No unusual items. No watchlist items on this account.

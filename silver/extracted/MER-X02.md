@@ -1,9 +1,9 @@
-## Monitoring update - covenant headroom - Meridian (MER-X02)
+## Monitoring update - leverage certificate (MER-X02)
 
 Subject account: Meridian Industrial Corp (ACC-8847)
 
 ## Update
 
-Interim leverage certificate printed 3.55x against 3.75x amended covenant. Limited headroom. Continue weekly cash reporting and DSO remediation.
+Interim leverage certificate printed 3.55x against the 3.75x amended covenant. Headroom is limited. Continue weekly cash reporting.
 
-Event of default risk rises if leverage exceeds 3.60x on next certificate.
+Event of default risk rises if leverage exceeds 3.60x on the next certificate.

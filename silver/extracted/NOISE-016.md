@@ -1,17 +1,13 @@
-## Northwind Apparel credit memo NOISE-016
+## Atlas Data Centers credit memo (NOISE-016)
 
-Account: Northwind Apparel (ACC-4402)
+Account: Atlas Data Centers (ACC-6604)
 
-Document sequence: NOISE-016
-
-Doc type: credit\_memo
+Reference: NOISE-016
 
 ## Summary
 
-Routine credit memo for Northwind Apparel. Operations are stable. Reference amount USD 12,192.00. Balance settled on schedule.
+Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 12,192.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Rating affirmed. Recommend renewing the existing limit on current terms. No watchlist items on this account.

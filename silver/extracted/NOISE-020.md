@@ -1,15 +1,15 @@
-## Pacific Rim Logistics supplier email NOISE-020
+## Lumen Health Systems supplier email (NOISE-020)
 
-Account: Pacific Rim Logistics (ACC-8806) Document sequence: NOISE-020 Doc type: supplier\_email
+Account: Lumen Health Systems (ACC-1010)
+
+Reference: NOISE-020
 
 ## Summary
 
-Routine supplier email for Pacific Rim Logistics. Operations are stable.
+Confirming delivery schedule for next month. No issues to report.
 
-Reference amount USD 12,740.00. Balance settled on schedule.
+Reference amount USD 12,740.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Thanks for the prompt payment. Purchase order attached for the next cycle. No watchlist items on this account.

@@ -1,15 +1,11 @@
-## Prairie Ag Co-op invoice NOISE-007
+## Pacific Rim Logistics invoice (NOISE-007)
 
-Account: Prairie Ag Co-op (ACC-7705) Document sequence: NOISE-007 Doc type: invoice
+Account: Pacific Rim Logistics (ACC-8806) Reference: NOISE-007
 
 ## Summary
 
-Routine invoice for Prairie Ag Co-op. Operations are stable.
-
-Reference amount USD 10,959.00. Balance settled on schedule.
+Payment received in full on the due date. Account in good standing. Reference amount USD 10,959.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Invoice for contracted services, payable on standard 30-day terms. No watchlist items on this account.

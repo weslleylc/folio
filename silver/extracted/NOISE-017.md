@@ -1,17 +1,13 @@
-## Blue Harbor Utilities earnings call NOISE-017
+## Prairie Ag Co-op earnings call (NOISE-017)
 
-Account: Blue Harbor Utilities (ACC-5503)
+Account: Prairie Ag Co-op (ACC-7705)
 
-Document sequence: NOISE-017
-
-Doc type: earnings\_call
+Reference: NOISE-017
 
 ## Summary
 
-Routine earnings call for Blue Harbor Utilities. Operations are stable. Reference amount USD 12,329.00. Balance settled on schedule.
+Revenue grew modestly; margins in line with plan. No unusual items. Reference amount USD 12,329.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Management reviewed quarterly results and reaffirmed full-year guidance. No watchlist items on this account.

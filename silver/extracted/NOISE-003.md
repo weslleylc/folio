@@ -1,19 +1,13 @@
-## Cedar Ridge Chemicals earnings call NOISE-003
+## Northwind Apparel earnings call (NOISE-003)
 
-Account: Cedar Ridge Chemicals (ACC-2201)
+Account: Northwind Apparel (ACC-4402)
 
-Document sequence: NOISE-003
-
-Doc type: earnings\_call
+Reference: NOISE-003
 
 ## Summary
 
-Routine earnings call for Cedar Ridge Chemicals. Operations are stable.
-
-Reference amount USD 10,411.00. Balance settled on schedule.
+Revenue grew modestly; margins in line with plan. No unusual items. Reference amount USD 10,411.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Management reviewed quarterly results and reaffirmed full-year guidance. No watchlist items on this account.

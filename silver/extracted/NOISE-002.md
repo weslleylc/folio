@@ -1,17 +1,13 @@
-## Summit Rail Partners credit memo NOISE-002
+## Cedar Ridge Chemicals credit memo (NOISE-002)
 
-Account: Summit Rail Partners (ACC-3301)
+Account: Cedar Ridge Chemicals (ACC-2201)
 
-Document sequence: NOISE-002
-
-Doc type: credit\_memo
+Reference: NOISE-002
 
 ## Summary
 
-Routine credit memo for Summit Rail Partners. Operations are stable. Reference amount USD 10,274.00. Balance settled on schedule.
+Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 10,274.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Rating affirmed. Recommend renewing the existing limit on current terms. No watchlist items on this account.

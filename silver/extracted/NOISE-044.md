@@ -1,15 +1,13 @@
-## Pacific Rim Logistics credit memo NOISE-044
+## BrightPeak Foods credit memo (NOISE-044)
 
-Account: Pacific Rim Logistics (ACC-8806) Document sequence: NOISE-044 Doc type: credit\_memo
+Account: BrightPeak Foods (ACC-1102)
+
+Reference: NOISE-044
 
 ## Summary
 
-Routine credit memo for Pacific Rim Logistics. Operations are stable.
-
-Reference amount USD 16,028.00. Balance settled on schedule.
+Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 16,028.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Rating affirmed. Recommend renewing the existing limit on current terms. No watchlist items on this account.

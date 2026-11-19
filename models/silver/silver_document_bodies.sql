@@ -35,9 +35,11 @@ select
     c.uri as bronze_uri,
     c.byte_size,
     c.mime_type,
+    -- The Silver gate: first matching rule wins. Only 'silver_ready' flows to Gold + AI.
     case
         when b.parse_status = 'failed' then 'quarantine_parse_failed'
         when b.quality_score < 0.4 then 'quarantine_low_quality'
+        when b.sensitivity_label = 'restricted_pii' then 'quarantine_pii_review'
         else 'silver_ready'
     end as silver_status
 from bodies b

@@ -1,13 +1,15 @@
-## Atlas Data Centers credit facility NOISE-078
+## Summit Rail Partners credit facility (NOISE-078)
 
-Account: Atlas Data Centers (ACC-6604) Document sequence: NOISE-078 Doc type: credit\_facility
+Account: Summit Rail Partners (ACC-3301)
+
+Reference: NOISE-078
 
 ## Summary
 
-Routine credit facility for Atlas Data Centers. Operations are stable. Reference amount USD 20,686.00. Balance settled on schedule.
+Revolving credit facility, standard pricing grid, annual review completed.
+
+Reference amount USD 20,686.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Borrower reported on time. No amendments requested. Commitment unchanged. No watchlist items on this account.

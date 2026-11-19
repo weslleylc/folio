@@ -1,15 +1,13 @@
-## Prairie Ag Co-op credit facility NOISE-043
+## Skyline REITs credit facility (NOISE-043)
 
-Account: Prairie Ag Co-op (ACC-7705) Document sequence: NOISE-043 Doc type: credit\_facility
+Account: Skyline REITs (ACC-1111)
+
+Reference: NOISE-043
 
 ## Summary
 
-Routine credit facility for Prairie Ag Co-op. Operations are stable.
-
-Reference amount USD 15,891.00. Balance settled on schedule.
+Borrower reported on time. No amendments requested. Commitment unchanged. Reference amount USD 15,891.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Revolving credit facility, standard pricing grid, annual review completed. No watchlist items on this account.

@@ -1,15 +1,15 @@
-## Pacific Rim Logistics sec filing NOISE-032
+## Skyline REITs sec filing (NOISE-032)
 
-Account: Pacific Rim Logistics (ACC-8806) Document sequence: NOISE-032 Doc type: sec\_filing
+Account: Skyline REITs (ACC-1111)
+
+Reference: NOISE-032
 
 ## Summary
 
-Routine sec filing for Pacific Rim Logistics. Operations are stable.
+Quarterly report: results of operations in line with prior periods.
 
-Reference amount USD 14,384.00. Balance settled on schedule.
+Reference amount USD 14,384.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+No material changes to risk factors since the last annual report. No watchlist items on this account.

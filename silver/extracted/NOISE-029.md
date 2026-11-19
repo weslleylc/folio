@@ -1,13 +1,15 @@
-## Blue Harbor Utilities credit facility NOISE-029
+## Pacific Rim Logistics credit facility (NOISE-029)
 
-Account: Blue Harbor Utilities (ACC-5503) Document sequence: NOISE-029 Doc type: credit\_facility
+Account: Pacific Rim Logistics (ACC-8806)
+
+Reference: NOISE-029
 
 ## Summary
 
-Routine credit facility for Blue Harbor Utilities. Operations are stable. Reference amount USD 13,973.00. Balance settled on schedule.
+Borrower reported on time. No amendments requested. Commitment unchanged.
+
+Reference amount USD 13,973.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Revolving credit facility, standard pricing grid, annual review completed. No watchlist items on this account.

@@ -1,17 +1,13 @@
-## BrightPeak Foods analyst note NOISE-061
+## Prairie Ag Co-op analyst note (NOISE-061)
 
-Account: BrightPeak Foods (ACC-1102)
-
-Document sequence: NOISE-061
-
-Doc type: analyst\_note
+Account: Prairie Ag Co-op (ACC-7705) Reference: NOISE-061
 
 ## Summary
 
-Routine analyst note for BrightPeak Foods. Operations are stable. Reference amount USD 18,357.00. Balance settled on schedule.
+No change to estimates this quarter. Maintain rating.
+
+Reference amount USD 18,357.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Initiating at neutral. Steady operator, fairly valued on current estimates. No watchlist items on this account.

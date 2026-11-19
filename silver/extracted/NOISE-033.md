@@ -1,19 +1,15 @@
-## Ironclad Construction analyst note NOISE-033
+## BrightPeak Foods analyst note (NOISE-033)
 
-Account: Ironclad Construction (ACC-9907)
+Account: BrightPeak Foods (ACC-1102)
 
-Document sequence: NOISE-033
-
-Doc type: analyst\_note
+Reference: NOISE-033
 
 ## Summary
 
-Routine analyst note for Ironclad Construction. Operations are stable.
+No change to estimates this quarter. Maintain rating.
 
-Reference amount USD 14,521.00. Balance settled on schedule.
+Reference amount USD 14,521.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Initiating at neutral. Steady operator, fairly valued on current estimates. No watchlist items on this account.

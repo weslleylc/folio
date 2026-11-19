@@ -1,17 +1,15 @@
-## Blue Harbor Utilities sec filing NOISE-053
+## Lumen Health Systems sec filing (NOISE-053)
 
-Account: Blue Harbor Utilities (ACC-5503)
+Account: Lumen Health Systems (ACC-1010)
 
-Document sequence: NOISE-053
-
-Doc type: sec\_filing
+Reference: NOISE-053
 
 ## Summary
 
-Routine sec filing for Blue Harbor Utilities. Operations are stable. Reference amount USD 17,261.00. Balance settled on schedule.
+No material changes to risk factors since the last annual report.
+
+Reference amount USD 17,261.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Quarterly report: results of operations in line with prior periods. No watchlist items on this account.

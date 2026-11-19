@@ -1,19 +1,15 @@
-## Lumen Health Systems credit facility NOISE-022
+## BrightPeak Foods credit facility (NOISE-022)
 
-Account: Lumen Health Systems (ACC-1010)
+Account: BrightPeak Foods (ACC-1102)
 
-Document sequence: NOISE-022
-
-Doc type: credit\_facility
+Reference: NOISE-022
 
 ## Summary
 
-Routine credit facility for Lumen Health Systems. Operations are stable.
+Revolving credit facility, standard pricing grid, annual review completed.
 
-Reference amount USD 13,014.00. Balance settled on schedule.
+Reference amount USD 13,014.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Borrower reported on time. No amendments requested. Commitment unchanged. No watchlist items on this account.

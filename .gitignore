@@ -22,6 +22,9 @@ site/
 *.jar
 profiles.yml
 
+# Streamlit talk query snapshots (local only)
+dashboard/.cache/
+
 # GCP / dbt Cloud service-account keys — never commit
 roundtable-*.json
 **/credentials*.json

@@ -1,9 +1,9 @@
-## Flash note - liquidity watch - Meridian (MER-X03)
+## Flash note - receivables slowing (MER-X03)
 
 Issuer: Meridian Industrial (ACC-8847)
 
 ## Takeaway
 
-Liquidity and days sales outstanding remain the key watch items.
+Days sales outstanding rose to 71 days from 58 a year ago.
 
-Covenant amendment bought time; cash conversion still thin into year-end.
+Cash conversion is thin and liquidity depends on the revolver into year-end.

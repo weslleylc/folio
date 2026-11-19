@@ -1,39 +1,42 @@
--- Retrieval demos over the financial knowledge base.
--- Raw cosine vs classification-filtered — same before/after pattern as Jaffle.
+-- Retrieval demos over the WHOLE financial knowledge base (all 12 accounts).
+-- Same question, same embedding, same top-10 — the only difference is the label filter.
+--   raw        = cosine similarity only (recall)
+--   classified = cosine similarity + classification filter (precision)
+-- Neither filters by account: the analyst asks a plain-words question (no borrower name)
+-- and the corpus decides what is relevant. account_key is returned so we can measure pollution.
 {% set use_stand_in = ai_stand_in() %}
-{% set meridian_query = "cast([0.0, 0.0, 0.0] as double[3])" if use_stand_in else dbt_context_engineering.embed("'" ~ var('search_query_meridian') ~ "'") %}
+{% set demo_query = "cast([0.0, 0.0, 0.0] as double[3])" if use_stand_in else dbt_context_engineering.embed("'" ~ var('search_query') ~ "'") %}
 {{ config(materialized='table') }}
 
-with meridian_raw as (
-    select 'meridian_covenant_liquidity_raw' as demo, s.*
+with raw_search as (
+    select 'raw_cosine_only' as demo, s.*
     from (
         {{ dbt_context_engineering.vector_search(
             relation=ref('knowledge_base'),
             embedding_column='embedding',
-            query_embedding=meridian_query,
+            query_embedding=demo_query,
             top_k=10,
             id_column='source_id',
-            select_columns=['source_type', 'citation_url', 'ts', 'text', 'classification'],
-            filter="account_key = '" ~ var('search_account_id') ~ "'"
+            select_columns=['source_type', 'account_key', 'citation_url', 'ts', 'text', 'classification']
         ) }}
     ) s
 ),
 
-meridian_classified as (
-    select 'meridian_covenant_liquidity_classified' as demo, s.*
+classified_search as (
+    select 'cosine_plus_label_filter' as demo, s.*
     from (
         {{ dbt_context_engineering.vector_search(
             relation=ref('knowledge_base'),
             embedding_column='embedding',
-            query_embedding=meridian_query,
+            query_embedding=demo_query,
             top_k=10,
             id_column='source_id',
-            select_columns=['source_type', 'citation_url', 'ts', 'text', 'classification'],
-            filter="account_key = '" ~ var('search_account_id') ~ "' and classification in ('covenant_or_credit_risk', 'liquidity_or_working_capital')"
+            select_columns=['source_type', 'account_key', 'citation_url', 'ts', 'text', 'classification'],
+            filter="classification in ('covenant_or_credit_risk', 'liquidity_or_working_capital')"
         ) }}
     ) s
 )
 
-select * from meridian_raw
+select * from raw_search
 union all
-select * from meridian_classified
+select * from classified_search

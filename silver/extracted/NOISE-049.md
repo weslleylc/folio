@@ -1,17 +1,11 @@
-## BrightPeak Foods invoice NOISE-049
+## Atlas Data Centers invoice (NOISE-049)
 
-Account: BrightPeak Foods (ACC-1102)
-
-Document sequence: NOISE-049
-
-Doc type: invoice
+Account: Atlas Data Centers (ACC-6604) Reference: NOISE-049
 
 ## Summary
 
-Routine invoice for BrightPeak Foods. Operations are stable. Reference amount USD 16,713.00. Balance settled on schedule.
+Payment received in full on the due date. Account in good standing. Reference amount USD 16,713.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Invoice for contracted services, payable on standard 30-day terms. No watchlist items on this account.

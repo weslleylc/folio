@@ -1,17 +1,15 @@
-## Ironclad Construction credit facility NOISE-057
+## Cedar Ridge Chemicals credit facility (NOISE-057)
 
-Account: Ironclad Construction (ACC-9907)
+Account: Cedar Ridge Chemicals (ACC-2201)
 
-Document sequence: NOISE-057
-
-Doc type: credit\_facility
+Reference: NOISE-057
 
 ## Summary
 
-Routine credit facility for Ironclad Construction. Operations are stable. Reference amount USD 17,809.00. Balance settled on schedule.
+Borrower reported on time. No amendments requested. Commitment unchanged.
+
+Reference amount USD 17,809.00.
 
 ## Notes
 
-Internal filing copy for the demo corpus. No watchlist items on this account.
-
-This document is unrelated to Meridian Industrial ACC-8847. Collections status: CURRENT.
+Revolving credit facility, standard pricing grid, annual review completed. No watchlist items on this account.
