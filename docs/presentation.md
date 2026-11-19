@@ -224,24 +224,22 @@ vector search              Recall by meaning     Boilerplate pollution
 2. Article: [Beyond Tables…](https://jjojo.medium.com/beyond-tables-applying-the-medallion-architecture-to-unstructured-data-governance-39a81cfa3835)  
 3. Package: [`dbt_context_engineering`](https://github.com/dbt-labs/dbt-context-engineering)  
 4. Ready SQL: [`presentation_queries.sql`](presentation_queries.sql) (BigQuery, `dbt_wcaldas`)  
-5. Charts: [`visualizations.md`](visualizations.md) — **BigQuery Studio** saved queries + chart encodings  
-6. Optional: `folio_content_type` macro open in IDE  
+5. Charts: **[`looker-studio.md`](looker-studio.md)** — Looker Studio 5-page report on BigQuery  
+6. SQL backup: [`presentation_queries.sql`](presentation_queries.sql)  
+7. Optional: `folio_content_type` macro open in IDE  
 
 ---
 
 ## Queries + viz (Cloud talk)
 
-Copy-paste SQL for the room lives in **[`presentation_queries.sql`](presentation_queries.sql)** (`roundtable-513102.dbt_wcaldas`).
+**Looker Studio** is the presentation surface ([`looker-studio.md`](looker-studio.md)).
 
-| # | Beat | Query | Viz |
-|---|---|---|---|
-| 01 | Bronze | catalog | table |
-| 02 | Silver gate | `silver_document_bodies` | bar quality |
-| 03 | Gold | `gold_account_risk_rollup` | bar by account |
-| 05 | Timeline | narrative CTE | table |
-| 06a/b | Search | `search` raw vs classified | bar score |
-| 06c | Compare | group by demo | stacked bar |
-| 07 | Taxonomy | `gov_classification_breakdown` | pie |
-| 08–09 | Cost / RTBF | `gov_ai_spend`, lineage | bar + table |
+| Page | Beat | BigQuery source |
+|---|---|---|
+| 1 | Gold rollup — Meridian spike | `gold_account_risk_rollup` |
+| 2 | Silver gate | `silver_document_bodies` |
+| 3 | Search raw vs classified | `search` (compare + detail) |
+| 4 | Taxonomy | `gov_classification_breakdown` |
+| 5 | Cost + lineage | `gov_ai_spend`, `gov_document_lineage` |
 
-How to wire charts: **[`visualizations.md`](visualizations.md)**.
+Bronze catalog + narrative timeline: keep as tables in BigQuery Studio from [`presentation_queries.sql`](presentation_queries.sql) (01, 05).
