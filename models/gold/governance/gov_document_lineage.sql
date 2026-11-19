@@ -16,7 +16,9 @@ with bronze as (
         content_sha256,
         byte_size,
         effective_date,
-        ingested_at
+        ingested_at,
+        bronze_version,
+        n_bronze_versions
     from {{ ref('bronze_document_catalog') }}
 ),
 
@@ -68,6 +70,8 @@ select
     b.byte_size,
     b.effective_date,
     b.ingested_at,
+    b.bronze_version,
+    b.n_bronze_versions,
     s.extractor,
     s.parse_status,
     s.quality_score,

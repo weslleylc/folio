@@ -4,6 +4,8 @@ Account: Ironclad Construction (ACC-9907)
 
 Reference: NOISE-074
 
+Reflects the third quarter of fiscal 2025.
+
 ## Summary
 
 Quarterly report: results of operations in line with prior periods.

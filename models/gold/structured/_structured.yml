@@ -20,3 +20,16 @@ models:
     columns:
       - name: account_id
         tests: [unique, not_null]
+
+  - name: gold_document_periods
+    description: >
+      One fiscal period per silver_ready document, resolved hybrid: regex first (free), AI extract()
+      only for the gap (documents_period_fallback), else not_found. fiscal_period_method tells which.
+    columns:
+      - name: doc_id
+        tests: [unique, not_null]
+      - name: fiscal_period_method
+        tests:
+          - accepted_values:
+              arguments:
+                values: ['regex', 'ai', 'not_found', 'pending_ai']

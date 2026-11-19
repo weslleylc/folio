@@ -57,6 +57,10 @@ models:
           +enabled: "{{ var('ai_functions_enabled', false) }}"
         documents_extract_flat:
           +enabled: "{{ var('ai_functions_enabled', false) }}"
+        int_period_gap_corpus:
+          +enabled: "{{ var('ai_functions_enabled', false) }}"
+        documents_period_fallback:
+          +enabled: "{{ var('ai_functions_enabled', false) }}"
       # Gold / serving — use-case products on top of the store (billed, opt-in).
       serving:
         +enabled: "{{ var('ai_functions_enabled', false) }}"

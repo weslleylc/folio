@@ -8,15 +8,15 @@
   "effective_date": "2025-07-04",
   "source_system": "credit_risk",
   "title": "Ironclad Construction credit memo (NOISE-030)",
-  "content_sha256": "cddc8c967129d0f30ed12470ddac02f54c92a43475bbf5ff956ed80ce3e85774",
+  "content_sha256": "faa2d626189f705385d3d3095c721f9b46c58c9985b8c30fde9a5a7f810e9e12",
   "mime_type": "application/pdf",
-  "byte_size": 1557,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1592,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
-  "quality_score": 0.72,
+  "quality_score": 0.73,
   "sensitivity_label": "internal",
   "markdown_path": "silver/extracted/NOISE-030.md",
-  "body_preview": "## Ironclad Construction credit memo (NOISE-030)  Account: Ironclad Construction (ACC-9907)  Reference: NOISE-030  ## Summary  Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 14,110.00.  ## Notes  Rating affirmed. Recommend renewing t"
+  "body_preview": "## Ironclad Construction credit memo (NOISE-030)  Account: Ironclad Construction (ACC-9907)  Reference: NOISE-030  Reflects the fourth quarter of fiscal 2025.  ## Summary  Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 14,110.00.  ##"
 }

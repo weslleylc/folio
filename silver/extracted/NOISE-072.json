@@ -8,15 +8,15 @@
   "effective_date": "2025-01-19",
   "source_system": "credit_risk",
   "title": "Prairie Ag Co-op credit memo (NOISE-072)",
-  "content_sha256": "08983ab5bdf37f4c02e7a84343f799b64e3b551a86a8097a450afd86a746a736",
+  "content_sha256": "325fef99de53186b61df4f36b4db0d72d3a3e43db61a2956b7f91a2ca67de3f6",
   "mime_type": "application/pdf",
-  "byte_size": 1555,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1579,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
   "quality_score": 0.72,
   "sensitivity_label": "internal",
   "markdown_path": "silver/extracted/NOISE-072.md",
-  "body_preview": "## Prairie Ag Co-op credit memo (NOISE-072)  Account: Prairie Ag Co-op (ACC-7705)  Reference: NOISE-072  ## Summary  Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 19,864.00.  ## Notes  Rating affirmed. Recommend renewing the existin"
+  "body_preview": "## Prairie Ag Co-op credit memo (NOISE-072)  Account: Prairie Ag Co-op (ACC-7705)  Reference: NOISE-072  Reporting period: Q3 2025.  ## Summary  Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 19,864.00.  ## Notes  Rating affirmed. Re"
 }

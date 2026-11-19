@@ -8,15 +8,15 @@
   "effective_date": "2025-02-26",
   "source_system": "sec_edgar",
   "title": "Northwind Apparel sec filing (NOISE-025)",
-  "content_sha256": "623599f2fb5f426e8900fefdfa7790abdc1c62f8558b00860650e5c4809204ff",
+  "content_sha256": "096facbfc641d2a122d54fc69517a29baecfe72550331044ad62aaed804e1c77",
   "mime_type": "application/pdf",
-  "byte_size": 1540,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1578,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
-  "quality_score": 0.72,
+  "quality_score": 0.73,
   "sensitivity_label": "internal",
   "markdown_path": "silver/extracted/NOISE-025.md",
-  "body_preview": "## Northwind Apparel sec filing (NOISE-025)  Account: Northwind Apparel (ACC-4402)  Reference: NOISE-025  ## Summary  No material changes to risk factors since the last annual report.  Reference amount USD 13,425.00.  ## Notes  Quarterly report: results of operations in line with"
+  "body_preview": "## Northwind Apparel sec filing (NOISE-025)  Account: Northwind Apparel (ACC-4402)  Reference: NOISE-025  Covers the quarter ended September 30, 2025.  ## Summary  No material changes to risk factors since the last annual report. Reference amount USD 13,425.00.  ## Notes  Quarter"
 }

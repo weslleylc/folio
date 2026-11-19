@@ -4,6 +4,8 @@ Account: Pacific Rim Logistics (ACC-8806)
 
 Reference: NOISE-018
 
+Reflects the first quarter of fiscal 2025.
+
 ## Summary
 
 Quarterly report: results of operations in line with prior periods.

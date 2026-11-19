@@ -8,15 +8,15 @@
   "effective_date": "2025-06-12",
   "source_system": "credit_risk",
   "title": "Skyline REITs credit memo (NOISE-065)",
-  "content_sha256": "46b461ba2290d701fc19052cbdf090b99b968467aa88239cdac6f46ee0f0cb2d",
+  "content_sha256": "cb272338228dbba4bc28890cbb150f16afadcc1c37fa7926cfd6b8ccf17363e0",
   "mime_type": "application/pdf",
-  "byte_size": 1552,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1587,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
-  "quality_score": 0.72,
+  "quality_score": 0.73,
   "sensitivity_label": "internal",
   "markdown_path": "silver/extracted/NOISE-065.md",
-  "body_preview": "## Skyline REITs credit memo (NOISE-065)  Account: Skyline REITs (ACC-1111)  Reference: NOISE-065  ## Summary  Rating affirmed. Recommend renewing the existing limit on current terms. Reference amount USD 18,905.00.  ## Notes  Annual relationship review. Borrower profile unchange"
+  "body_preview": "## Skyline REITs credit memo (NOISE-065)  Account: Skyline REITs (ACC-1111) Reference: NOISE-065  Covers the quarter ended March 31, 2025.  ## Summary  Rating affirmed. Recommend renewing the existing limit on current terms. Reference amount USD 18,905.00.  ## Notes  Annual relat"
 }

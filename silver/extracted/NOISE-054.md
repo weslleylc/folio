@@ -1,8 +1,8 @@
 ## Skyline REITs analyst note (NOISE-054)
 
-Account: Skyline REITs (ACC-1111)
+Account: Skyline REITs (ACC-1111) Reference: NOISE-054
 
-Reference: NOISE-054
+Reflects the second quarter of fiscal 2025.
 
 ## Summary
 
@@ -12,6 +12,4 @@ Reference amount USD 17,398.00.
 
 ## Notes
 
-No change to estimates this quarter. Maintain rating.
-
-No watchlist items on this account.
+No change to estimates this quarter. Maintain rating. No watchlist items on this account.

@@ -4,11 +4,11 @@ Account: Northwind Apparel (ACC-4402)
 
 Reference: NOISE-025
 
+Covers the quarter ended September 30, 2025.
+
 ## Summary
 
-No material changes to risk factors since the last annual report.
-
-Reference amount USD 13,425.00.
+No material changes to risk factors since the last annual report. Reference amount USD 13,425.00.
 
 ## Notes
 

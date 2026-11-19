@@ -4,11 +4,11 @@ Account: Cedar Ridge Chemicals (ACC-2201)
 
 Reference: NOISE-024
 
+Reporting period: Q3 2025.
+
 ## Summary
 
-Management reviewed quarterly results and reaffirmed full-year guidance.
-
-Reference amount USD 13,288.00.
+Management reviewed quarterly results and reaffirmed full-year guidance. Reference amount USD 13,288.00.
 
 ## Notes
 

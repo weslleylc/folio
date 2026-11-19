@@ -15,6 +15,11 @@ vars:
   # (override separately with allow_full_reclassify, intentionally not declared here).
   allow_full_reembed: false
 
+  # Bronze landing batch (append-only log). Raise it to "receive" the next batch of files:
+  #   --vars '{"bronze_max_batch": 2}'. Rebuilding history requires allow_bronze_rebuild=true
+  # (intentionally not declared here, same pattern as allow_full_reclassify).
+  bronze_max_batch: 2
+
   # BigQuery AI.GENERATE endpoints (short names). Prefer current Flash IDs from
   # https://cloud.google.com/bigquery/docs/reference/standard-sql/bigqueryml-syntax-ai-generate
   model_generate: "{{ 'mistral-large2' if target.type == 'snowflake' else 'databricks-claude-haiku-4-5' if target.type == 'databricks' else 'gemini-3.5-flash' }}"

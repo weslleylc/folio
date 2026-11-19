@@ -8,15 +8,15 @@
   "effective_date": "2025-10-24",
   "source_system": "credit_risk",
   "title": "Credit Committee Memo CC-991 - Meridian Industrial risk review",
-  "content_sha256": "b30a79bad2d2cd61f098d8a7ea3c49a7986b9fb9ee528b421452185c4fecae65",
+  "content_sha256": "c310cbdb17135caad4fc54470576ae56f07d32f1a80f2896a47fcf99dccae991",
   "mime_type": "application/pdf",
-  "byte_size": 1928,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1946,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
   "quality_score": 0.98,
   "sensitivity_label": "confidential",
   "markdown_path": "silver/extracted/MEMO-CC-991.md",
-  "body_preview": "## Credit Committee Memo CC-991 - Meridian Industrial risk review  Prepared by: Harbor Trust Credit Risk  Subject account: Meridian Industrial Corp (ACC-8847)  Committee date: 2025-10-24  ## Recommendation  Approve the third amendment (CFA-2025-03) with heightened monitoring. Mer"
+  "body_preview": "## Credit Committee Memo CC-991 - Meridian Industrial risk review  Prepared by: Harbor Trust Credit Risk  Subject account: Meridian Industrial Corp (ACC-8847)  Committee date: 2025-10-24  Review period: Q3 2025  ## Recommendation  Approve the third amendment (CFA-2025-03) with he"
 }

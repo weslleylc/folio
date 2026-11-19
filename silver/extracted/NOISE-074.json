@@ -8,15 +8,15 @@
   "effective_date": "2025-03-21",
   "source_system": "sec_edgar",
   "title": "Ironclad Construction sec filing (NOISE-074)",
-  "content_sha256": "0dbd423c7b2f34c5ba5313e006fe4ad9b7e6d2eac4df3ddd1477d878806cd861",
+  "content_sha256": "c2807843b26883b6e97b9c5cbeb5c3240b8b456d80fd6dc3618189b4b441e5e4",
   "mime_type": "application/pdf",
-  "byte_size": 1541,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1577,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
-  "quality_score": 0.72,
+  "quality_score": 0.73,
   "sensitivity_label": "internal",
   "markdown_path": "silver/extracted/NOISE-074.md",
-  "body_preview": "## Ironclad Construction sec filing (NOISE-074)  Account: Ironclad Construction (ACC-9907)  Reference: NOISE-074  ## Summary  Quarterly report: results of operations in line with prior periods.  Reference amount USD 20,138.00.  ## Notes  No material changes to risk factors since "
+  "body_preview": "## Ironclad Construction sec filing (NOISE-074)  Account: Ironclad Construction (ACC-9907)  Reference: NOISE-074  Reflects the third quarter of fiscal 2025.  ## Summary  Quarterly report: results of operations in line with prior periods.  Reference amount USD 20,138.00.  ## Notes"
 }

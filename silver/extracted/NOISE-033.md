@@ -1,14 +1,12 @@
 ## BrightPeak Foods analyst note (NOISE-033)
 
-Account: BrightPeak Foods (ACC-1102)
+Account: BrightPeak Foods (ACC-1102) Reference: NOISE-033
 
-Reference: NOISE-033
+Covers the quarter ended March 31, 2025.
 
 ## Summary
 
-No change to estimates this quarter. Maintain rating.
-
-Reference amount USD 14,521.00.
+No change to estimates this quarter. Maintain rating. Reference amount USD 14,521.00.
 
 ## Notes
 

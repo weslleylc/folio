@@ -4,11 +4,11 @@ Account: Summit Rail Partners (ACC-3301)
 
 Reference: NOISE-045
 
+Covers the quarter ended December 31, 2025.
+
 ## Summary
 
-Revenue grew modestly; margins in line with plan. No unusual items.
-
-Reference amount USD 16,165.00.
+Revenue grew modestly; margins in line with plan. No unusual items. Reference amount USD 16,165.00.
 
 ## Notes
 

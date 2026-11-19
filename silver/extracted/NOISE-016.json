@@ -8,15 +8,15 @@
   "effective_date": "2025-05-17",
   "source_system": "credit_risk",
   "title": "Atlas Data Centers credit memo (NOISE-016)",
-  "content_sha256": "764f6fd384be60437883572d3d92b7d3eb90cedb047ef4f2e35fc84f04106dcd",
+  "content_sha256": "4024a753a89c9111b44ec183fa2974113dc695053c06cd0c537f0b52c563a5cc",
   "mime_type": "application/pdf",
-  "byte_size": 1554,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1579,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
   "quality_score": 0.72,
   "sensitivity_label": "internal",
   "markdown_path": "silver/extracted/NOISE-016.md",
-  "body_preview": "## Atlas Data Centers credit memo (NOISE-016)  Account: Atlas Data Centers (ACC-6604)  Reference: NOISE-016  ## Summary  Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 12,192.00.  ## Notes  Rating affirmed. Recommend renewing the exi"
+  "body_preview": "## Atlas Data Centers credit memo (NOISE-016)  Account: Atlas Data Centers (ACC-6604)  Reference: NOISE-016  Reporting period: Q1 2025.  ## Summary  Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 12,192.00.  ## Notes  Rating affirmed"
 }

@@ -2,11 +2,11 @@
 
 Account: Prairie Ag Co-op (ACC-7705) Reference: NOISE-061
 
+Covers the quarter ended December 31, 2025.
+
 ## Summary
 
-No change to estimates this quarter. Maintain rating.
-
-Reference amount USD 18,357.00.
+No change to estimates this quarter. Maintain rating. Reference amount USD 18,357.00.
 
 ## Notes
 

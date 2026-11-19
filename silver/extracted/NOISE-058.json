@@ -8,15 +8,15 @@
   "effective_date": "2025-11-05",
   "source_system": "credit_risk",
   "title": "Northwind Apparel credit memo (NOISE-058)",
-  "content_sha256": "ce1e1ab92e4b59b011bd3ba6d9ca4ea5aa2b66116fae21e204d72e003f34cf80",
+  "content_sha256": "71e0bcd72a68ccb970bae3c47a5992dc6ac4b9fc9716ee40350f1431b5ca5137",
   "mime_type": "application/pdf",
-  "byte_size": 1554,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1589,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
-  "quality_score": 0.72,
+  "quality_score": 0.73,
   "sensitivity_label": "internal",
   "markdown_path": "silver/extracted/NOISE-058.md",
-  "body_preview": "## Northwind Apparel credit memo (NOISE-058)  Account: Northwind Apparel (ACC-4402)  Reference: NOISE-058  ## Summary  Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 17,946.00.  ## Notes  Rating affirmed. Recommend renewing the exist"
+  "body_preview": "## Northwind Apparel credit memo (NOISE-058)  Account: Northwind Apparel (ACC-4402)  Reference: NOISE-058  Reflects the third quarter of fiscal 2025.  ## Summary  Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 17,946.00.  ## Notes  R"
 }

@@ -8,15 +8,15 @@
   "effective_date": "2025-09-15",
   "source_system": "research_desk",
   "title": "Cedar Ridge Chemicals analyst note (NOISE-068)",
-  "content_sha256": "ae507a4866da3d781f495a91efc763d4b8a6cdf3e5a1886996d4e4f67a468e90",
+  "content_sha256": "4fd1d7217902242323f3127694cc9d0ba4899019c1154bc93538545365d7df3f",
   "mime_type": "application/pdf",
-  "byte_size": 1540,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1564,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
   "quality_score": 0.72,
   "sensitivity_label": "internal",
   "markdown_path": "silver/extracted/NOISE-068.md",
-  "body_preview": "## Cedar Ridge Chemicals analyst note (NOISE-068)  Account: Cedar Ridge Chemicals (ACC-2201)  Reference: NOISE-068  ## Summary  Initiating at neutral. Steady operator, fairly valued on current estimates.  Reference amount USD 19,316.00.  ## Notes  No change to estimates this quar"
+  "body_preview": "## Cedar Ridge Chemicals analyst note (NOISE-068)  Account: Cedar Ridge Chemicals (ACC-2201)  Reference: NOISE-068  Reporting period: Q2 2025.  ## Summary  Initiating at neutral. Steady operator, fairly valued on current estimates. Reference amount USD 19,316.00.  ## Notes  No ch"
 }

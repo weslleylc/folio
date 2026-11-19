@@ -8,15 +8,15 @@
   "effective_date": "2025-11-06",
   "source_system": "research_desk",
   "title": "Revolver usage climbing (MER-X06)",
-  "content_sha256": "70c103e46c0dde0cbbee5eb83c860b37654f2f4e1368a4b016a8c1056efc4fba",
+  "content_sha256": "ee66724ad08a8c32234ad32bd1b08f871db64af6c2957c316a7a39b86e6a43e8",
   "mime_type": "application/pdf",
-  "byte_size": 1465,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1498,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
-  "quality_score": 0.69,
+  "quality_score": 0.7,
   "sensitivity_label": "internal",
   "markdown_path": "silver/extracted/MER-X06.md",
-  "body_preview": "## Revolver usage climbing (MER-X06)  Issuer: Meridian Industrial (ACC-8847)  ## Takeaway  Revolver is 78% drawn, up from 52% in the spring.  Remaining liquidity covers roughly two quarters of working capital needs."
+  "body_preview": "## Revolver usage climbing (MER-X06)  Issuer: Meridian Industrial (ACC-8847)  ## Takeaway  Revolver is 78% drawn, up from 52% in the spring. Remaining liquidity covers roughly two quarters of working capital needs.  Figures reflect the third quarter of fiscal 2025."
 }

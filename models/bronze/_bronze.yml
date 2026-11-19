@@ -1,11 +1,21 @@
 version: 2
 
 models:
+  - name: bronze_document_versions
+    description: >
+      APPEND-ONLY Bronze log: one row per (doc_id, content_sha256) ever registered. Never updated
+      or deleted; a changed file becomes bronze_version + 1. full_refresh is disabled unless
+      allow_bronze_rebuild=true.
+    columns:
+      - name: content_sha256
+        tests: [not_null]
+      - name: bronze_version
+        tests: [not_null]
   - name: bronze_document_catalog
     description: >
-      Bronze catalog of financial PDFs. One row per discovered file with
-      provenance, SHA-256, mime type, and source-system ACL-adjacent metadata.
-      Governance gate: nothing advances to Silver without a catalog row.
+      CURRENT Bronze catalog: one row per document (latest version of bronze_document_versions) with
+      provenance, SHA-256, mime type and n_bronze_versions. Governance gate: nothing advances to
+      Silver without a catalog row.
     columns:
       - name: doc_id
         tests: [unique, not_null]
@@ -34,6 +44,7 @@ seeds:
         content_sha256: string
         ingested_at: string
         bronze_layer: string
+        ingest_batch: int64
 
   - name: raw_document_bodies
     description: Docling (or fallback) markdown bodies + Silver enrichment fields

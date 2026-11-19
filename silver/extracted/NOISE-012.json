@@ -8,15 +8,15 @@
   "effective_date": "2025-01-13",
   "source_system": "research_desk",
   "title": "Summit Rail Partners analyst note (NOISE-012)",
-  "content_sha256": "a83bbcb5cc37e1cba3a1b6f9c327ba9dc63c3bcae1b70827aca1c40cbc9eff5e",
+  "content_sha256": "29e94eaca41ba8c06bc46667c78fcbb3eb29cc70d830410af284793b01b687a8",
   "mime_type": "application/pdf",
-  "byte_size": 1538,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1564,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
   "quality_score": 0.72,
   "sensitivity_label": "internal",
   "markdown_path": "silver/extracted/NOISE-012.md",
-  "body_preview": "## Summit Rail Partners analyst note (NOISE-012)  Account: Summit Rail Partners (ACC-3301)  Reference: NOISE-012  ## Summary  Initiating at neutral. Steady operator, fairly valued on current estimates.  Reference amount USD 11,644.00.  ## Notes  No change to estimates this quarte"
+  "body_preview": "## Summit Rail Partners analyst note (NOISE-012)  Account: Summit Rail Partners (ACC-3301)  Reference: NOISE-012  Reporting period: Q4 2025.  ## Summary  Initiating at neutral. Steady operator, fairly valued on current estimates.  Reference amount USD 11,644.00.  ## Notes  No cha"
 }

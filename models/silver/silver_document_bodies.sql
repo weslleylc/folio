@@ -4,7 +4,9 @@
 --   1. Parse + OCR confidence  -> parse_status / quality_score  (quarantine)
 --   2. PII detection           -> sensitivity_label + span redaction in body_sanitized
 --   3. Sanitized view          -> body_sanitized is the ONLY text Gold may read
---   4. Version stamp           -> silver_version_id (hash of extractor + sanitized text)
+--   4. Duplicate resolution    -> identical sha256 seen earlier => quarantine_duplicate
+--   5. Version stamp           -> silver_version_id (hash of extractor + sanitized text)
+-- Only the CURRENT Bronze version of each document is read (older versions stay in Bronze).
 -- Raw body_markdown stays here (Silver-restricted); downstream models read body_sanitized.
 {{ config(materialized='table') }}
 
@@ -30,7 +32,8 @@ with bodies as (
 ),
 
 catalog as (
-    select doc_id, filename, uri, byte_size, mime_type
+    select doc_id, content_sha256, filename, uri, byte_size, mime_type, ingested_at as bronze_ingested_at,
+           bronze_version, n_bronze_versions
     from {{ ref('bronze_document_catalog') }}
 ),
 
@@ -70,12 +73,20 @@ select
     c.uri as bronze_uri,
     c.byte_size,
     c.mime_type,
+    c.bronze_version,
+    c.n_bronze_versions,
     -- The Silver gate: first matching rule wins. Only 'silver_ready' flows to Gold + AI.
     case
         when s.parse_status = 'failed' then 'quarantine_parse_failed'
         when s.quality_score < 0.4 then 'quarantine_low_quality'
         when s.sensitivity_label = 'restricted_pii' then 'quarantine_pii_review'
+        when row_number() over (
+            partition by s.content_sha256
+            order by c.bronze_ingested_at, s.doc_id
+        ) > 1 then 'quarantine_duplicate'
         else 'silver_ready'
     end as silver_status
 from sanitized s
-join catalog c on c.doc_id = s.doc_id
+join catalog c
+    on c.doc_id = s.doc_id
+   and c.content_sha256 = s.content_sha256

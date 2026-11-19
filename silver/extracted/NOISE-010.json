@@ -8,15 +8,15 @@
   "effective_date": "2025-11-11",
   "source_system": "ir_transcripts",
   "title": "Skyline REITs earnings call (NOISE-010)",
-  "content_sha256": "4cb84575d68e47986f8c79da8ceb3093c513ce6019e0866921888b3b0e152975",
+  "content_sha256": "80cdea46ecf702b662f4a3550604c60078381fdf743d3157d78f4ab65cb037e4",
   "mime_type": "application/pdf",
-  "byte_size": 1552,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1580,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
-  "quality_score": 0.72,
+  "quality_score": 0.73,
   "sensitivity_label": "public_market",
   "markdown_path": "silver/extracted/NOISE-010.md",
-  "body_preview": "## Skyline REITs earnings call (NOISE-010)  Account: Skyline REITs (ACC-1111)  Reference: NOISE-010  ## Summary  Management reviewed quarterly results and reaffirmed full-year guidance. Reference amount USD 11,370.00.  ## Notes  Revenue grew modestly; margins in line with plan. N"
+  "body_preview": "## Skyline REITs earnings call (NOISE-010)  Account: Skyline REITs (ACC-1111)  Reference: NOISE-010  Reflects the third quarter of fiscal 2025.  ## Summary  Management reviewed quarterly results and reaffirmed full-year guidance. Reference amount USD 11,370.00.  ## Notes  Revenue"
 }

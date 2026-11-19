@@ -4,6 +4,8 @@ Account: Prairie Ag Co-op (ACC-7705)
 
 Reference: NOISE-017
 
+Covers the quarter ended March 31, 2025.
+
 ## Summary
 
 Revenue grew modestly; margins in line with plan. No unusual items. Reference amount USD 12,329.00.

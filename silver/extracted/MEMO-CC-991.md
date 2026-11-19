@@ -6,6 +6,8 @@ Subject account: Meridian Industrial Corp (ACC-8847)
 
 Committee date: 2025-10-24
 
+Review period: Q3 2025
+
 ## Recommendation
 
 Approve the third amendment (CFA-2025-03) with heightened monitoring. Meridian's working-capital cycle lengthened to 74 days from 58 days year-over-year. Supplier past-due notices (INV-4401, INV-4412) corroborate stretch in payables.

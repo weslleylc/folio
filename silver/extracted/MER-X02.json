@@ -8,15 +8,15 @@
   "effective_date": "2025-09-26",
   "source_system": "credit_risk",
   "title": "Monitoring update - leverage certificate (MER-X02)",
-  "content_sha256": "0c99af4e82db4f88e52d8b0b5ffe74c15f7f61817c2f10b23830c45d919cb30d",
+  "content_sha256": "b4c6cd7539fe872888a68aa070358dd5cb7fa9ecb54c2130f0f51d0c06036784",
   "mime_type": "application/pdf",
-  "byte_size": 1526,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1564,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
-  "quality_score": 0.77,
+  "quality_score": 0.78,
   "sensitivity_label": "confidential",
   "markdown_path": "silver/extracted/MER-X02.md",
-  "body_preview": "## Monitoring update - leverage certificate (MER-X02)  Subject account: Meridian Industrial Corp (ACC-8847)  ## Update  Interim leverage certificate printed 3.55x against the 3.75x amended covenant. Headroom is limited. Continue weekly cash reporting.  Event of default risk rises"
+  "body_preview": "## Monitoring update - leverage certificate (MER-X02)  Subject account: Meridian Industrial Corp (ACC-8847)  ## Update  Certificate covers the quarter ended September 30, 2025. Interim leverage certificate printed 3.55x against the 3.75x amended covenant. Headroom is limited. Con"
 }

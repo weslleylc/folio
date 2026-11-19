@@ -20,3 +20,21 @@ models:
                 source_text_column: extract_text
                 allow_empty: true
 
+
+  - name: int_period_gap_corpus
+    description: >
+      Hybrid extraction gap: docs where the regex found no fiscal period but the text mentions
+      a quarter ("quarter ended ...", "third quarter of fiscal ..."). Only these reach the AI.
+
+  - name: documents_period_fallback
+    description: >
+      AI extract() of the fiscal period for the regex gap only (prompt folio_period_extract v1).
+      Incremental on (doc_id, silver_version_id, extract_version): each document is billed once.
+    columns:
+      - name: evidence
+        description: Verbatim phrase backing the extracted period.
+        tests:
+          - dbt_context_engineering.grounded:
+              arguments:
+                source_text_column: extract_text
+                allow_empty: true

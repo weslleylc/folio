@@ -8,15 +8,15 @@
   "effective_date": "2025-11-25",
   "source_system": "credit_risk",
   "title": "Forecast - covenant step-down (MER-X08)",
-  "content_sha256": "ec6b94a96aa0b1a79ce0e31109228fcb18f4088598484ae225f36ba6df76ace2",
+  "content_sha256": "77f68bb0093810b044794d578f3e51087ea9a1f2e400c00fdbe1caf76c45c881",
   "mime_type": "application/pdf",
-  "byte_size": 1483,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1488,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
   "quality_score": 0.75,
   "sensitivity_label": "confidential",
   "markdown_path": "silver/extracted/MER-X08.md",
-  "body_preview": "## Forecast - covenant step-down (MER-X08)  Subject account: Meridian Industrial Corp (ACC-8847)  ## Forecast  The covenant steps down to 3.50x in Q1. Current run-rate leverage is 3.58x. Without an amendment or deleveraging, a breach is likely at the Q1 test."
+  "body_preview": "## Forecast - covenant step-down (MER-X08)  Subject account: Meridian Industrial Corp (ACC-8847)  ## Forecast  The covenant steps down to 3.50x in Q1 2026. Current run-rate leverage is 3.58x. Without an amendment or deleveraging, a breach is likely at the Q1 2026 test."
 }

@@ -8,15 +8,15 @@
   "effective_date": "2025-05-14",
   "source_system": "research_desk",
   "title": "Pacific Rim Logistics analyst note (NOISE-040)",
-  "content_sha256": "a50aac6dc934d20a00ba0ef643e6d1a15dbf79adc8698562140bd10e22e2e95b",
+  "content_sha256": "09853b19d830544a962c06ee3b22948f644a0d3e62e573334f6bb275ef5a0b63",
   "mime_type": "application/pdf",
-  "byte_size": 1543,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1566,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
   "quality_score": 0.72,
   "sensitivity_label": "internal",
   "markdown_path": "silver/extracted/NOISE-040.md",
-  "body_preview": "## Pacific Rim Logistics analyst note (NOISE-040)  Account: Pacific Rim Logistics (ACC-8806)  Reference: NOISE-040  ## Summary  Initiating at neutral. Steady operator, fairly valued on current estimates.  Reference amount USD 15,480.00.  ## Notes  No change to estimates this quar"
+  "body_preview": "## Pacific Rim Logistics analyst note (NOISE-040)  Account: Pacific Rim Logistics (ACC-8806)  Reference: NOISE-040  Reporting period: Q3 2025.  ## Summary  Initiating at neutral. Steady operator, fairly valued on current estimates. Reference amount USD 15,480.00.  ## Notes  No ch"
 }

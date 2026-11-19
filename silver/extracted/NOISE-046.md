@@ -4,6 +4,8 @@ Account: Cedar Ridge Chemicals (ACC-2201)
 
 Reference: NOISE-046
 
+Reflects the fourth quarter of fiscal 2025.
+
 ## Summary
 
 Quarterly report: results of operations in line with prior periods.

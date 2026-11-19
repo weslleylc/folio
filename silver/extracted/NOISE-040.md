@@ -4,14 +4,12 @@ Account: Pacific Rim Logistics (ACC-8806)
 
 Reference: NOISE-040
 
+Reporting period: Q3 2025.
+
 ## Summary
 
-Initiating at neutral. Steady operator, fairly valued on current estimates.
-
-Reference amount USD 15,480.00.
+Initiating at neutral. Steady operator, fairly valued on current estimates. Reference amount USD 15,480.00.
 
 ## Notes
 
-No change to estimates this quarter. Maintain rating.
-
-No watchlist items on this account.
+No change to estimates this quarter. Maintain rating. No watchlist items on this account.

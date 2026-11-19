@@ -8,15 +8,15 @@
   "effective_date": "2025-10-29",
   "source_system": "credit_risk",
   "title": "Waiver request - covenant cure period (MER-X05)",
-  "content_sha256": "b8ec36e41fb5889f45a00968aa0b90a853bdd49c9ecb8e794d39cd818455072f",
+  "content_sha256": "3f10591c6533f0669bd06721ca21342ae7a7db973335f7f3d9f71cca8ece3345",
   "mime_type": "application/pdf",
-  "byte_size": 1530,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1567,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
-  "quality_score": 0.76,
+  "quality_score": 0.77,
   "sensitivity_label": "confidential",
   "markdown_path": "silver/extracted/MER-X05.md",
-  "body_preview": "## Waiver request - covenant cure period (MER-X05)  Subject account: Meridian Industrial Corp (ACC-8847)  ## Request  Borrower asks for a 60-day cure period if leverage prints above 3.60x. Credit committee to review the covenant waiver before the next test date.  Sponsor equity s"
+  "body_preview": "## Waiver request - covenant cure period (MER-X05)  Subject account: Meridian Industrial Corp (ACC-8847)  ## Request  Borrower asks for a 60-day cure period if leverage prints above 3.60x. Compliance certificate for Q3 2025 attached. Credit committee to review the covenant waiver"
 }

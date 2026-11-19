@@ -4,6 +4,8 @@ Account: Ironclad Construction (ACC-9907)
 
 Reference: NOISE-030
 
+Reflects the fourth quarter of fiscal 2025.
+
 ## Summary
 
 Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 14,110.00.

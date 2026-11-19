@@ -8,15 +8,15 @@
   "effective_date": "2025-09-18",
   "source_system": "credit_risk",
   "title": "BrightPeak Foods credit memo (NOISE-044)",
-  "content_sha256": "054cf3e6161e786126f81a9b1bcab30e1c88a6b4c9079155fe2e42855b3ba922",
+  "content_sha256": "593857868ce636358ba732d70d00a846ed369729a06c567ab8d4454b5104c516",
   "mime_type": "application/pdf",
-  "byte_size": 1556,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1579,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
   "quality_score": 0.72,
   "sensitivity_label": "internal",
   "markdown_path": "silver/extracted/NOISE-044.md",
-  "body_preview": "## BrightPeak Foods credit memo (NOISE-044)  Account: BrightPeak Foods (ACC-1102)  Reference: NOISE-044  ## Summary  Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 16,028.00.  ## Notes  Rating affirmed. Recommend renewing the existin"
+  "body_preview": "## BrightPeak Foods credit memo (NOISE-044)  Account: BrightPeak Foods (ACC-1102)  Reference: NOISE-044  Reporting period: Q4 2025.  ## Summary  Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 16,028.00.  ## Notes  Rating affirmed. Re"
 }

@@ -4,6 +4,8 @@ Account: Skyline REITs (ACC-1111)
 
 Reference: NOISE-032
 
+Reporting period: Q1 2025.
+
 ## Summary
 
 Quarterly report: results of operations in line with prior periods.

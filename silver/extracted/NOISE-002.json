@@ -8,15 +8,15 @@
   "effective_date": "2025-03-03",
   "source_system": "credit_risk",
   "title": "Cedar Ridge Chemicals credit memo (NOISE-002)",
-  "content_sha256": "1f1aac90ab1ff1b570bd572daeec03117c50510f59f70cbe0f2d8c2386e61dfc",
+  "content_sha256": "4755de1e149cb630afe3b998a543a102cf55a043c1921133e79b043679cda824",
   "mime_type": "application/pdf",
-  "byte_size": 1557,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1591,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
-  "quality_score": 0.72,
+  "quality_score": 0.73,
   "sensitivity_label": "internal",
   "markdown_path": "silver/extracted/NOISE-002.md",
-  "body_preview": "## Cedar Ridge Chemicals credit memo (NOISE-002)  Account: Cedar Ridge Chemicals (ACC-2201)  Reference: NOISE-002  ## Summary  Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 10,274.00.  ## Notes  Rating affirmed. Recommend renewing t"
+  "body_preview": "## Cedar Ridge Chemicals credit memo (NOISE-002)  Account: Cedar Ridge Chemicals (ACC-2201)  Reference: NOISE-002  Reflects the first quarter of fiscal 2025.  ## Summary  Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 10,274.00.  ## "
 }

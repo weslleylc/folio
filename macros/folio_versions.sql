@@ -7,3 +7,9 @@
 {% macro folio_classify_version() -%}
     {{ return('folio_content_type.v1|' ~ var('model_classify')) }}
 {%- endmacro %}
+
+
+{#- Version identity for the fiscal-period AI fallback (see documents_period_fallback). -#}
+{% macro folio_period_version() -%}
+    {{ return('folio_period_extract.v1|' ~ var('model_extract', var('model_generate'))) }}
+{%- endmacro %}

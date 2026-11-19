@@ -8,15 +8,15 @@
   "effective_date": "2025-09-06",
   "source_system": "sec_edgar",
   "title": "Skyline REITs sec filing (NOISE-032)",
-  "content_sha256": "7ffd7335af735843cb4af8f4617b2bc56dff5b840c78332bdbdfded365fcabea",
+  "content_sha256": "45f4db71e019bd9770b4db12a45dc5220110375a5be4c4f6e83093583b121940",
   "mime_type": "application/pdf",
-  "byte_size": 1536,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1559,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
-  "quality_score": 0.71,
+  "quality_score": 0.72,
   "sensitivity_label": "internal",
   "markdown_path": "silver/extracted/NOISE-032.md",
-  "body_preview": "## Skyline REITs sec filing (NOISE-032)  Account: Skyline REITs (ACC-1111)  Reference: NOISE-032  ## Summary  Quarterly report: results of operations in line with prior periods.  Reference amount USD 14,384.00.  ## Notes  No material changes to risk factors since the last annual "
+  "body_preview": "## Skyline REITs sec filing (NOISE-032)  Account: Skyline REITs (ACC-1111)  Reference: NOISE-032  Reporting period: Q1 2025.  ## Summary  Quarterly report: results of operations in line with prior periods.  Reference amount USD 14,384.00.  ## Notes  No material changes to risk fa"
 }

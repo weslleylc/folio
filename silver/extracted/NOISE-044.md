@@ -4,6 +4,8 @@ Account: BrightPeak Foods (ACC-1102)
 
 Reference: NOISE-044
 
+Reporting period: Q4 2025.
+
 ## Summary
 
 Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 16,028.00.

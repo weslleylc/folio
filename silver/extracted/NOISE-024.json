@@ -8,15 +8,15 @@
   "effective_date": "2025-01-25",
   "source_system": "ir_transcripts",
   "title": "Cedar Ridge Chemicals earnings call (NOISE-024)",
-  "content_sha256": "0b1e13264847a4edf687768f5065f0a546efeb717b9cf834e599d57fcd742f8b",
+  "content_sha256": "79b9ff859b39093ef4a0c7d03e78b666fc84fcc85492784c6d47ac312fcc5c4d",
   "mime_type": "application/pdf",
-  "byte_size": 1559,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1582,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
-  "quality_score": 0.72,
+  "quality_score": 0.73,
   "sensitivity_label": "public_market",
   "markdown_path": "silver/extracted/NOISE-024.md",
-  "body_preview": "## Cedar Ridge Chemicals earnings call (NOISE-024)  Account: Cedar Ridge Chemicals (ACC-2201)  Reference: NOISE-024  ## Summary  Management reviewed quarterly results and reaffirmed full-year guidance.  Reference amount USD 13,288.00.  ## Notes  Revenue grew modestly; margins in "
+  "body_preview": "## Cedar Ridge Chemicals earnings call (NOISE-024)  Account: Cedar Ridge Chemicals (ACC-2201)  Reference: NOISE-024  Reporting period: Q3 2025.  ## Summary  Management reviewed quarterly results and reaffirmed full-year guidance. Reference amount USD 13,288.00.  ## Notes  Revenue"
 }

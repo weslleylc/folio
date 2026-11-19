@@ -4,6 +4,8 @@ Account: Prairie Ag Co-op (ACC-7705)
 
 Reference: NOISE-072
 
+Reporting period: Q3 2025.
+
 ## Summary
 
 Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 19,864.00.

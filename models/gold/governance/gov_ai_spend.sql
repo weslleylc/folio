@@ -8,6 +8,7 @@
 {% if var('ai_functions_enabled', false) %}
 -- depends_on: {{ ref('documents_classify') }}
 -- depends_on: {{ ref('documents_extract') }}
+-- depends_on: {{ ref('documents_period_fallback') }}
 {% endif %}
 {{ config(materialized='table', docs={'node_color': '#D4AF37'}) }}
 

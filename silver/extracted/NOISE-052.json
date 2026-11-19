@@ -8,15 +8,15 @@
   "effective_date": "2025-05-26",
   "source_system": "ir_transcripts",
   "title": "Ironclad Construction earnings call (NOISE-052)",
-  "content_sha256": "1ac60e5bcbbef69b4ec0c3234515aeb187a36c19aa4a213c09a1ddb018df62ae",
+  "content_sha256": "9814700ee147967bcb15b292eb0c05b0a2914fe3459b2e2aa835cbf08f74c8ee",
   "mime_type": "application/pdf",
-  "byte_size": 1560,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1583,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
-  "quality_score": 0.72,
+  "quality_score": 0.73,
   "sensitivity_label": "public_market",
   "markdown_path": "silver/extracted/NOISE-052.md",
-  "body_preview": "## Ironclad Construction earnings call (NOISE-052)  Account: Ironclad Construction (ACC-9907)  Reference: NOISE-052  ## Summary  Management reviewed quarterly results and reaffirmed full-year guidance. Reference amount USD 17,124.00.  ## Notes  Revenue grew modestly; margins in l"
+  "body_preview": "## Ironclad Construction earnings call (NOISE-052)  Account: Ironclad Construction (ACC-9907)  Reference: NOISE-052  Reporting period: Q2 2025.  ## Summary  Management reviewed quarterly results and reaffirmed full-year guidance. Reference amount USD 17,124.00.  ## Notes  Revenue"
 }

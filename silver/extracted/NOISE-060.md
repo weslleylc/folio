@@ -1,6 +1,10 @@
 ## Atlas Data Centers sec filing (NOISE-060)
 
-Account: Atlas Data Centers (ACC-6604) Reference: NOISE-060
+Account: Atlas Data Centers (ACC-6604)
+
+Reference: NOISE-060
+
+Reporting period: Q4 2025.
 
 ## Summary
 

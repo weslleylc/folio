@@ -1,8 +1,8 @@
 ## Lumen Health Systems sec filing (NOISE-053)
 
-Account: Lumen Health Systems (ACC-1010)
+Account: Lumen Health Systems (ACC-1010) Reference: NOISE-053
 
-Reference: NOISE-053
+Covers the quarter ended June 30, 2025.
 
 ## Summary
 

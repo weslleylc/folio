@@ -8,15 +8,15 @@
   "effective_date": "2025-10-07",
   "source_system": "research_desk",
   "title": "BrightPeak Foods analyst note (NOISE-033)",
-  "content_sha256": "682ed9d2ee4b895c633e32c58f6eba45ae3eb2be81ac057fb1de4cc385af0d4b",
+  "content_sha256": "17b86d0dc7ed1fc99a8b9bc37888839bcb2240ef6c247789a226dfe46dab15c3",
   "mime_type": "application/pdf",
-  "byte_size": 1539,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1572,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
   "quality_score": 0.72,
   "sensitivity_label": "internal",
   "markdown_path": "silver/extracted/NOISE-033.md",
-  "body_preview": "## BrightPeak Foods analyst note (NOISE-033)  Account: BrightPeak Foods (ACC-1102)  Reference: NOISE-033  ## Summary  No change to estimates this quarter. Maintain rating.  Reference amount USD 14,521.00.  ## Notes  Initiating at neutral. Steady operator, fairly valued on current"
+  "body_preview": "## BrightPeak Foods analyst note (NOISE-033)  Account: BrightPeak Foods (ACC-1102) Reference: NOISE-033  Covers the quarter ended March 31, 2025.  ## Summary  No change to estimates this quarter. Maintain rating. Reference amount USD 14,521.00.  ## Notes  Initiating at neutral. S"
 }

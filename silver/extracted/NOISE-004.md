@@ -4,6 +4,8 @@ Account: Blue Harbor Utilities (ACC-5503)
 
 Reference: NOISE-004
 
+Reporting period: Q2 2025.
+
 ## Summary
 
 Quarterly report: results of operations in line with prior periods.

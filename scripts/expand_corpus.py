@@ -96,12 +96,41 @@ _NOISE_TEMPLATES: dict[str, list[str]] = {
 }
 
 
+# Reporting-period wording. Deliberately mixed so a simple regex catches only some of it:
+#   0 -> "Q3 2025"                      regex hit  (normalised to 2025-Q3 in SQL)
+#   1 -> "quarter ended June 30, 2025"  regex miss, period hint  -> AI fallback
+#   2 -> "third quarter of fiscal 2025" regex miss, period hint  -> AI fallback
+#   3 -> no period wording at all       regex miss, no hint      -> not_found, NO AI call
+_PERIOD_DOC_TYPES = {"earnings_call", "sec_filing", "analyst_note", "credit_memo"}
+_PERIOD_VARIANTS = [
+    "Reporting period: Q{q} 2025.",
+    "Covers the quarter ended {month} {day}, 2025.",
+    "Reflects the {ordinal} quarter of fiscal 2025.",
+    None,
+]
+_QUARTER_END = {1: ("March", 31), 2: ("June", 30), 3: ("September", 30), 4: ("December", 31)}
+_ORDINAL = {1: "first", 2: "second", 3: "third", 4: "fourth"}
+
+
+def _period_line(doc_type: str, idx: int) -> str | None:
+    if doc_type not in _PERIOD_DOC_TYPES:
+        return None
+    variant = _PERIOD_VARIANTS[idx % len(_PERIOD_VARIANTS)]
+    if variant is None:
+        return None
+    q = 1 + (idx // 4) % 4
+    month, day = _QUARTER_END[q]
+    return variant.format(q=q, month=month, day=day, ordinal=_ORDINAL[q])
+
+
 def _noise_body(account_id: str, account_name: str, doc_type: str, idx: int) -> list[str]:
     amt = 10_000 + (idx * 137) % 90_000
     lines = _NOISE_TEMPLATES[doc_type]
+    period = _period_line(doc_type, idx)
     return [
         f"Account: {account_name} ({account_id})",
         f"Reference: NOISE-{idx:03d}",
+        *([period] if period else []),
         "",
         "## Summary",
         lines[idx % len(lines)],
@@ -137,6 +166,7 @@ _MERIDIAN_EXTRA: list[tuple[str, str, str, list[str]]] = [
             "Subject account: Meridian Industrial Corp (ACC-8847)",
             "",
             "## Update",
+            "Certificate covers the quarter ended September 30, 2025.",
             "Interim leverage certificate printed 3.55x against the 3.75x amended covenant.",
             "Headroom is limited. Continue weekly cash reporting.",
             "Event of default risk rises if leverage exceeds 3.60x on the next certificate.",
@@ -171,6 +201,7 @@ _MERIDIAN_EXTRA: list[tuple[str, str, str, list[str]]] = [
             "",
             "## Request",
             "Borrower asks for a 60-day cure period if leverage prints above 3.60x.",
+            "Compliance certificate for Q3 2025 attached.",
             "Credit committee to review the covenant waiver before the next test date.",
             "Sponsor equity support has not been confirmed in writing.",
         ],
@@ -183,6 +214,7 @@ _MERIDIAN_EXTRA: list[tuple[str, str, str, list[str]]] = [
             "## Takeaway",
             "Revolver is 78% drawn, up from 52% in the spring.",
             "Remaining liquidity covers roughly two quarters of working capital needs.",
+            "Figures reflect the third quarter of fiscal 2025.",
         ],
     ),
     (
@@ -202,8 +234,8 @@ _MERIDIAN_EXTRA: list[tuple[str, str, str, list[str]]] = [
             "Subject account: Meridian Industrial Corp (ACC-8847)",
             "",
             "## Forecast",
-            "The covenant steps down to 3.50x in Q1. Current run-rate leverage is 3.58x.",
-            "Without an amendment or deleveraging, a breach is likely at the Q1 test.",
+            "The covenant steps down to 3.50x in Q1 2026. Current run-rate leverage is 3.58x.",
+            "Without an amendment or deleveraging, a breach is likely at the Q1 2026 test.",
         ],
     ),
 ]

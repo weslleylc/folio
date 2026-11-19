@@ -9,7 +9,9 @@ with bronze as (
         count(distinct source_system) as bronze_source_systems,
         count(distinct doc_type) as bronze_doc_types,
         sum(byte_size) as bronze_bytes,
-        max(ingested_at) as bronze_last_ingest
+        max(ingested_at) as bronze_last_ingest,
+        (select count(*) from {{ ref('bronze_document_versions') }}) as bronze_version_rows,
+        sum(case when n_bronze_versions > 1 then 1 else 0 end) as bronze_docs_revised
     from {{ ref('bronze_document_catalog') }}
 ),
 
@@ -27,7 +29,8 @@ silver as (
         sum(case when sensitivity_label = 'internal' then 1 else 0 end) as sens_internal,
         sum(case when extractor = 'docling' then 1 else 0 end) as extracted_via_docling,
         sum(case when extractor != 'docling' then 1 else 0 end) as extracted_via_fallback,
-        sum(case when pii_redacted then 1 else 0 end) as silver_pii_redacted
+        sum(case when pii_redacted then 1 else 0 end) as silver_pii_redacted,
+        sum(case when silver_status = 'quarantine_duplicate' then 1 else 0 end) as silver_duplicates
     from {{ ref('silver_document_bodies') }}
 ),
 

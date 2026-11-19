@@ -150,8 +150,33 @@ def detect_sensitivity(text: str) -> str:
     return "internal"
 
 
+def flatten_for_seed(md: str) -> str:
+    """Single-line markdown for BigQuery seeds (no allow_quoted_newlines on dbt seed)."""
+    body_flat = re.sub(r"[ \t]+", " ", md)
+    body_flat = re.sub(r"\n{3,}", "\n\n", body_flat).strip()
+    return body_flat.replace("\\", "\\\\").replace("\n", "\\n")
+
+
+def load_later_batches() -> tuple[list[dict], list[dict]]:
+    """Rows landed after batch 1 (scripts/ingest_batch2.py). Bronze is append-only: a re-run of
+    batch 1 must never drop what later batches already registered."""
+    cat_path = SEEDS / "raw_document_catalog.csv"
+    body_path = SEEDS / "raw_document_bodies.csv"
+    if not cat_path.exists() or not body_path.exists():
+        return [], []
+    with cat_path.open(encoding="utf-8", newline="") as f:
+        later = [r for r in csv.DictReader(f) if str(r.get("ingest_batch") or "1") != "1"]
+    shas = {r["content_sha256"] for r in later}
+    with body_path.open(encoding="utf-8", newline="") as f:
+        bodies = [r for r in csv.DictReader(f) if r["content_sha256"] in shas]
+    return later, bodies
+
+
 def write_seeds(catalog_rows: list[dict], body_rows: list[dict]) -> None:
     SEEDS.mkdir(parents=True, exist_ok=True)
+    later_cat, later_bodies = load_later_batches()
+    catalog_rows = [{**r, "ingest_batch": r.get("ingest_batch", 1)} for r in catalog_rows] + later_cat
+    body_rows = body_rows + later_bodies
 
     catalog_fields = [
         "doc_id",
@@ -169,6 +194,7 @@ def write_seeds(catalog_rows: list[dict], body_rows: list[dict]) -> None:
         "content_sha256",
         "ingested_at",
         "bronze_layer",
+        "ingest_batch",
     ]
     with (SEEDS / "raw_document_catalog.csv").open("w", newline="", encoding="utf-8") as f:
         w = csv.DictWriter(f, fieldnames=catalog_fields)
@@ -288,13 +314,12 @@ def main() -> None:
                 "content_sha256": digest,
                 "ingested_at": now,
                 "bronze_layer": "physical_copy",
+                "ingest_batch": 1,
             }
         )
         # Single-line CSV for BigQuery seeds (no allow_quoted_newlines on dbt seed).
         # Restore newlines in silver_document_bodies via replace('\\n', '\n').
-        body_flat = re.sub(r"[ \t]+", " ", md)
-        body_flat = re.sub(r"\n{3,}", "\n\n", body_flat).strip()
-        body_flat = body_flat.replace("\\", "\\\\").replace("\n", "\\n")
+        body_flat = flatten_for_seed(md)
         body_rows.append(
             {
                 "doc_id": entry["doc_id"],

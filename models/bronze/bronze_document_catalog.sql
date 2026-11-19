@@ -1,7 +1,15 @@
--- 🥉 Bronze: immutable catalog of unstructured financial assets.
--- Metadata-first registry (URI, hash, mime, provenance). Binaries stay in
--- bronze/documents/; this table never stores file bytes.
-{{ config(materialized='table') }}
+-- 🥉 Bronze: CURRENT catalog — one row per document, always the latest registered version.
+-- The immutable history lives in bronze_document_versions (append-only); this view is what
+-- Silver reads. A document with n_bronze_versions > 1 was re-sent / revised at the source.
+{{ config(materialized='view') }}
+
+with ranked as (
+    select
+        *,
+        max(bronze_version) over (partition by doc_id) as latest_version,
+        count(*) over (partition by doc_id) as n_bronze_versions
+    from {{ ref('bronze_document_versions') }}
+)
 
 select
     doc_id,
@@ -11,12 +19,16 @@ select
     doc_type,
     account_id,
     account_name,
-    cast(effective_date as date) as effective_date,
+    effective_date,
     source_system,
     title,
     mime_type,
-    cast(byte_size as {{ dbt.type_bigint() }}) as byte_size,
+    byte_size,
     content_sha256,
-    cast(ingested_at as timestamp) as ingested_at,
-    bronze_layer
-from {{ ref('raw_document_catalog') }}
+    ingested_at,
+    bronze_layer,
+    ingest_batch,
+    bronze_version,
+    n_bronze_versions
+from ranked
+where bronze_version = latest_version

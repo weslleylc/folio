@@ -8,15 +8,15 @@
   "effective_date": "2025-01-07",
   "source_system": "sec_edgar",
   "title": "Atlas Data Centers sec filing (NOISE-060)",
-  "content_sha256": "ff7dd432f0238a41a0fad71e02ddf26428b4e5979a0b89fc4b1348622277b8ff",
+  "content_sha256": "98b0645d87a4a9ba1a9b9806884ab50623c748b208bfade6889907227eb1e0f6",
   "mime_type": "application/pdf",
-  "byte_size": 1539,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1562,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
   "quality_score": 0.72,
   "sensitivity_label": "internal",
   "markdown_path": "silver/extracted/NOISE-060.md",
-  "body_preview": "## Atlas Data Centers sec filing (NOISE-060)  Account: Atlas Data Centers (ACC-6604) Reference: NOISE-060  ## Summary  Quarterly report: results of operations in line with prior periods.  Reference amount USD 18,220.00.  ## Notes  No material changes to risk factors since the las"
+  "body_preview": "## Atlas Data Centers sec filing (NOISE-060)  Account: Atlas Data Centers (ACC-6604)  Reference: NOISE-060  Reporting period: Q4 2025.  ## Summary  Quarterly report: results of operations in line with prior periods.  Reference amount USD 18,220.00.  ## Notes  No material changes "
 }

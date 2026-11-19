@@ -8,15 +8,15 @@
   "effective_date": "2025-07-01",
   "source_system": "research_desk",
   "title": "Skyline REITs analyst note (NOISE-054)",
-  "content_sha256": "8c94abadd9b4a0fb2dec5d4ba9ca158a209d194e791f0a5a31138f4343db0884",
+  "content_sha256": "f5e184b7cbd89268d414b5206bd6c62abe7c465cf6a7ff4aa3580581cd54e35e",
   "mime_type": "application/pdf",
-  "byte_size": 1537,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1568,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
-  "quality_score": 0.71,
+  "quality_score": 0.72,
   "sensitivity_label": "internal",
   "markdown_path": "silver/extracted/NOISE-054.md",
-  "body_preview": "## Skyline REITs analyst note (NOISE-054)  Account: Skyline REITs (ACC-1111)  Reference: NOISE-054  ## Summary  Initiating at neutral. Steady operator, fairly valued on current estimates.  Reference amount USD 17,398.00.  ## Notes  No change to estimates this quarter. Maintain ra"
+  "body_preview": "## Skyline REITs analyst note (NOISE-054)  Account: Skyline REITs (ACC-1111) Reference: NOISE-054  Reflects the second quarter of fiscal 2025.  ## Summary  Initiating at neutral. Steady operator, fairly valued on current estimates.  Reference amount USD 17,398.00.  ## Notes  No c"
 }

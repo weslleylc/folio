@@ -8,15 +8,15 @@
   "effective_date": "2025-06-27",
   "source_system": "sec_edgar",
   "title": "Lumen Health Systems sec filing (NOISE-053)",
-  "content_sha256": "e50e09dccfd2e443f8f8bac4ca9863e30caebf07f448c6311cf09b83fc20ee89",
+  "content_sha256": "7c26e87193e3096236c2e7cdcee8ced90a3e9ea08e5631c38e78eb20b6deeec6",
   "mime_type": "application/pdf",
-  "byte_size": 1545,
-  "extracted_at": "2026-11-19T14:55:12Z",
+  "byte_size": 1579,
+  "extracted_at": "2026-11-19T16:38:11Z",
   "extractor": "docling",
   "parse_status": "ok",
   "page_count": 1,
-  "quality_score": 0.72,
+  "quality_score": 0.73,
   "sensitivity_label": "internal",
   "markdown_path": "silver/extracted/NOISE-053.md",
-  "body_preview": "## Lumen Health Systems sec filing (NOISE-053)  Account: Lumen Health Systems (ACC-1010)  Reference: NOISE-053  ## Summary  No material changes to risk factors since the last annual report.  Reference amount USD 17,261.00.  ## Notes  Quarterly report: results of operations in lin"
+  "body_preview": "## Lumen Health Systems sec filing (NOISE-053)  Account: Lumen Health Systems (ACC-1010) Reference: NOISE-053  Covers the quarter ended June 30, 2025.  ## Summary  No material changes to risk factors since the last annual report.  Reference amount USD 17,261.00.  ## Notes  Quarte"
 }

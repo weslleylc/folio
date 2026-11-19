@@ -169,6 +169,7 @@ DOCUMENTS: list[dict] = [
             "Prepared by: Harbor Trust Credit Risk",
             "Subject account: Meridian Industrial Corp (ACC-8847)",
             "Committee date: 2025-10-24",
+            "Review period: Q3 2025",
             "",
             "## Recommendation",
             "Approve the third amendment (CFA-2025-03) with heightened monitoring. Meridian's",

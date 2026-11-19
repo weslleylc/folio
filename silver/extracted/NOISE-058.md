@@ -4,6 +4,8 @@ Account: Northwind Apparel (ACC-4402)
 
 Reference: NOISE-058
 
+Reflects the third quarter of fiscal 2025.
+
 ## Summary
 
 Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 17,946.00.

@@ -4,6 +4,8 @@ Account: Cedar Ridge Chemicals (ACC-2201)
 
 Reference: NOISE-002
 
+Reflects the first quarter of fiscal 2025.
+
 ## Summary
 
 Annual relationship review. Borrower profile unchanged since last cycle. Reference amount USD 10,274.00.

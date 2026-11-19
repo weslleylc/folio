@@ -17,6 +17,6 @@ models:
         tests:
           - accepted_values:
               arguments:
-                values: ['silver_ready', 'quarantine_low_quality', 'quarantine_parse_failed', 'quarantine_pii_review']
+                values: ['silver_ready', 'quarantine_low_quality', 'quarantine_parse_failed', 'quarantine_pii_review', 'quarantine_duplicate']
   - name: silver_ready_documents
     description: Silver documents cleared for Gold promotion and chunking.
