@@ -224,7 +224,7 @@ vector search              Recall by meaning     Boilerplate pollution
 2. Article: [Beyond Tables…](https://jjojo.medium.com/beyond-tables-applying-the-medallion-architecture-to-unstructured-data-governance-39a81cfa3835)  
 3. Package: [`dbt_context_engineering`](https://github.com/dbt-labs/dbt-context-engineering)  
 4. Ready SQL: [`presentation_queries.sql`](presentation_queries.sql) (BigQuery, `dbt_wcaldas`)  
-5. Charts: [`visualizations.md`](visualizations.md) — Studio live charts + Looker Studio slides  
+5. Charts: [`visualizations.md`](visualizations.md) — **BigQuery Studio** saved queries + chart encodings  
 6. Optional: `folio_content_type` macro open in IDE  
 
 ---

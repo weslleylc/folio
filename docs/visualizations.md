@@ -1,80 +1,75 @@
-# Folio visualizations for the talk
+# Folio talk — BigQuery Studio only
 
-You already have the marts in BigQuery (`roundtable-513102.dbt_wcaldas`).  
-Use **BigQuery Studio charts for live clicks** and **Looker Studio for 3–4 slides**.
+Project: `roundtable-513102` · Dataset: `dbt_wcaldas`  
+SQL: [`presentation_queries.sql`](presentation_queries.sql)
 
-Queries: [`presentation_queries.sql`](presentation_queries.sql).
+Open: [BigQuery Console](https://console.cloud.google.com/bigquery?project=roundtable-513102)
 
 ---
 
-## Option A — BigQuery Studio (fastest for live demo)
+## Setup once (10 min)
 
-1. Open [BigQuery Studio](https://console.cloud.google.com/bigquery?project=roundtable-513102).
-2. Paste a block from `presentation_queries.sql` → **Run**.
-3. Under the results grid, open **Chart** / **Visualization**:
+1. In BigQuery Studio → **Query editor**.
+2. For each block below: paste → **Run** → **Save query** with the exact name.
+3. After Run, open **Chart** under the results and set the encoding (table below).
+4. Leave the saved queries pinned / starred so the talk is: open → Run → Chart.
 
-| Query | Chart type | Encoding |
+| Save as | Block in `presentation_queries.sql` | Result view |
 |---|---|---|
-| 02 Silver | Bar | X=`doc_id`, Y=`quality_score` |
-| 03 Gold rollup | Bar | X=`account_name`, Y=`covenant_docs` (color=`max_risk_tier` if available) |
-| 06a / 06b Search | Bar | X=`classification` or `source_id`, Y=`score` |
-| 06c Before/after | Stacked bar | X=`demo`, stack=`classification`, Y=`hits` |
-| 07 Taxonomy | Pie | Dimension=`classification`, metric=`chunk_count` |
-| 08 Spend | Bar | X=`function_name`, Y=`est_cost_usd` |
+| `folio_01_bronze` | 01 Bronze | **Table** (no chart) |
+| `folio_02_silver` | 02 Silver | Bar |
+| `folio_03_rollup` | 03 Gold rollup | Bar |
+| `folio_04_facts` | 04 Gold facts | Table |
+| `folio_05_timeline` | 05 Narrative | Table |
+| `folio_06a_search_raw` | 06a Search raw | Bar |
+| `folio_06b_search_classified` | 06b Search classified | Bar |
+| `folio_06c_compare` | 06c Before/after | Stacked bar |
+| `folio_07_taxonomy` | 07 Taxonomy | Pie |
+| `folio_08_spend` | 08 AI spend | Bar |
+| `folio_09_lineage` | 09 Lineage | Table |
+| `folio_10_health` | 10 Medallion health | Table / scorecards |
 
-4. **Save** each SQL as a saved query (`01_bronze`, `03_rollup`, …) so the talk is click → run → chart.
+### Chart encodings (Studio)
 
-No extra product. Works offline-ish once results are cached in the tab.
+| Saved query | Chart | X / Dimension | Y / Metric | Notes |
+|---|---|---|---|---|
+| `folio_02_silver` | Bar | `doc_id` | `quality_score` | Optional color: `silver_status` |
+| `folio_03_rollup` | Bar | `account_name` | `covenant_docs` | Add series for `past_due_docs` / `liquidity_docs` if UI allows |
+| `folio_06a_search_raw` | Bar | `classification` | `score` | Or X=`source_id` for passage-level |
+| `folio_06b_search_classified` | Bar | `classification` | `score` | Same axes as 06a — easy compare |
+| `folio_06c_compare` | Stacked bar | `demo` | `hits` | Stack / series = `classification` |
+| `folio_07_taxonomy` | Pie | `classification` | `chunk_count` | Closed taxonomy story |
+| `folio_08_spend` | Bar | `function_name` | `est_cost_usd` | Or Y=`est_tokens` |
+
+If Chart controls differ slightly in your UI: Dimension = category column, Measure = numeric column.
 
 ---
 
-## Option B — Looker Studio (best for slides / share link)
+## Live talk click path (~12 min)
 
-1. [Looker Studio](https://lookerstudio.google.com/) → **Create** → **Data source** → **BigQuery**.
-2. Pick project `roundtable-513102`, dataset `dbt_wcaldas`.
-3. Add these tables as separate data sources (or one custom query each):
-
-| Page | Data source | Viz |
+| Min | Open saved query | Say |
 |---|---|---|
-| Risk rollup | `gold_account_risk_rollup` | Bar: account vs covenant/liquidity/past_due |
-| Silver gate | `silver_document_bodies` | Bar: quality_score; optional filter on `silver_status` |
-| Search compare | custom SQL = query **06c** | Stacked bar demo × classification |
-| Taxonomy | `gov_classification_breakdown` | Pie |
-| Cost | `gov_ai_spend` | Bar / scorecard on `est_cost_usd`, `est_tokens` |
-| Health | `gov_medallion_health` | Scorecards |
+| 0 | `folio_01_bronze` | Hash + URI, no NLP. Seeds demo vs zero-copy prod. |
+| 1 | `folio_02_silver` + chart | Quarantine / quality before any embed bill. |
+| 3 | `folio_03_rollup` + chart | Meridian spike vs BrightPeak / Summit noise. |
+| 5 | `folio_05_timeline` | Join ceiling — timeline yes, meaning no. |
+| 7 | `folio_06a` then `folio_06b` | Raw recall vs classified precision. |
+| 9 | `folio_06c` stacked | Same story in one chart. |
+| 10 | `folio_07_taxonomy` pie | Taxonomy is a product decision. |
+| 11 | `folio_08_spend` + `folio_09_lineage` | Cost gates + sha256 / RTBF. |
 
-4. Share the report link; open fullscreen during Q&A.
-
-**Custom query tip:** in the data source, choose **Custom query** and paste 06c / 08 so you don’t expose every column.
+Skip `04` / `10` unless someone asks.
 
 ---
 
-## Option C — Streamlit (local DuckDB only)
+## Pre-flight (day of)
 
-```bash
-dbt build   # local DuckDB
-make dashboard
+```text
+[ ] AI build already ran (search + gov_classification_breakdown + gov_ai_spend populated)
+[ ] Each folio_* query Runs without error
+[ ] Charts still show after re-run (re-apply encoding if Studio resets)
+[ ] Browser zoom ~110%, hide left nav if needed for projector
 ```
 
-Good for a laptop-only rehearsal. It does **not** read BigQuery unless you rewire `dashboard/app.py` to BQ. For the Cloud talk, prefer A or B.
-
----
-
-## Suggested slide / tab order
-
-1. Table: Bronze catalog (hash + URI)  
-2. Chart: Silver quality  
-3. Chart: Gold rollup (Meridian spike)  
-4. Table: Narrative timeline  
-5. Charts: Search raw vs classified (06a then 06b, or 06c)  
-6. Pie: Taxonomy  
-7. Chart + table: Spend + lineage  
-
----
-
-## Pre-talk checklist
-
-- [ ] `dbt build --vars '{"ai_functions_enabled": true}'` succeeded (so `search`, `gov_classification_breakdown`, spend rows exist)  
-- [ ] Saved queries 01–10 in BigQuery Studio  
-- [ ] Looker report published (optional)  
-- [ ] Confirm dataset name still `dbt_wcaldas` (dev schemas can change per user)  
+Re-check dataset name if you rebuilt under another dbt Cloud schema (`dbt_<user>`).
+Update the `` `project.dataset` `` prefix in `presentation_queries.sql` if it changed.
