@@ -35,15 +35,17 @@ Appendix page **A** is the SQL pack (live click-through in BigQuery Studio).
 
 | Fact | Value |
 |---|---|
-| Files / borrowers / formats | 100 / 12 / 7 |
-| Meridian (ACC-8847) files | 16 (15 usable, 1 quarantined for PII) |
-| Silver | 96 ready · 4 quarantined (2 parse failed, 1 low quality, 1 PII) |
+| Files / borrowers / formats | 101 documents (102 Bronze versions) / 12 / 7 |
+| Meridian (ACC-8847) files | 17 (15 usable, 1 quarantined for PII, 1 duplicate e-mail copy) |
+| Bronze | 102 version rows · INV-4401 has v1 + v2 (re-issued invoice) · MER-X02-DUP shares MER-X02’s hash |
+| Silver | 96 ready · 5 quarantined (2 parse failed, 1 low quality, 1 PII, 1 duplicate) |
+| Fiscal period (hybrid) | 12 regex · 24 AI rescues · 60 not found (AI saw 24 of 96, not all) |
 | Gold tiers | 3 high · 13 medium · 80 low |
-| Chunks embedded | 102 (text-embedding-005, 768 dims) |
+| Chunks embedded | 102 (text-embedding-005, 768 dims); after batch 2 only 2 chunks re-embedded |
 | Search top 10 for *“Which borrower is at risk of default?”* | raw: 5 other-borrower results · filtered: 0 |
 | Regex vs extract() on 17 docs | 14 agree · 2 regex false alarms · 1 regex missed |
 | Classify eval | 87% accuracy (13/15); misses 10Q-Q3-MDA and EARN-Q3-2025 |
-| AI spend (est.) | ≈ $0.025 total; classify is the largest line |
+| AI spend (est.) | ≈ $0.04 total; classify is the largest line; 1 orphaned run (a failed build — the ledger caught it) |
 
 Re-check after any rebuild: `make dashboard-warm` then page 14.
 
@@ -55,7 +57,7 @@ Each page: **Goal → Say → Chart (axes · read · so what) → Transition.**
 
 ### 1 · The problem (2 min)
 - **Goal:** the room can repeat the analyst question and the five failure modes.
-- **Say:** the four-sentence problem above; point at the three metrics (100 files, 12 borrowers, 7 formats).
+- **Say:** the four-sentence problem above; point at the three metrics (~100 files, 12 borrowers, 7 formats).
 - **Five failure modes:** scattered signal · noise · unusable files · tokens billed per call · answers without proof.
 - **Transition:** “Let’s meet the borrower.”
 
@@ -63,9 +65,9 @@ Each page: **Goal → Say → Chart (axes · read · so what) → Transition.**
 - **Goal:** make the needle-in-haystack concrete.
 - **Chart 1 — files per borrower**
   - *Axes:* Y borrower · X number of files.
-  - *Read:* red = Meridian (16), grey = healthy borrowers (7–9 each).
+  - *Read:* red = Meridian (17), grey = healthy borrowers (7–9 each).
   - *So what:* a search across everything returns plenty of other people’s paperwork.
-- **Table — Meridian’s case file:** 16 files in 6 formats, one already marked `quarantine_pii_review`.
+- **Table — Meridian’s case file:** 17 files in 6 formats, one already marked `quarantine_pii_review` and one `quarantine_duplicate`.
 - **Transition:** “How do we get from this folder to an answer without trusting everything blindly?”
 
 ### 3 · The approach (2 min)
@@ -88,11 +90,11 @@ Each page: **Goal → Say → Chart (axes · read · so what) → Transition.**
 
 ### 6 · Silver: the gate (3 min) — most important page of Act II
 - **Goal:** answer “what is the silver gate?”
-- **Say:** *it is a column, not a table*: `silver_status` in `silver_document_bodies`, a CASE where the first rule wins (parse failed → quality < 0.4 → restricted PII → ready). Downstream models read the view `silver_ready_documents`.
+- **Say:** *it is a column, not a table*: `silver_status` in `silver_document_bodies`, a CASE where the first rule wins (parse failed → quality < 0.4 → restricted PII → duplicate sha256 → ready). Downstream models read the view `silver_ready_documents`.
 - **Chart 1 — one square per file (waffle)**
-  - *Axes:* none — 100 squares, one per file; hover shows the file. Sorted by status, green first.
-  - *Read:* green = passed (96); each other colour = a different rule that stopped the file (2 parse failed, 1 low quality, 1 PII).
-  - *So what:* the gate is rare on purpose; the four red/amber/purple squares never reach Gold, never get embedded, never cost tokens.
+  - *Axes:* none — 101 squares, one per file; hover shows the file. Sorted by status, green first.
+  - *Read:* green = passed (96); each other colour = a different rule that stopped the file (2 parse failed, 1 low quality, 1 PII, 1 duplicate).
+  - *So what:* the gate is rare on purpose; the five non-green squares never reach Gold, never get embedded, never cost tokens.
 - **Chart 2 — quality score histogram with the 0.4 rule**
   - *Axes:* X parse quality (bins of 0.1) · Y number of files · colour = verdict.
   - *Read:* left of the dashed line fails rule 2. The purple file is on the right (good quality) but blocked by rule 3 — it contains an SSN.
@@ -143,6 +145,7 @@ Each page: **Goal → Say → Chart (axes · read · so what) → Transition.**
 
 ### 11 · Extraction: regex vs extract() (3 min) — pays off page 7’s seed
 - **Say:** `extract()` returns typed fields **and a verbatim quote**; `grounded` fails the build if the quote isn’t in the source. Cost gate: only Meridian + regex-flagged docs (17 of 96).
+- **Hybrid section (fiscal period):** regex first (12 docs, free), AI only for the gap (24 docs whose wording the regex can’t read, each with a verbatim quote), 60 docs have no period so the model is never called. *Say:* “regex is the cheap filter in front of the paid call.”
 - **Chart — agreement of the two methods on 17 docs**
   - *Axes:* Y verdict · X documents.
   - *Read:* green = agree (14); red = regex false alarm (2); amber = regex missed it (1).
@@ -164,12 +167,13 @@ Each page: **Goal → Say → Chart (axes · read · so what) → Transition.**
 
 ### 13 · Cost & lineage (2 min)
 - **Chart — estimated tokens per AI function:** Y function · X tokens · green = started *and* completed (a red bar = orphaned run). **classify is the biggest line** (prompt resent with every chunk); embed is the smallest (incremental on `content_hash`).
+- **Chart — rows sent to the model, run by run:** first runs bill 102 rows; after Bronze batch 2 the embed/classify runs bill **2** (only INV-4401’s chunks changed). *So what:* incremental AI bills the delta.
 - **Gates:** `max_batch_rows=5000`, `max_est_tokens=2,000,000` — a runaway job fails before it bills. AI is opt-in (`ai_functions_enabled`).
 - **Chart — lineage status:** `fully_promoted` vs `quarantined`; every row keeps `content_sha256` + `citation_url`. Use the drill-down to show a hash.
 - **Transition:** “Let’s close the loop on the analyst’s question.”
 
 ### 14 · Wrap-up (2 min)
-- **Chart — document funnel:** 100 Bronze → 96 Silver ready → 96 Gold → 16 flagged. AI spend happens on stage 2, not stage 1.
+- **Chart — document funnel:** 101 Bronze → 96 Silver ready → 96 Gold → 16 flagged. AI spend happens on stage 2, not stage 1.
 - **Answer the opening question** (the text on screen): Meridian — usable docs, past-due / covenant / liquidity counts, leverage up to 3.75x — with quotes, hashes, and a measured error rate.
 - **Three sound bites:** (1) vectors without Silver are an ungoverned second copy · (2) rules are cheap and explainable, models understand meaning — use both and measure both · (3) treat AI outputs like dbt models: tests, evals, ledger, lineage.
 
@@ -201,8 +205,9 @@ If you need 20 minutes: skip page 5, say page 4 in one sentence, merge 8+9.
 4. **Taxonomy is a product decision** — a bad label set quietly filters the right answer away; evals make it testable.
 5. **Cost gates are architecture** — `ai_functions_enabled: false` by default, `guard_batch` ceilings, `allow_full_reembed: false`, `bq_thinking_budget: 0`, `gov_ai_spend` ledger.
 6. **Lineage is the citation story** — `content_sha256` from Bronze → Silver → chunks.
-7. **Noise is intentional** — other borrowers’ boilerplate makes raw search fail visibly; if search only returned Meridian the demo would be too clean.
-8. **Warehouse-native AI** — same dbt project on BigQuery (Gemini / `AI.*`) or Redshift (Bedrock UDFs); one provider per target, not mixed in one build.
+7. **Bronze is append-only** — a revised file is a new version, never an overwrite; a duplicate keeps its provenance row but is quarantined in Silver.
+8. **Noise is intentional** — other borrowers’ boilerplate makes raw search fail visibly; if search only returned Meridian the demo would be too clean.
+9. **Warehouse-native AI** — same dbt project on BigQuery (Gemini / `AI.*`) or Redshift (Bedrock UDFs); one provider per target, not mixed in one build.
 
 ---
 
@@ -239,6 +244,8 @@ extract() + grounded       Typed + cited         Costs tokens; needs evals
 | Why is precision blank for public_disclosure? | The model never predicted that label on the golden docs |
 | Who owns sensitivity labels? | Silver stewardship — same as PII columns on tables |
 | How do you RTBF a PDF? | Find `content_sha256` / `doc_id` in lineage; purge object + downstream chunks/embeddings |
+| Where do duplicates go? | Bronze records every arrival (append-only); Silver quarantines exact-hash copies (`quarantine_duplicate`). Near-duplicates (MinHash) are a known gap |
+| What if the regex can’t read the quarter? | The AI fallback runs only for that gap, once per document version, with a grounded quote |
 | Can I mix Bedrock and Gemini? | Not in one build; use two targets (BigQuery → Gemini, Redshift → Bedrock) |
 | What breaks first in prod? | Bad parses, prompt drift, full-refresh re-embed bills, taxonomy mismatch |
 

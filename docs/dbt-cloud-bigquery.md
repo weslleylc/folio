@@ -7,8 +7,9 @@ engineering. Turn on AI when you want real `AI.EMBED` / `AI.GENERATE`.
 ```mermaid
 flowchart LR
   seeds[seeds CSVs in git] --> bqSeed[dbt seed on BigQuery]
-  bqSeed --> bronze[bronze_document_catalog]
-  bqSeed --> silver[silver_document_bodies]
+  bqSeed --> bronze[bronze_document_versions append-only]
+  bronze --> cat[bronze_document_catalog current view]
+  cat --> silver[silver_document_bodies]
   silver --> gold[gold facts + rollup]
   silver --> ctx[chunk / hash]
   ctx --> ai[embed classify KB search]
@@ -89,6 +90,8 @@ Replace project/dataset:
 
 ```sql
 select * from `YOUR_PROJECT.folio_dev.bronze_document_catalog`;
+-- append-only history (a revised file = a new bronze_version):
+select doc_id, bronze_version, ingest_batch from `YOUR_PROJECT.folio_dev.bronze_document_versions` order by 1, 2;
 select doc_id, quality_score, sensitivity_label, silver_status
 from `YOUR_PROJECT.folio_dev.silver_document_bodies`;
 select * from `YOUR_PROJECT.folio_dev.gold_account_risk_rollup`
@@ -115,3 +118,18 @@ select * from `YOUR_PROJECT.folio_dev.gov_ai_spend`;
 | Vertex / permission errors on AI models | Enable Vertex AI API; check SA roles; set `bq_connection` for scheduled jobs |
 | `guard_batch` ceiling tripped | Demo ceilings are tight on purpose; raise `max_batch_rows` / `max_est_tokens` only if intentional |
 | dbt version / `vars.yml` ignored | Set Cloud environment to dbt ≥ 1.12 |
+
+## Simulating a second Bronze batch (append-only demo)
+
+`bronze_max_batch` controls which landing batches Bronze has received (default `2`, both in `vars.yml`).
+
+```bash
+# 1) first load: batch 1 only (full corpus billed once)
+dbt build --full-refresh --vars '{"ai_functions_enabled": true, "allow_full_reembed": true, "bronze_max_batch": 1}'
+
+# 2) a new batch arrives: INV-4401 re-issued (v2) + a duplicate e-mail copy of MER-X02
+dbt build --vars '{"ai_functions_enabled": true, "bronze_max_batch": 2}'
+#    → Bronze +2 rows, Silver quarantines the duplicate, embed/classify bill only the 2 changed chunks
+```
+
+`--full-refresh` does not rewrite `bronze_document_versions` unless you also pass `allow_bronze_rebuild=true`.

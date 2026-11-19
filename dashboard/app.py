@@ -353,7 +353,7 @@ elif page == PAGES[1]:
     )
     st.dataframe(case, width="stretch", hide_index=True)
     teach(
-        "<b>Read the table</b> — 16 files, 6 formats (invoice, credit memo, analyst note, credit facility, "
+        f"<b>Read the table</b> — {len(case)} files, 6 formats (invoice, credit memo, analyst note, credit facility, "
         "earnings call, SEC filing). One of them is a memo containing an SSN, so it is already marked "
         "<code>quarantine_pii_review</code> — we will come back to that on the Silver page.<br/><br/>"
         "<b>What we want at the end:</b> a short list of the documents that show the stress, "
@@ -392,6 +392,25 @@ elif page == PAGES[2]:
         | `eval` / `grounded` | `gov_classify_eval` | Score the AI against known answers; fail if a quote is invented |
         | `guard_batch` / `log_ai_run` | `gov_ai_spend` | Stop oversized jobs; record tokens and cost |
         """
+    )
+
+    st.subheader("How Folio maps to the unstructured-medallion article")
+    st.markdown(
+        """
+        | Article layer | What the article asks for | Folio model(s) |
+        |---|---|---|
+        | 🥉 **Bronze** | Catalog, zero-copy by default, immutable | `bronze_document_versions` (append-only log) → `bronze_document_catalog` (current-version view) |
+        | 🥈 **Silver** | Parse, quality gate, PII redaction, dedup | `silver_document_bodies` (status CASE + `body_sanitized` + `silver_version_id`) → `silver_ready_documents` |
+        | 🥇 **Gold · context store** | Chunks + embeddings, reusable | `documents_hashed`, `documents_embed` (public, incremental) |
+        | 🥇 **Gold · structured** | Tables you can join | `gold_document_facts`, `gold_document_periods` (regex → AI), `documents_extract_flat` |
+        | 🥇 **Gold · serving** | Use-case products | `documents_classify`, `search`, `knowledge_base` |
+        | 🥇 **Gold · governance** | Lineage, spend, health | `gov_document_lineage`, `gov_ai_spend`, `gov_medallion_health` |
+        """
+    )
+    teach(
+        "<b>Honest gaps vs the article</b> — not built in this demo: ACL propagation from the source system, "
+        "a human steward queue for quarantined files, and near-duplicate detection (MinHash). We only "
+        "dedupe <i>exact</i> copies (same sha256)."
     )
     next_up()
 
@@ -463,6 +482,40 @@ elif page == PAGES[3]:
             "<code>content_sha256</code> = fingerprint (same file ⇒ same hash; this is our audit anchor) · "
             "<code>bronze_layer</code> = physical_copy vs metadata_only."
         )
+
+    if has("bronze_document_versions"):
+        st.subheader("Append-only: Bronze never overwrites a row")
+        vc = load("bronze_version_counts").iloc[0]
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Version rows (immutable log)", int(vc["version_rows"]))
+        c2.metric("Distinct documents", int(vc["docs"]))
+        c3.metric("Arrived in batch 2", int(vc["batch2_rows"]))
+        teach(
+            "<b>Two tables, one rule.</b> <code>bronze_document_versions</code> is an append-only log: a row is "
+            "identified by <code>(doc_id, content_sha256)</code>, inserted once, never updated or deleted, and "
+            "<code>--full-refresh</code> is blocked unless <code>allow_bronze_rebuild=true</code>. "
+            "<code>bronze_document_catalog</code> is just a <i>view</i> of the latest version per document. "
+            "A singular test fails the build if any version is duplicated or missing."
+        )
+        left, right = st.columns(2)
+        with left:
+            st.markdown("**Same document, file changed → new version (v1 is kept)**")
+            st.dataframe(load("bronze_revised_docs"), width="stretch", hide_index=True)
+            st.dataframe(
+                load("bronze_inv4401_text").rename(columns={"status_line": "Status line in the PDF", "total_due": "Total due"}),
+                width="stretch",
+                hide_index=True,
+            )
+        with right:
+            st.markdown("**Different document, identical bytes → same hash**")
+            st.dataframe(load("bronze_same_hash"), width="stretch", hide_index=True)
+            st.caption("The email re-send keeps its own Bronze row (provenance!) but Silver will quarantine it as a duplicate.")
+        guide(
+            "Each row is one registered version of one file. `sha256_prefix` is its fingerprint.",
+            "INV-4401 has two rows with different hashes: the vendor re-issued the invoice (late fee added). "
+            "MER-X02 and MER-X02-DUP share one hash: someone e-mailed the same PDF again.",
+            "Bronze records what arrived and when — it never decides which one matters. That is Silver’s job.",
+        )
     next_up()
 
 # ===========================================================================
@@ -481,8 +534,10 @@ elif page == PAGES[5]:
         "1 · parse failed → <code>quarantine_parse_failed</code><br/>"
         "2 · quality score &lt; 0.4 → <code>quarantine_low_quality</code><br/>"
         "3 · sensitivity = restricted_pii → <code>quarantine_pii_review</code><br/>"
-        "4 · otherwise → <code>silver_ready</code><br/>"
-        "Everything downstream reads the view <code>silver_ready_documents</code>, which keeps only #4."
+        "4 · same <code>content_sha256</code> already seen earlier → <code>quarantine_duplicate</code><br/>"
+        "5 · otherwise → <code>silver_ready</code><br/>"
+        "Everything downstream reads the view <code>silver_ready_documents</code>, which keeps only #5. "
+        "Silver reads only the <i>current</i> Bronze version of each document."
     )
 
     bodies = load("silver_bodies").copy()
@@ -491,8 +546,9 @@ elif page == PAGES[5]:
         "quarantine_parse_failed",
         "quarantine_low_quality",
         "quarantine_pii_review",
+        "quarantine_duplicate",
     ]
-    STATUS_COLORS = [GREEN, RED, AMBER, "#7d3c98"]
+    STATUS_COLORS = [GREEN, RED, AMBER, "#7d3c98", "#4b6a88"]
     bodies["silver_status"] = pd.Categorical(bodies["silver_status"], STATUS_ORDER, ordered=True)
     bodies = bodies.sort_values(["silver_status", "doc_id"]).reset_index(drop=True)
     bodies["silver_status"] = bodies["silver_status"].astype(str)
@@ -530,7 +586,7 @@ elif page == PAGES[5]:
         "The gate is rare on purpose — most files are fine; the point is the ones that are not.",
     )
 
-    st.subheader("Why those four? Quality score vs the 0.4 rule")
+    st.subheader("Quality score vs the 0.4 rule")
     hist = (
         alt.Chart(bodies)
         .mark_bar()
@@ -568,6 +624,7 @@ elif page == PAGES[5]:
         "quarantine_parse_failed": "Could not extract text (blank / illegible scan)",
         "quarantine_low_quality": "Text extracted but garbled (OCR quality below 0.4)",
         "quarantine_pii_review": "Contains personal data (SSN) — needs human review",
+        "quarantine_duplicate": "Byte-identical copy of a file already accepted (same sha256)",
     }
     qdf.insert(1, "why", qdf["silver_status"].map(reason))
     st.dataframe(qdf, width="stretch", hide_index=True)
@@ -713,7 +770,7 @@ elif page == PAGES[7]:
         "An embedding turns a passage into a list of ~768 numbers. Similar meaning ⇒ nearby numbers.",
     )
     if not has("documents_embed"):
-        st.warning("Build the AI layer: `dbt build --select path:models/context --vars '{\"ai_functions_enabled\": true}'`")
+        st.warning("Build the AI layer: `dbt build --select documents_embed+ --vars '{\"embeddings_enabled\": true}'`")
         st.stop()
 
     teach(
@@ -880,7 +937,7 @@ elif page == PAGES[10]:
         "<code>primary_signal</code>, <code>leverage_mention</code>, <code>usd_amount_mention</code> and "
         "<code>evidence</code> (a quote). The <code>grounded</code> test fails the build if that quote is not "
         "literally in the source.<br/>"
-        "<b>Cost gate</b>: we extract only Meridian plus anything the regex flagged (17 docs), not all 96."
+        "<b>Cost gate</b>: we extract only Meridian plus anything the regex flagged, not every ready document."
     )
     cmp = load("regex_vs_extract").copy()
     counts = cmp.groupby("verdict", as_index=False).size().rename(columns={"size": "docs"})
@@ -895,7 +952,7 @@ elif page == PAGES[10]:
         colors={"agree": GREEN, "regex false alarm": RED, "regex missed it": AMBER},
     )
     guide(
-        "Y = how the two methods compare on each of the 17 documents · X = number of documents.",
+        f"Y = how the two methods compare on each of the {len(cmp)} documents · X = number of documents.",
         "Green = both say “risky” or both say “not”. Red = regex flagged it but the model reads it as not risky. "
         "Amber = regex saw nothing but the model found stress.",
         "Rules are right most of the time — but the misses are the ones that hurt. "
@@ -916,6 +973,54 @@ elif page == PAGES[10]:
     )
     with st.expander("Full extraction mart"):
         st.dataframe(load("extract_flat"), width="stretch", hide_index=True)
+
+    if has("gold_document_periods"):
+        st.subheader("Hybrid: regex first, AI only when regex fails")
+        teach(
+            "<b>Question:</b> which fiscal quarter does each document cover?<br/>"
+            "<b>Step 1 · regex (free)</b> reads the canonical wording “… period: Q3 2025”.<br/>"
+            "<b>Step 2 · AI <code>extract()</code> (billed)</b> runs <i>only</i> on documents that talk about a quarter in a shape "
+            "the regex does not know (“the quarter ended September 30, 2025”, “third quarter of fiscal 2025”).<br/>"
+            "<b>Step 3</b> · documents with no period at all are marked <code>not_found</code> — no AI call is wasted on them."
+        )
+        pm = load("period_methods").copy()
+        order = ["regex", "ai", "not_found"]
+        pm["fiscal_period_method"] = pm["fiscal_period_method"].astype(str)
+        n_regex = int(pm.loc[pm["fiscal_period_method"] == "regex", "docs"].sum())
+        n_ai = int(pm.loc[pm["fiscal_period_method"] == "ai", "docs"].sum())
+        n_all = int(pm["docs"].sum())
+        c1, c2, c3 = st.columns(3)
+        c1.metric("Resolved by regex (free)", n_regex)
+        c2.metric("Rescued by AI", n_ai)
+        c3.metric("AI calls avoided", n_all - n_ai, help="documents that never reached the model")
+        bar(
+            pm,
+            "fiscal_period_method",
+            "docs",
+            title="How each document’s fiscal period was resolved",
+            cat_title="Method",
+            val_title="Number of documents",
+            color="fiscal_period_method",
+            colors={"regex": GREEN, "ai": BLUE, "not_found": "#9aa5b1"},
+            sort=order,
+        )
+        guide(
+            "Y = method that produced the fiscal period · X = number of documents.",
+            "Green = regex was enough. Blue = regex failed but the text had a quarter phrase, so the model filled it in. "
+            "Grey = no period in the text at all (nothing to extract).",
+            f"The model saw {n_ai} of {n_all} documents, not all of them — the regex is the cheap filter in front of the paid call.",
+        )
+        left, right = st.columns(2)
+        with left:
+            st.markdown("**Regex hits** (canonical wording)")
+            st.dataframe(load("period_regex_rows"), width="stretch", hide_index=True)
+        with right:
+            st.markdown("**AI rescues** — with the quote that proves it")
+            st.dataframe(load("period_ai_rows"), width="stretch", hide_index=True)
+        st.caption(
+            "`documents_period_fallback` is incremental on (doc_id, silver_version_id, prompt+model version): "
+            "a document is sent to the model once, and `grounded` fails the build if the quote is not in the text."
+        )
     next_up()
 
 # ===========================================================================
@@ -1013,8 +1118,11 @@ elif page == PAGES[12]:
                 c1.metric("AI runs", len(spend))
                 c2.metric("Est. tokens", f"{float(spend['est_tokens'].fillna(0).sum()):,.0f}")
                 c3.metric("Est. USD", f"${float(spend['est_cost_usd'].fillna(0).sum()):.4f}")
+                by_fn = (
+                    spend.groupby(["function_name", "status"], as_index=False)["est_tokens"].sum()
+                )
                 bar(
-                    spend,
+                    by_fn,
                     "function_name",
                     "est_tokens",
                     title="Estimated tokens per AI function",
@@ -1025,11 +1133,33 @@ elif page == PAGES[12]:
                 )
                 guide(
                     "Y = AI function (embed / classify / extract) · X = estimated input tokens.",
-                    "Green = the run logged both a start and a completion. Red would mean a job started and "
-                    "never finished (an orphan).",
+                    "Green = the run logged both a start and a completion. Red = a job started and "
+                    "never finished (an orphan) — here, a build that failed mid-way while we were developing. "
+                    "The ledger caught it.",
                     "classify is the biggest line: the taxonomy prompt is re-sent with every chunk. "
                     "embed is the smallest because it is incremental on `content_hash` — unchanged text "
                     "is never re-billed. Both sit behind `guard_batch`.",
+                )
+                runs = load("billed_per_run").copy()
+                runs = runs[runs["row_count"] > 0].reset_index(drop=True)
+                runs["run"] = (runs.index + 1).astype(str).str.zfill(2) + " · " + runs["function_name"].astype(str)
+                bar(
+                    runs,
+                    "run",
+                    "row_count",
+                    title="Rows sent to the model, run by run",
+                    cat_title="Run (oldest first)",
+                    val_title="Rows billed",
+                    color="function_name",
+                    colors={"embed": BLUE, "classify": AMBER, "extract": GREEN},
+                    sort=runs["run"].tolist(),
+                )
+                guide(
+                    "Y = each logged AI run, oldest first · X = rows that run sent to the model.",
+                    "The first embed/classify runs process the whole corpus. The last ones process 2 rows: "
+                    "only the chunks of the re-issued invoice INV-4401 changed (new Bronze version → new text hash).",
+                    "Incremental AI models (embed, classify, period fallback) bill the delta, not the table. "
+                    "Known gap: the 17-row credit `documents_extract` is still a plain table, so it re-bills on every build.",
                 )
                 st.dataframe(
                     spend[["function_name", "model_name", "row_count", "est_tokens", "est_cost_usd", "status"]],
@@ -1078,7 +1208,7 @@ elif page == PAGES[12]:
 elif page == PAGES[13]:
     hero(
         "Wrap-up: what the folder became",
-        "From 100 raw files to a short, cited list — with every step gated and measured.",
+        "From raw files to a short, cited list — with every step gated and measured.",
     )
     if not has("gov_medallion_health"):
         st.warning("Missing gov_medallion_health.")
@@ -1107,7 +1237,7 @@ elif page == PAGES[13]:
         "AI spend (embedding, classify, extract) runs on stage 2, not stage 1.",
     )
     c1, c2, c3, c4 = st.columns(4)
-    c1.metric("Quarantined", f"{100 * float(h['pct_quarantined'] or 0):.0f}%")
+    c1.metric("Quarantined", f"{100 * float(h['pct_quarantined'] or 0):.0f}%", help=f"{int(h['silver_quarantined'])} of {int(h['silver_docs'])} documents")
     c2.metric("AI tokens (est.)", f"{int(h['ai_total_est_tokens']):,}")
     c3.metric("AI cost (est.)", f"${float(h['ai_total_est_cost_usd']):.4f}")
     c4.metric("Orphaned AI runs", int(h["ai_orphaned_starts"] or 0))
@@ -1149,6 +1279,9 @@ else:
         ("06 Search raw vs filtered  (page 10)", "pack_search"),
         ("07 Regex vs extract  (page 11)", "regex_vs_extract"),
         ("08 Classify eval  (page 12)", "classify_eval"),
+        ("09 Bronze version history  (page 4)", "bronze_revised_docs"),
+        ("10 Fiscal period: regex vs AI  (page 11)", "period_ai_rows"),
+        ("11 Rows billed per run  (page 13)", "billed_per_run"),
     ]
     pick = st.selectbox("Query", [p[0] for p in pack])
     name = dict(pack)[pick]

@@ -60,7 +60,10 @@ Cost gates in [`vars.yml`](vars.yml) keep a demo-sized run cheap and trip early 
 | `max_batch_rows` / `max_est_tokens` | `500` / `200000` | `guard_batch` circuit breaker |
 | `max_output_tokens` / `bq_thinking_budget` | `1024` / `0` | Cap Gemini output / disable thinking |
 | `cost_per_1k_tokens` | `0.00015` | Populate `ai_run_log.est_cost` |
-| `allow_full_reembed` | `false` | Block accidental full re-bill |
+| `embeddings_enabled` | `false` | Build only the reusable embeddings store |
+| `allow_full_reembed` | `false` | Block accidental full re-bill (also unlocks `--full-refresh` of classify / period fallback) |
+| `bronze_max_batch` | `2` | Which landing batches Bronze has "received" (append-only log) |
+| `allow_bronze_rebuild` | *(unset)* | Required to `--full-refresh` the append-only Bronze log |
 
 ### dbt Cloud + BigQuery
 
@@ -73,11 +76,12 @@ bronze/documents/     # raw PDFs (physical-copy Bronze for the demo)
 silver/extracted/     # Docling markdown + JSON metadata
 seeds/                # catalog + bodies loaded into the warehouse
 models/
-  bronze/             # document catalog (provenance, SHA-256)
-  silver/             # parsed bodies, quality + sensitivity gates
-  gold/               # structured facts + account risk rollup
-  context/            # chunk / hash (deterministic)
-  context/ai/         # embed, classify, knowledge_base, search (gated)
+  bronze/             # append-only version log + current-catalog view
+  silver/             # parsed bodies: quality, PII redaction, dedup gate
+  gold/context_store/ # chunk / hash (free) + embed (reusable, incremental)
+  gold/structured/    # regex facts, hybrid fiscal period, typed extract()
+  gold/serving/       # classify, knowledge_base, search (gated)
+  gold/governance/    # lineage, AI spend, health, evals
 analyses/             # Meridian narrative (join/regex ceiling)
 docs/architecture.md  # medallion ↔ context-engineering map
 docs/dbt-cloud-bigquery.md  # dbt Cloud + BigQuery deploy

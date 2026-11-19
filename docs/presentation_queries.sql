@@ -6,13 +6,13 @@
 --
 -- Page ↔ query map
 --   2  The case ............ 02a, 02b
---   4  Bronze .............. 04  (page 5 = discovery, no SQL)
+--   4  Bronze .............. 04, 04b, 04c  (page 5 = discovery, no SQL)
 --   6  Silver gate ......... 06a, 06b
 --   7  Gold flags .......... 07a, 07b, 07c
 --   8  Embeddings .......... 08a, 08b
 --   9  Taxonomy ............ 09
 --   10 Search .............. 10a, 10b
---   11 Extraction .......... 11
+--   11 Extraction .......... 11, 11b
 --   12 Evals ............... 12a, 12b
 --   13 Cost & lineage ...... 13a, 13b
 --   14 Wrap-up ............. 14
@@ -50,10 +50,36 @@ order by effective_date, doc_id;
 
 
 -- =============================================================================
+-- 04b  BRONZE — append-only history: a revised file is a NEW version, v1 is kept
+-- Chart: none (table). INV-4401 has v1 + v2 with different hashes.
+-- =============================================================================
+select doc_id, bronze_version, ingest_batch, source_system,
+       substr(content_sha256, 1, 12) as sha256_prefix, bronze_registered_at
+from `roundtable-513102.dbt_wcaldas.bronze_document_versions`
+where doc_id in (
+  select doc_id from `roundtable-513102.dbt_wcaldas.bronze_document_versions` group by 1 having count(*) > 1
+)
+order by doc_id, bronze_version;
+
+
+-- =============================================================================
+-- 04c  BRONZE — identical bytes arriving twice (kept in Bronze, quarantined in Silver)
+-- =============================================================================
+select v.doc_id, v.source_system, substr(v.content_sha256, 1, 12) as sha256_prefix, s.silver_status
+from `roundtable-513102.dbt_wcaldas.bronze_document_versions` v
+join `roundtable-513102.dbt_wcaldas.silver_document_bodies` s using (doc_id)
+where v.content_sha256 in (
+  select content_sha256 from `roundtable-513102.dbt_wcaldas.bronze_document_versions`
+  group by 1 having count(distinct doc_id) > 1
+)
+order by sha256_prefix, v.ingest_batch;
+
+
+-- =============================================================================
 -- 06a  SILVER GATE — what did the gate decide?
 -- Chart: waffle (one square per file) or a simple bar of counts. Green = silver_ready.
 -- The gate is the CASE expression in models/silver/silver_document_bodies.sql
--- (first match wins: parse failed → low quality (<0.4) → restricted_pii → ready).
+-- (first match wins: parse failed → low quality (<0.4) → restricted_pii → duplicate sha256 → ready).
 -- =============================================================================
 select silver_status, count(*) as docs
 from `roundtable-513102.dbt_wcaldas.silver_document_bodies`
@@ -234,3 +260,19 @@ select bronze_docs, silver_ready, silver_quarantined, gold_fact_docs,
        gold_high_risk + gold_medium_risk as gold_flagged,
        ai_total_est_tokens, ai_total_est_cost_usd, ai_orphaned_starts
 from `roundtable-513102.dbt_wcaldas.gov_medallion_health`;
+
+
+-- =============================================================================
+-- 11b  EXTRACTION (hybrid) — fiscal period: regex first, AI only for the gap
+-- Chart: bar. Y = fiscal_period_method, X = docs. Green regex · blue ai · grey not_found.
+-- =============================================================================
+select fiscal_period_method, count(*) as docs
+from `roundtable-513102.dbt_wcaldas.gold_document_periods`
+group by 1
+order by docs desc;
+
+-- The AI rescues, with the verbatim quote that backs each period:
+select doc_id, fiscal_period_ai, ai_evidence
+from `roundtable-513102.dbt_wcaldas.gold_document_periods`
+where fiscal_period_method = 'ai'
+order by doc_id;

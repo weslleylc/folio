@@ -179,6 +179,65 @@ def talk_queries() -> dict[str, str]:
             from {t('bronze_document_catalog')}
             order by effective_date
         """,
+        "bronze_version_counts": f"""
+            select count(*) as version_rows,
+                   count(distinct doc_id) as docs,
+                   sum(case when ingest_batch = 1 then 1 else 0 end) as batch1_rows,
+                   sum(case when ingest_batch = 2 then 1 else 0 end) as batch2_rows
+            from {t('bronze_document_versions')}
+        """,
+        "bronze_revised_docs": f"""
+            select doc_id, bronze_version, ingest_batch, source_system,
+                   substr(content_sha256, 1, 12) as sha256_prefix,
+                   bronze_registered_at
+            from {t('bronze_document_versions')}
+            where doc_id in (
+                select doc_id from {t('bronze_document_versions')} group by 1 having count(*) > 1
+            )
+            order by doc_id, bronze_version
+        """,
+        "bronze_same_hash": f"""
+            select substr(content_sha256, 1, 12) as sha256_prefix, doc_id, source_system, ingest_batch
+            from {t('bronze_document_versions')}
+            where content_sha256 in (
+                select content_sha256 from {t('bronze_document_versions')}
+                group by 1 having count(distinct doc_id) > 1
+            )
+            order by sha256_prefix, ingest_batch
+        """,
+        "bronze_inv4401_text": f"""
+            select substr(content_sha256, 1, 12) as sha256_prefix,
+                   regexp_extract(body_markdown, r'Status: ([^\\\\]+)') as status_line,
+                   regexp_extract(body_markdown, r'Total due [.]+ (USD [0-9,.]+)') as total_due
+            from {t('raw_document_bodies')}
+            where doc_id = 'INV-4401'
+            order by extracted_at
+        """,
+        "period_methods": f"""
+            select fiscal_period_method, count(*) as docs
+            from {t('gold_document_periods')}
+            group by 1
+        """,
+        "period_ai_rows": f"""
+            select doc_id, fiscal_period_ai as ai_period, ai_evidence as evidence
+            from {t('gold_document_periods')}
+            where fiscal_period_method = 'ai'
+            order by doc_id
+            limit 12
+        """,
+        "period_regex_rows": f"""
+            select doc_id, fiscal_period_regex as regex_period
+            from {t('gold_document_periods')}
+            where fiscal_period_method = 'regex'
+            order by doc_id
+            limit 6
+        """,
+        "billed_per_run": f"""
+            select started_at, function_name, row_count, est_tokens
+            from {t('gov_ai_spend')}
+            where row_count is not null
+            order by started_at
+        """,
         "silver_status_counts": f"""
             select silver_status, count(*) as docs
             from {t('silver_document_bodies')}
