@@ -24,6 +24,7 @@ ROOT = Path(__file__).resolve().parents[1]
 ASSETS = Path(__file__).resolve().parent / "assets"
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
+from glossary import CREDIT_TERMS, LABELS, PIPELINE_TERMS, as_markdown
 from data_cache import (  # noqa: E402
     BQ_DATASET,
     BQ_PROJECT,
@@ -77,13 +78,24 @@ st.markdown(
         background: #15202b; color: #e8eef2; border-radius: 12px;
         padding: 1rem 1.15rem; margin: 0.5rem 0 1rem 0; line-height: 1.5;
       }
-      .teach b { color: #f0c674; }
-      .teach code { background: #243447; padding: 0.1rem 0.35rem; border-radius: 4px; }
+      /* Force readable colours on every descendant: Streamlit's own markdown styles
+         (theme text colour, code chips) otherwise override the box colours. */
+      .teach, .teach * { color: #e8eef2 !important; }
+      .teach b, .teach strong { color: #f0c674 !important; }
+      .teach code { background: #2f4358 !important; color: #ffe9b0 !important;
+                    padding: 0.1rem 0.35rem; border-radius: 4px; }
       .guide {
         background: #fffaf0; border-left: 5px solid #d68910; border-radius: 6px;
         padding: 0.7rem 1rem; margin: 0.25rem 0 0.75rem 0; line-height: 1.5; color: #1a2332;
       }
-      .guide b { color: #8a5a00; }
+      .guide, .guide * { color: #1a2332 !important; }
+      .guide b { color: #8a5a00 !important; }
+      .guide code { background: #f3e3c0 !important; color: #1a2332 !important; }
+      .decision-box, .decision-box * { color: #1a2332 !important; }
+      .decision-box code { background: #eef1f4 !important; color: #1a2332 !important; }
+      .question, .question * { color: #15202b !important; }
+      .nextup, .nextup * { color: #5c6b7a !important; }
+      .nextup b { color: #1a2332 !important; }
       .question {
         background: #fff; border: 2px solid #15202b; border-radius: 12px;
         padding: 1rem 1.2rem; font-size: 1.15rem; margin: 0.5rem 0 1rem 0; color: #15202b;
@@ -209,6 +221,7 @@ PAGES = [
     "13 · Cost & lineage",
     "14 · Wrap-up",
     "A · SQL pack",
+    "B · Glossary (labels & terms)",
 ]
 
 st.sidebar.markdown("### Folio")
@@ -218,6 +231,7 @@ st.sidebar.markdown(
     "**Act IV** Use it (10–11)  \n**Act V** Trust (12–14)"
 )
 page = st.sidebar.radio("Talk pages (in order)", PAGES)
+st.sidebar.caption("Lost on a word? Open **B · Glossary** — labels, credit terms, AI terms.")
 st.sidebar.markdown("---")
 _stats = cache_stats()
 if WAREHOUSE == "bigquery":
@@ -830,6 +844,9 @@ elif page == PAGES[8]:
         "<code>supplier_collections</code> · <code>public_disclosure</code> · <code>routine_transaction</code> "
         "(everything boring).<br/>The model picks exactly one per chunk."
     )
+    with st.expander("📖 What does each label mean? (plain-language definitions)", expanded=True):
+        st.markdown(as_markdown(LABELS))
+        st.caption("Example phrases are illustrative wording, not quotes from the corpus. Full glossary: page B.")
     tax = load("taxonomy").copy()
     tax["kind"] = tax["classification"].map(
         lambda c: "routine / disclosure" if c in ("routine_transaction", "public_disclosure") else "risk label"
@@ -1263,6 +1280,40 @@ elif page == PAGES[13]:
         "3 · Treat AI outputs like dbt models: tests, evals, cost ledger, lineage."
     )
     next_up()
+
+# ===========================================================================
+elif page == PAGES[15]:
+    hero(
+        "Glossary: labels and terms used in the talk",
+        "Credit words, pipeline words and AI words — in plain language.",
+    )
+    needle = st.text_input("Filter (e.g. covenant, embedding, DSO)", "").strip().lower()
+
+    def _filtered(rows):
+        if not needle:
+            return rows
+        return [r for r in rows if needle in " ".join(r).lower()]
+
+    sections = [
+        ("Classification labels (the 5 `classify()` outputs)", LABELS),
+        ("Credit & finance terms", CREDIT_TERMS),
+        ("Pipeline & AI terms", PIPELINE_TERMS),
+    ]
+    shown = 0
+    for title, rows in sections:
+        rows = _filtered(rows)
+        if not rows:
+            continue
+        shown += len(rows)
+        st.subheader(title)
+        st.markdown(as_markdown(rows))
+    if not shown:
+        st.info("No term matches that filter.")
+    teach(
+        "<b>Label cheat-sheet</b> — <code>covenant_or_credit_risk</code> = the lender is worried · "
+        "<code>liquidity_or_working_capital</code> = cash is tight · <code>supplier_collections</code> = a vendor wants its money · "
+        "<code>public_disclosure</code> = written for the market · <code>routine_transaction</code> = nothing to see."
+    )
 
 # ===========================================================================
 else:

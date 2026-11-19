@@ -1,0 +1,7 @@
+[theme]
+# Pin a light theme: the talk's custom boxes assume dark text on light panels.
+base = "light"
+primaryColor = "#2e6da4"
+backgroundColor = "#f3efe6"
+secondaryBackgroundColor = "#ffffff"
+textColor = "#1a2332"
