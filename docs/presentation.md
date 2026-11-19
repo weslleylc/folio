@@ -224,7 +224,7 @@ vector search              Recall by meaning     Boilerplate pollution
 2. Article: [Beyond Tables…](https://jjojo.medium.com/beyond-tables-applying-the-medallion-architecture-to-unstructured-data-governance-39a81cfa3835)  
 3. Package: [`dbt_context_engineering`](https://github.com/dbt-labs/dbt-context-engineering)  
 4. Ready SQL: [`presentation_queries.sql`](presentation_queries.sql) (BigQuery, `dbt_wcaldas`)  
-5. Charts: **[`looker-studio.md`](looker-studio.md)** — Looker Studio 5-page report on BigQuery  
+5. Charts: **`make dashboard-bq`** — Streamlit over BigQuery ([`visualizations.md`](visualizations.md))  
 6. SQL backup: [`presentation_queries.sql`](presentation_queries.sql)  
 7. Optional: `folio_content_type` macro open in IDE  
 
@@ -232,14 +232,17 @@ vector search              Recall by meaning     Boilerplate pollution
 
 ## Queries + viz (Cloud talk)
 
-**Looker Studio** is the presentation surface ([`looker-studio.md`](looker-studio.md)).
+**Streamlit + BigQuery** is the presentation surface (`make dashboard-bq`).
 
-| Page | Beat | BigQuery source |
-|---|---|---|
-| 1 | Gold rollup — Meridian spike | `gold_account_risk_rollup` |
-| 2 | Silver gate | `silver_document_bodies` |
-| 3 | Search raw vs classified | `search` (compare + detail) |
-| 4 | Taxonomy | `gov_classification_breakdown` |
-| 5 | Cost + lineage | `gov_ai_spend`, `gov_document_lineage` |
+| Page | Beat |
+|---|---|
+| 1 | Gold rollup — Meridian spike |
+| 2 | Silver gate |
+| 3 | Search raw vs classified |
+| 4 | Taxonomy |
+| 5 | Cost + lineage |
 
-Bronze catalog + narrative timeline: keep as tables in BigQuery Studio from [`presentation_queries.sql`](presentation_queries.sql) (01, 05).
+```bash
+gcloud auth application-default login
+make dashboard-bq   # http://localhost:8501
+```
